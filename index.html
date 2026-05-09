@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentora - Login</title>
+  <!-- Tailwind CSS (CDN for static project) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            mentora: {
+              blue: { dark: '#143771', light: '#1F6DA9' },
+              green: '#AADD37',
+              orange: '#F9B032',
+              beige: '#ffffab'
+            }
+          },
+          fontFamily: {
+            heading: ['Inter', 'sans-serif'],
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/globals.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-gray-50 min-h-screen font-sans antialiased text-gray-900">
+  <div id="root">
+    <!-- Login View -->
+    <div class="min-h-screen bg-gray-50 flex justify-center items-center p-4">
+      <div
+        class="w-full max-w-sm bg-white rounded-3xl shadow-xl overflow-hidden animate-in slide-in-from-bottom-4 duration-500">
+        <div class="bg-mentora-blue-dark p-8 text-center text-white">
+          <div class="w-20 h-20 bg-white rounded-2xl mx-auto mb-4 flex items-center justify-center rotate-3 shadow-lg">
+            <h1 class="font-heading font-extrabold text-4xl text-mentora-blue-dark -rotate-3">M</h1>
+          </div>
+          <h2 class="font-heading font-bold text-2xl tracking-wide">Mentora</h2>
+          <p class="text-blue-100 text-sm mt-1 opacity-90">Tu guía en el aprendizaje</p>
+        </div>
+
+        <form id="login-form" class="p-8 space-y-6">
+          <div class="flex gap-4 mb-2">
+            <button type="button" id="role-aprendiz"
+              class="flex-1 py-3 bg-mentora-blue-light text-white rounded-xl font-bold flex flex-col items-center gap-2 border-2 border-mentora-blue-light transition-all">
+              <i data-lucide="user" class="w-6 h-6"></i>
+              <span class="text-sm">Aprendiz</span>
+            </button>
+            <button type="button" id="role-instructor"
+              class="flex-1 py-3 bg-white text-gray-500 rounded-xl font-bold flex flex-col items-center gap-2 border-2 border-gray-200 hover:border-gray-300 transition-all">
+              <i data-lucide="book-open" class="w-6 h-6"></i>
+              <span class="text-sm">Instructor</span>
+            </button>
+          </div>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1">Correo electrónico</label>
+              <div class="relative">
+                <input type="email" id="email-input" required placeholder="ejemplo@sena.edu.co"
+                  class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-mentora-blue-light focus:border-mentora-blue-light transition-all outline-none" />
+                <i data-lucide="mail" class="absolute left-3 top-3.5 text-gray-400 w-5 h-5"></i>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-1">Contraseña</label>
+              <div class="relative">
+                <input type="password" id="password-input" required placeholder="••••••••"
+                  class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-mentora-blue-light focus:border-mentora-blue-light transition-all outline-none" />
+                <i data-lucide="lock" class="absolute left-3 top-3.5 text-gray-400 w-5 h-5"></i>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit"
+            class="w-full bg-mentora-green hover:bg-green-500 text-mentora-blue-dark font-bold py-3.5 rounded-xl shadow-md transition-all active:scale-95 flex items-center justify-center gap-2">
+            <span>Iniciar Sesión</span>
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </button>
+
+          <div class="text-center mt-4">
+            <button type="button"
+              class="text-sm text-gray-500 font-medium hover:text-mentora-blue-light transition-colors">
+              ¿Olvidaste tu contraseña?
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Logic -->
+  <script src="assets/js/app.js"></script>
+</body>
+
+</html>

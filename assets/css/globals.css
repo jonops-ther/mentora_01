@@ -1,0 +1,116 @@
+/* Global styles */
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Base custom colors that were previously in tailwind config or arbitrary classes */
+:root {
+    --color-mentora-blue-dark: #143771;
+    --color-mentora-blue-light: #1F6DA9;
+    --color-mentora-green: #AADD37;
+    --color-mentora-orange: #F9B032;
+    --color-mentora-beige: #ffffab;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+/* Accessibility Themes */
+
+/* High Contrast Settings */
+.high-contrast {
+    filter: contrast(160%) saturate(180%);
+}
+
+.high-contrast body {
+    background-color: #000 !important;
+}
+
+/* Improved Dark Mode */
+.dark-mode {
+    background-color: #121212 !important;
+    color: #e5e5e5;
+}
+
+.dark-mode body {
+    background-color: #121212 !important;
+}
+
+.dark-mode .bg-white {
+    background-color: #1e1e1e !important;
+}
+
+.dark-mode .bg-gray-50,
+.dark-mode .bg-gray-100 {
+    background-color: #181818 !important;
+}
+
+.dark-mode .text-gray-900,
+.dark-mode .text-gray-800 {
+    color: #f3f4f6 !important;
+}
+
+.dark-mode .text-gray-600,
+.dark-mode .text-gray-500 {
+    color: #9ca3af !important;
+}
+
+.dark-mode .border-gray-100,
+.dark-mode .border-gray-200 {
+    border-color: #333333 !important;
+}
+
+/* Tone down the primary colors slightly for dark mode comfort */
+.dark-mode .bg-mentora-blue-dark {
+    background-color: #0f2956 !important;
+    /* Slightly darker */
+}
+
+.dark-mode .text-mentora-blue-dark {
+    color: #60a5fa !important;
+    /* Lighter blue for dark bg */
+}
+
+.dark-mode .bg-mentora-orange {
+    background-color: #d9931c !important;
+    /* Dimmed orange */
+}
+
+.dark-mode .text-mentora-orange {
+    color: #fca5a5 !important;
+}
+
+.dark-mode .bg-orange-50 {
+    background-color: rgba(249, 176, 50, 0.15) !important;
+}
+
+.dark-mode .bg-blue-50 {
+    background-color: rgba(31, 109, 169, 0.15) !important;
+}
+
+.dark-mode .bg-mentora-blue-light {
+    background-color: #185a8c !important;
+    /* Dimmed light blue */
+}
+
+.dark-mode .shadow-sm,
+.dark-mode .shadow-md,
+.dark-mode .shadow-lg,
+.dark-mode .shadow-2xl {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Color Blind Mode */
+.color-blind {
+    filter: grayscale(100%) contrast(120%);
+}

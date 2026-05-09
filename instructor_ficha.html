@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentora - Admin Ficha (Instructor)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mentora: {
+                            blue: { dark: '#143771', light: '#1F6DA9' },
+                            green: '#AADD37',
+                            orange: '#F9B032',
+                            beige: '#ffffab'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/globals.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-gray-50 h-[100dvh] overflow-hidden font-sans antialiased text-gray-900 flex justify-center">
+    <!-- APP CONTAINER (Mobile Frame) -->
+    <div class="w-full max-w-md bg-white h-[100dvh] shadow-2xl relative overflow-hidden flex flex-col">
+
+        <!-- Header -->
+        <header class="bg-mentora-blue-dark text-white p-4 flex items-center gap-4 z-10 sticky top-0">
+            <a href="instructor_challenges.html" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                <i data-lucide="arrow-left" class="w-6 h-6"></i>
+            </a>
+            <div class="flex-1">
+                <h1 class="font-heading font-bold text-lg tracking-wide leading-tight">Comunicación</h1>
+                <p id="ficha-subtitle" class="text-xs text-mentora-beige font-medium">Ficha 3114544</p>
+            </div>
+            <a href="instructor_profile.html"
+                class="w-8 h-8 rounded-full bg-mentora-orange flex items-center justify-center text-white font-bold shadow-inner uppercase hover:scale-105 transition-transform text-xs">
+                C
+            </a>
+        </header>
+
+        <!-- Main Content Area -->
+        <main id="app-content" class="flex-1 overflow-y-auto pb-6 relative">
+
+            <!-- Hero / Quick Actions -->
+            <div class="bg-white px-6 pt-6 pb-4 border-b border-gray-100 shadow-sm relative overflow-hidden">
+                <!-- Abstract BG Decor -->
+                <div
+                    class="absolute right-0 top-0 w-32 h-32 bg-mentora-blue-light/5 rounded-full -translate-y-1/2 translate-x-1/2">
+                </div>
+
+                <h2 class="font-heading font-bold text-xl text-mentora-blue-dark mb-4 relative z-10">Panel de
+                    Administración</h2>
+
+                <div class="grid grid-cols-2 gap-3 relative z-10">
+                    <!-- Crear Post -->
+                    <a href="instructor_create_post.html"
+                        class="bg-blue-50 hover:bg-mentora-blue-light hover:text-white text-mentora-blue-dark transition-all rounded-2xl p-4 flex flex-col items-center text-center gap-2 group border border-blue-100/50 cursor-pointer">
+                        <i data-lucide="send" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
+                        <span class="font-bold text-sm">Crear Post</span>
+                    </a>
+                    <!-- Intercambio de Puntos -->
+                    <a href="instructor_market.html"
+                        class="bg-green-50 hover:bg-mentora-green hover:text-mentora-blue-dark text-mentora-green transition-all rounded-2xl p-4 flex flex-col items-center text-center gap-2 group border border-green-100/50 cursor-pointer">
+                        <i data-lucide="shopping-cart" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
+                        <span class="font-bold text-sm leading-tight">Intercambio<br>de Puntos</span>
+                    </a>
+                    <!-- Generar Actividad -->
+                    <a id="btn-dyn-activity" href="instructor_activity_create.html"
+                        class="bg-indigo-50 hover:bg-indigo-500 hover:text-white text-indigo-500 transition-all rounded-2xl p-4 flex flex-col items-center text-center gap-2 group border border-indigo-100/50 cursor-pointer">
+                        <i data-lucide="check-square" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
+                        <span class="font-bold text-sm">Generar Actividad</span>
+                    </a>
+                    <!-- Asignar Recompensa -->
+                    <a id="btn-dyn-reward" href="instructor_rewards.html"
+                        class="bg-orange-50 hover:bg-mentora-orange hover:text-white text-mentora-orange transition-all rounded-2xl p-4 flex flex-col items-center text-center gap-2 group border border-orange-100/50 cursor-pointer">
+                        <i data-lucide="gift" class="w-6 h-6 group-hover:scale-110 transition-transform"></i>
+                        <span class="font-bold text-sm leading-tight">Asignar<br>Recompensa</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Estudiantes List -->
+            <div class="p-6">
+                <div class="flex justify-between items-end mb-4">
+                    <h3 class="font-heading font-bold text-lg text-mentora-blue-dark">Estudiantes Matriculados</h3>
+                    <span
+                        class="bg-mentora-blue-light/10 text-mentora-blue-light px-2 py-0.5 rounded text-xs font-bold">20
+                        Activos</span>
+                </div>
+
+                <div class="relative mb-5">
+                    <input type="text" placeholder="Buscar aprendiz..."
+                        class="w-full bg-gray-50 border border-gray-200 pl-10 pr-4 py-3 rounded-xl outline-none focus:border-mentora-blue-light transition-all text-sm">
+                    <i data-lucide="search" class="w-5 h-5 text-gray-400 absolute left-3 top-3"></i>
+                </div>
+
+                <!-- 20 Hardcoded Dummy Students Container -->
+                <div class="space-y-3" id="students-list">
+                    <!-- Populated by JS for brevity in artifact -->
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) window.lucide.createIcons();
+
+            // Extract Ficha ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const fichaId = urlParams.get('id') || '3114544';
+
+            // Set Subtitle
+            document.getElementById('ficha-subtitle').textContent = `Ficha ${fichaId}`;
+
+            // Append target ID to the dynamic links
+            document.getElementById('btn-dyn-activity').href = `instructor_activity_create.html?ficha=${fichaId}`;
+            document.getElementById('btn-dyn-reward').href = `instructor_rewards.html?ficha=${fichaId}`;
+
+            // Generate 20 random students
+            const firstNames = ['Carlos', 'Andrés', 'Felipe', 'Santiago', 'Juan', 'Sebastián', 'Mateo', 'Diego', 'Alejandro', 'Daniel', 'María', 'Camila', 'Sofía', 'Valentina', 'Isabella', 'Mariana', 'Daniela', 'Gabriela', 'Laura', 'Natalia'];
+            const lastNames = ['Gómez', 'Restrepo', 'Pérez', 'Rodríguez', 'Sánchez', 'Martínez', 'López', 'González', 'Ramírez', 'Hernández', 'Díaz', 'Morales', 'Suárez', 'Castro', 'Ortiz', 'Gutiérrez', 'Rojas', 'Molina', 'Ríos', 'Rendón'];
+            const container = document.getElementById('students-list');
+
+            for (let i = 0; i < 20; i++) {
+                // Randomly select names
+                const name = firstNames[Math.floor(Math.random() * firstNames.length)];
+                const last = lastNames[Math.floor(Math.random() * lastNames.length)];
+                const progress = Math.floor(Math.random() * (100 - 15 + 1)) + 15; // random 15-100%
+                const avatarCode = name.charAt(0) + last.charAt(0);
+
+                // Color formatting based on progress
+                let pColor = 'bg-mentora-blue-light';
+                if (progress >= 80) pColor = 'bg-mentora-green';
+                if (progress <= 30) pColor = 'bg-red-400';
+
+                const html = `
+                <div class="bg-white border border-gray-100 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gray-100 text-gray-700 rounded-full flex items-center justify-center font-bold text-sm tracking-wider">
+                                ${avatarCode}
+                            </div>
+                            <div>
+                                <p class="font-bold text-gray-800 text-sm leading-tight">${name} ${last}</p>
+                                <p class="text-[11px] text-gray-500 font-medium">${Math.floor(Math.random() * 5000) + 100} pts globales</p>
+                            </div>
+                        </div>
+                        <button class="text-mentora-blue-light p-2 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="flex items-center justify-between text-xs font-bold text-gray-500 mb-1">
+                        <span>Progreso de Materia</span>
+                        <span class="${pColor.replace('bg-', 'text-')}">${progress}%</span>
+                    </div>
+                    <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                        <div class="${pColor} h-1.5 rounded-full" style="width: ${progress}%"></div>
+                    </div>
+                </div>
+                `;
+                container.insertAdjacentHTML('beforeend', html);
+            }
+            if (window.lucide) window.lucide.createIcons();
+        });
+    </script>
+</body>
+
+</html>

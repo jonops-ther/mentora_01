@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentora - Perfil del Instructor</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mentora: {
+                            blue: { dark: '#143771', light: '#1F6DA9' },
+                            green: '#AADD37',
+                            orange: '#F9B032',
+                            beige: '#ffffab'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/globals.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-gray-50 h-[100dvh] overflow-hidden font-sans antialiased text-gray-900 flex justify-center">
+    <!-- APP CONTAINER (Mobile Frame) -->
+    <div class="w-full max-w-md bg-white h-[100dvh] shadow-2xl relative overflow-hidden flex flex-col">
+
+        <!-- Header -->
+        <header class="bg-mentora-blue-dark text-white p-4 flex justify-between items-center z-10 sticky top-0">
+            <button id="menu-btn" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+            <h1 class="font-heading font-bold text-xl tracking-wide">Mentora</h1>
+            <a href="instructor_profile.html"
+                class="w-10 h-10 rounded-full bg-mentora-orange flex items-center justify-center text-white font-bold shadow-inner uppercase hover:scale-105 transition-transform">
+                C
+            </a>
+        </header>
+
+        <!-- Main Content Area -->
+        <main id="app-content" class="flex-1 overflow-y-auto pb-20">
+            <div class="p-6 space-y-8 animate-in fade-in duration-500">
+
+                <!-- Profile Header -->
+                <div
+                    class="flex flex-col items-center justify-center p-6 bg-white rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden">
+                    <div class="absolute top-0 w-full h-24 bg-gradient-to-r from-mentora-orange to-orange-400"></div>
+                    <div
+                        class="relative w-28 h-28 bg-white p-1 rounded-full shadow-lg mt-8 mb-4 group cursor-pointer hover:scale-105 transition-transform">
+                        <div
+                            class="w-full h-full bg-mentora-blue-dark rounded-full flex items-center justify-center text-mentora-orange font-extrabold text-4xl uppercase">
+                            I
+                        </div>
+                        <button
+                            class="absolute bottom-0 right-0 bg-white p-1.5 rounded-full shadow-md text-mentora-blue-dark hover:text-mentora-blue-light border border-gray-100 transition-colors">
+                            <i data-lucide="pencil" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <h2 class="text-2xl font-bold font-heading text-mentora-blue-dark">Carlos Mendoza</h2>
+                    <p class="text-gray-500 font-medium">Instructor de Comunicación</p>
+                    <span
+                        class="mt-2 px-3 py-1 bg-mentora-blue-light/10 text-mentora-blue-light font-bold text-xs rounded-full uppercase tracking-wider">
+                        Instructor Senior
+                    </span>
+                </div>
+
+                <!-- Stats Summary -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div
+                        class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
+                        <div class="p-3 bg-indigo-50 text-indigo-500 rounded-xl mb-2">
+                            <i data-lucide="bar-chart" class="w-6 h-6"></i>
+                        </div>
+                        <p class="text-sm text-gray-500 font-bold mb-1">Avance Promedio</p>
+                        <p class="text-xl font-heading font-bold text-gray-800">68%</p>
+                    </div>
+                    <div
+                        class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
+                        <div class="p-3 bg-green-50 text-mentora-green rounded-xl mb-2">
+                            <i data-lucide="users" class="w-6 h-6"></i>
+                        </div>
+                        <p class="text-sm text-gray-500 font-bold mb-1">Total Matriculados</p>
+                        <p class="text-xl font-heading font-bold text-gray-800">124</p>
+                    </div>
+                </div>
+
+                <!-- Monitorizar Fichas (Search & List) -->
+                <div>
+                    <h3 class="font-heading font-bold text-lg text-mentora-blue-dark mb-4">Monitorizar Estudiantes</h3>
+
+                    <div class="relative mb-4">
+                        <input type="text" placeholder="Buscar aprendiz por nombre..."
+                            class="w-full bg-white border border-gray-200 pl-10 pr-4 py-3 rounded-xl outline-none focus:border-mentora-blue-light transition-all text-sm">
+                        <i data-lucide="search" class="w-5 h-5 text-gray-400 absolute left-3 top-3"></i>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Student 1 -->
+                        <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col gap-3">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-10 h-10 bg-mentora-green rounded-full flex items-center justify-center text-mentora-blue-dark font-bold">
+                                        F
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">Felipe Restrepo</h4>
+                                        <p class="text-xs text-gray-500">Materia: Bilingüismo, Ética</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1 bg-orange-50 px-2 py-1 rounded-lg">
+                                    <i data-lucide="star" class="w-4 h-4 text-mentora-orange fill-current"></i>
+                                    <span class="text-xs font-bold text-mentora-orange">1,250</span>
+                                </div>
+                            </div>
+                            <!-- Progress Bar -->
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-gray-500 mb-1">
+                                    <span>Progreso en tus materias</span>
+                                    <span class="text-mentora-blue-light">80%</span>
+                                </div>
+                                <div class="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+                                    <div class="h-2 rounded-full bg-mentora-blue-light transition-all"
+                                        style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Student 2 -->
+                        <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col gap-3">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-mentora-blue-light font-bold">
+                                        M
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">María Camila</h4>
+                                        <p class="text-xs text-gray-500">Materia: Ética</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1 bg-orange-50 px-2 py-1 rounded-lg">
+                                    <i data-lucide="star" class="w-4 h-4 text-mentora-orange fill-current"></i>
+                                    <span class="text-xs font-bold text-mentora-orange">840</span>
+                                </div>
+                            </div>
+                            <!-- Progress Bar -->
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-gray-500 mb-1">
+                                    <span>Progreso en tus materias</span>
+                                    <span class="text-mentora-blue-light">35%</span>
+                                </div>
+                                <div class="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+                                    <div class="h-2 rounded-full bg-mentora-blue-light transition-all"
+                                        style="width: 35%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Student 3 -->
+                        <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col gap-3">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="flex items-center gap-3">
+                                    <div
+                                        class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-mentora-orange font-bold">
+                                        A
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">Andrés Sánchez</h4>
+                                        <p class="text-xs text-gray-500">Materia: SST</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1 bg-orange-50 px-2 py-1 rounded-lg">
+                                    <i data-lucide="star" class="w-4 h-4 text-mentora-orange fill-current"></i>
+                                    <span class="text-xs font-bold text-mentora-orange">2,100</span>
+                                </div>
+                            </div>
+                            <!-- Progress Bar -->
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-gray-500 mb-1">
+                                    <span>Progreso en tus materias</span>
+                                    <span class="text-mentora-blue-light">95%</span>
+                                </div>
+                                <div class="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+                                    <div class="h-2 rounded-full bg-mentora-blue-light transition-all"
+                                        style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- User Settings Link -->
+                <a href="settings.html"
+                    class="w-full bg-white text-gray-700 border border-gray-200 p-4 rounded-2xl shadow-sm flex items-center justify-between hover:bg-gray-50 transition-colors">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="settings" class="w-5 h-5 text-gray-400"></i>
+                        <span class="font-bold">Ajustes</span>
+                    </div>
+                    <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+                </a>
+
+            </div>
+        </main>
+
+        <!-- Bottom HUD (Mobile) -->
+        <nav class="bg-white border-t border-gray-200 flex justify-around p-2 pb-safe absolute bottom-0 w-full z-10">
+            <a href="instructor_home.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1">
+                    <i data-lucide="home" class="w-6 h-6" stroke-width="2"></i>
+                </div>
+                <span class="text-[10px] font-medium">Home</span>
+            </a>
+            <a href="instructor_challenges.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1">
+                    <i data-lucide="book-open" class="w-6 h-6" stroke-width="2"></i>
+                </div>
+                <span class="text-[10px] font-medium">Fichas</span>
+            </a>
+            <a href="instructor_subjects.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1">
+                    <i data-lucide="users" class="w-6 h-6" stroke-width="2"></i>
+                </div>
+                <span class="text-[10px] font-medium">Estudiantes</span>
+            </a>
+            <a href="notifications.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1">
+                    <i data-lucide="bell" class="w-6 h-6" stroke-width="2"></i>
+                </div>
+                <span class="text-[10px] font-medium">Notifs</span>
+            </a>
+        </nav>
+
+        <!-- Hamburger Menu Overlay -->
+        <div id="menu-overlay" class="hidden absolute inset-0 z-50">
+            <div id="menu-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+            <div
+                class="w-4/5 max-w-[300px] bg-white h-full shadow-2xl relative flex flex-col animate-in slide-in-from-left">
+                <div class="p-6 bg-mentora-blue-dark text-white relative">
+                    <button id="close-menu-btn" class="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-full">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                    <div
+                        class="w-16 h-16 rounded-full bg-mentora-orange flex items-center justify-center text-white font-bold text-2xl mb-4 shadow-lg border-2 border-white/20 uppercase">
+                        I
+                    </div>
+                    <h2 class="font-heading font-bold text-xl">Carlos Mendoza</h2>
+                    <p class="text-mentora-beige text-sm opacity-90">Instructor de Comunicación</p>
+                </div>
+
+                <div class="flex-1 overflow-y-auto py-4">
+                    <div class="px-4 space-y-1">
+                        <a href="instructor_home.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="home" class="w-5 h-5"></i>
+                            <span>Inicio</span>
+                        </a>
+                        <a href="instructor_profile.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors bg-mentora-blue-light/10 text-mentora-blue-light font-semibold">
+                            <i data-lucide="user" class="w-5 h-5"></i>
+                            <span>Perfil</span>
+                        </a>
+                        <a href="instructor_subjects.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                            <span>Mis Estudiantes</span>
+                        </a>
+                        <a href="instructor_challenges.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="book-open" class="w-5 h-5"></i>
+                            <span>Mis Fichas</span>
+                        </a>
+                    </div>
+
+                    <div class="h-px bg-gray-200 my-4 mx-4"></div>
+
+                    <div class="px-4 space-y-1">
+                        <a href="instructor_accessibility.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
+                            <i data-lucide="accessibility" class="w-5 h-5"></i>
+                            <span>Accesibilidad</span>
+                        </a>
+                        <a href="instructor_help.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
+                            <i data-lucide="help-circle" class="w-5 h-5"></i>
+                            <span>Ayuda</span>
+                        </a>
+                        <button id="logout-btn"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 transition-colors mt-2 text-left">
+                            <i data-lucide="log-out" class="w-5 h-5"></i>
+                            <span class="font-medium">Cerrar sesión</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentora - Desafíos</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mentora: {
+                            blue: { dark: '#143771', light: '#1F6DA9' },
+                            green: '#AADD37',
+                            orange: '#F9B032',
+                            beige: '#ffffab'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/globals.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-gray-50 h-[100dvh] overflow-hidden font-sans antialiased text-gray-900 flex justify-center">
+    <!-- APP CONTAINER (Mobile Frame) -->
+    <div class="w-full max-w-md bg-white h-[100dvh] shadow-2xl relative overflow-hidden flex flex-col">
+
+        <!-- Header -->
+        <header class="bg-mentora-blue-dark text-white p-4 flex justify-between items-center z-10 sticky top-0">
+            <button id="menu-btn" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+            <h1 class="font-heading font-bold text-xl tracking-wide">Mentora</h1>
+            <a href="student_profile.html"
+                class="w-10 h-10 rounded-full bg-mentora-green flex items-center justify-center text-mentora-blue-dark font-bold shadow-inner uppercase hover:scale-105 transition-transform">
+                A
+            </a>
+        </header>
+
+        <!-- Main Content Area -->
+        <main id="app-content" class="flex-1 overflow-y-auto pb-20">
+            <div class="p-6 space-y-6 animate-in fade-in duration-500">
+                <div>
+                    <h2 class="text-2xl font-heading font-bold text-mentora-blue-dark">Desafíos Disponibles</h2>
+                    <p class="text-gray-500 text-sm mt-1">Completa estos retos para ganar puntos extra y experiencia</p>
+                </div>
+
+                <!-- Weekly Progress -->
+                <div class="bg-mentora-blue-dark text-white p-6 rounded-3xl shadow-lg relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+                    <div class="relative z-10 flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-lg">Reto Semanal</h3>
+                        <span class="bg-white/20 px-3 py-1 rounded-full text-xs font-bold">3/5 Días</span>
+                    </div>
+                    <p class="text-sm text-mentora-beige mb-4 opacity-90">Completa desafíos por 5 días seguidos para un
+                        cofre sorpresa.</p>
+                    <div class="flex justify-between items-center gap-2">
+
+                        <div class="flex flex-col items-center gap-1">
+                            <div
+                                class="w-8 h-8 rounded-full flex items-center justify-center bg-mentora-green text-mentora-blue-dark font-bold text-sm">
+                                <i data-lucide="check" class="w-4 h-4"></i>
+                            </div>
+                            <span class="text-[10px] text-white/70 font-medium">L1</span>
+                        </div>
+
+                        <div class="flex flex-col items-center gap-1">
+                            <div
+                                class="w-8 h-8 rounded-full flex items-center justify-center bg-mentora-green text-mentora-blue-dark font-bold text-sm">
+                                <i data-lucide="check" class="w-4 h-4"></i>
+                            </div>
+                            <span class="text-[10px] text-white/70 font-medium">L2</span>
+                        </div>
+
+                        <div class="flex flex-col items-center gap-1">
+                            <div
+                                class="w-8 h-8 rounded-full flex items-center justify-center bg-mentora-green text-mentora-blue-dark font-bold text-sm">
+                                <i data-lucide="check" class="w-4 h-4"></i>
+                            </div>
+                            <span class="text-[10px] text-white/70 font-medium">L3</span>
+                        </div>
+
+                        <div class="flex flex-col items-center gap-1">
+                            <div
+                                class="w-8 h-8 rounded-full flex items-center justify-center bg-white/20 text-white/50 font-bold text-sm">
+                                4
+                            </div>
+                            <span class="text-[10px] text-white/70 font-medium">L4</span>
+                        </div>
+
+                        <div class="flex flex-col items-center gap-1">
+                            <div
+                                class="w-8 h-8 rounded-full flex items-center justify-center bg-white/20 text-white/50 font-bold text-sm">
+                                5
+                            </div>
+                            <span class="text-[10px] text-white/70 font-medium">L5</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- List -->
+                <div class="space-y-4 pt-2">
+
+                    <div
+                        class="bg-white border text-left border-gray-100 p-5 rounded-2xl shadow-sm hover:shadow-md transition-shadow flex flex-col gap-3 group relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-mentora-blue-light"></div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span
+                                    class="text-[10px] uppercase font-bold text-mentora-blue-light mb-1 block tracking-wider">Comunicación</span>
+                                <h4 class="font-bold text-lg text-gray-800">Comprensión Lectora</h4>
+                                <p class="text-xs text-gray-500 mt-1">Reglas de acentuación</p>
+                            </div>
+                            <div class="bg-blue-50 text-mentora-blue-light p-2 rounded-xl">
+                                <i data-lucide="play" class="w-5 h-5 ml-0.5"></i>
+                            </div>
+                        </div>
+                        <div class="h-px bg-gray-100 my-1"></div>
+                        <div class="flex items-center gap-4 text-xs font-bold text-gray-500">
+                            <div class="flex items-center gap-1">
+                                <i data-lucide="star" class="w-4 h-4 text-mentora-orange"></i>
+                                <span class="text-mentora-orange">+120 pts</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i data-lucide="clock" class="w-4 h-4"></i>
+                                <span>10 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white border text-left border-gray-100 p-5 rounded-2xl shadow-sm hover:shadow-md transition-shadow flex flex-col gap-3 group relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-mentora-orange"></div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span
+                                    class="text-[10px] uppercase font-bold text-mentora-orange mb-1 block tracking-wider">Bilingüismo</span>
+                                <h4 class="font-bold text-lg text-gray-800">Vocabulario Técnico</h4>
+                                <p class="text-xs text-gray-500 mt-1">Términos de programación en inglés</p>
+                            </div>
+                            <div class="bg-orange-50 text-mentora-orange p-2 rounded-xl">
+                                <i data-lucide="play" class="w-5 h-5 ml-0.5"></i>
+                            </div>
+                        </div>
+                        <div class="h-px bg-gray-100 my-1"></div>
+                        <div class="flex items-center gap-4 text-xs font-bold text-gray-500">
+                            <div class="flex items-center gap-1">
+                                <i data-lucide="star" class="w-4 h-4 text-mentora-orange"></i>
+                                <span class="text-mentora-orange">+80 pts</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i data-lucide="clock" class="w-4 h-4"></i>
+                                <span>5 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white border text-left border-gray-100 p-5 rounded-2xl shadow-sm hover:shadow-md transition-shadow flex flex-col gap-3 group relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-mentora-green"></div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span
+                                    class="text-[10px] uppercase font-bold text-mentora-green mb-1 block tracking-wider">Ética</span>
+                                <h4 class="font-bold text-lg text-gray-800">Casos Reales</h4>
+                                <p class="text-xs text-gray-500 mt-1">Estudio de caso sobre dilema ético</p>
+                            </div>
+                            <div class="bg-green-50 text-mentora-green p-2 rounded-xl">
+                                <i data-lucide="play" class="w-5 h-5 ml-0.5"></i>
+                            </div>
+                        </div>
+                        <div class="h-px bg-gray-100 my-1"></div>
+                        <div class="flex items-center gap-4 text-xs font-bold text-gray-500">
+                            <div class="flex items-center gap-1">
+                                <i data-lucide="star" class="w-4 h-4 text-mentora-orange"></i>
+                                <span class="text-mentora-orange">+150 pts</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i data-lucide="clock" class="w-4 h-4"></i>
+                                <span>15 min</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom HUD (Mobile) -->
+        <nav class="bg-white border-t border-gray-200 flex justify-around p-2 pb-safe absolute bottom-0 w-full z-10">
+            <a href="student_home.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1">
+                    <i data-lucide="home" class="w-6 h-6" stroke-width="2"></i>
+                </div>
+                <span class="text-[10px] font-medium">Home</span>
+            </a>
+            <a href="student_challenges.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-mentora-blue-light">
+                <div class="p-1 rounded-lg mb-1 bg-mentora-blue-light/10">
+                    <i data-lucide="target" class="w-6 h-6" stroke-width="2.5"></i>
+                </div>
+                <span class="text-[10px] font-medium">Desafíos</span>
+            </a>
+            <a href="student_subjects.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1">
+                    <i data-lucide="book-open" class="w-6 h-6" stroke-width="2"></i>
+                </div>
+                <span class="text-[10px] font-medium">Materias</span>
+            </a>
+            <a href="notifications.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1">
+                    <i data-lucide="bell" class="w-6 h-6" stroke-width="2"></i>
+                </div>
+                <span class="text-[10px] font-medium">Notifs</span>
+            </a>
+        </nav>
+
+        <!-- Hamburger Menu Overlay -->
+        <div id="menu-overlay" class="hidden absolute inset-0 z-50">
+            <div id="menu-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+            <div
+                class="w-4/5 max-w-[300px] bg-white h-full shadow-2xl relative flex flex-col animate-in slide-in-from-left">
+                <div class="p-6 bg-mentora-blue-dark text-white relative">
+                    <button id="close-menu-btn" class="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-full">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                    <div
+                        class="w-16 h-16 rounded-full bg-mentora-green flex items-center justify-center text-mentora-blue-dark font-bold text-2xl mb-4 shadow-lg border-2 border-white/20 uppercase">
+                        A
+                    </div>
+                    <h2 class="font-heading font-bold text-xl">Felipe Restrepo</h2>
+                    <p class="text-mentora-beige text-sm opacity-90">Producción multimedia</p>
+                </div>
+
+                <div class="flex-1 overflow-y-auto py-4">
+                    <div class="px-4 space-y-1">
+                        <a href="student_home.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="home" class="w-5 h-5"></i>
+                            <span>Inicio</span>
+                        </a>
+                        <a href="student_profile.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="user" class="w-5 h-5"></i>
+                            <span>Perfil</span>
+                        </a>
+                        <a href="student_subjects.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="book-open" class="w-5 h-5"></i>
+                            <span>Mis materias</span>
+                        </a>
+                        <a href="student_challenges.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors bg-mentora-blue-light/10 text-mentora-blue-light font-semibold">
+                            <i data-lucide="target" class="w-5 h-5"></i>
+                            <span>Desafíos diarios</span>
+                        </a>
+                        <a href="settings.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="settings" class="w-5 h-5"></i>
+                            <span>Ajustes</span>
+                        </a>
+                    </div>
+
+                    <div class="h-px bg-gray-200 my-4 mx-4"></div>
+
+                    <div class="px-4 space-y-1">
+                        <a href="accessibility.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
+                            <i data-lucide="accessibility" class="w-5 h-5"></i>
+                            <span>Accesibilidad</span>
+                        </a>
+                        <a href="help.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
+                            <i data-lucide="help-circle" class="w-5 h-5"></i>
+                            <span>Ayuda</span>
+                        </a>
+                        <button id="logout-btn"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 transition-colors mt-2 text-left">
+                            <i data-lucide="log-out" class="w-5 h-5"></i>
+                            <span class="font-medium">Cerrar sesión</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="p-6 bg-gray-50 border-t border-gray-200 flex flex-col items-center">
+                    <div
+                        class="w-12 h-12 bg-mentora-orange rounded-full flex items-center justify-center text-white mb-2 shadow-md">
+                        <span class="font-heading font-bold">M</span>
+                    </div>
+                    <p class="text-xs text-gray-400 font-medium">Mentora alpha 1.0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>

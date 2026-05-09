@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentora - Estudiantes (Instructor)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mentora: {
+                            blue: { dark: '#143771', light: '#1F6DA9' },
+                            green: '#AADD37',
+                            orange: '#F9B032',
+                            beige: '#ffffab'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/globals.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-gray-50 h-[100dvh] overflow-hidden font-sans antialiased text-gray-900 flex justify-center">
+    <!-- APP CONTAINER (Mobile Frame) -->
+    <div class="w-full max-w-md bg-white h-[100dvh] shadow-2xl relative overflow-hidden flex flex-col">
+
+        <!-- Header -->
+        <header class="bg-mentora-blue-dark text-white p-4 flex justify-between items-center z-10 sticky top-0">
+            <button id="menu-btn" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+            <h1 class="font-heading font-bold text-xl tracking-wide">Mentora</h1>
+            <a href="instructor_profile.html"
+                class="w-10 h-10 rounded-full bg-mentora-orange flex items-center justify-center text-white font-bold shadow-inner uppercase hover:scale-105 transition-transform">
+                C
+            </a>
+        </header>
+
+        <!-- Main Content Area -->
+        <main id="app-content" class="flex-1 overflow-y-auto pb-20">
+            <div class="p-6 space-y-6 animate-in fade-in duration-500">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-heading font-bold text-mentora-blue-dark">Gestión de Aprendices</h2>
+                    <a href="instructor_home.html" id="btn-back"
+                        class="p-2 bg-gray-100 text-gray-600 rounded-xl hover:bg-gray-200 transition-colors">
+                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                    </a>
+                </div>
+
+                <!-- Tabs -->
+                <div class="flex gap-2 bg-gray-100 p-1 rounded-xl overflow-x-auto hide-scrollbar">
+                    <button id="tab-btn-generar"
+                        class="flex-1 whitespace-nowrap px-4 py-2 rounded-lg text-sm font-bold transition-all text-gray-500 hover:text-gray-700">
+                        Actividades
+                    </button>
+                    <button id="tab-btn-estudiantes"
+                        class="flex-1 whitespace-nowrap px-4 py-2 rounded-lg text-sm font-bold transition-all bg-white text-mentora-blue-dark shadow-sm">
+                        Estudiantes
+                    </button>
+                    <button id="tab-btn-recompensas"
+                        class="flex-1 whitespace-nowrap px-4 py-2 rounded-lg text-sm font-bold transition-all text-gray-500 hover:text-gray-700">
+                        Recompensas
+                    </button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div id="tab-content-generar" class="hidden space-y-4">
+
+                    <a href="instructor_activity_create.html"
+                        class="block bg-mentora-blue-dark text-white p-5 rounded-2xl shadow-md hover:bg-mentora-blue-light transition-colors active:scale-95">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 bg-white/10 rounded-xl">
+                                <i data-lucide="check-square" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Generar Actividad</h3>
+                                <p class="text-sm opacity-90 leading-tight">Crea una nueva misión para evaluar a tus
+                                    aprendices.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <h3 class="font-bold text-gray-800 mt-6 mb-2">Actividades Globales Recientes</h3>
+
+                    <!-- Activity 1 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col gap-2">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span
+                                    class="text-[10px] uppercase font-bold text-mentora-blue-light bg-blue-50 px-2 py-0.5 rounded mb-1 inline-block">Ficha
+                                    3114544</span>
+                                <h4 class="font-bold text-sm text-gray-800">Evaluación de Oratoria</h4>
+                            </div>
+                            <span class="text-xs text-gray-400 font-medium">Hace 2 días</span>
+                        </div>
+                        <div
+                            class="flex justify-between items-center mt-2 pt-2 border-t border-gray-50 text-xs text-gray-500 font-medium">
+                            <span class="flex items-center gap-1"><i data-lucide="users" class="w-3.5 h-3.5"></i> 18/20
+                                entregas</span>
+                            <button class="text-mentora-blue-light hover:underline">Ver detalles</button>
+                        </div>
+                    </div>
+
+                    <!-- Activity 2 -->
+                    <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col gap-2">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span
+                                    class="text-[10px] uppercase font-bold text-mentora-blue-dark bg-indigo-50 px-2 py-0.5 rounded mb-1 inline-block">Ficha
+                                    4920192</span>
+                                <h4 class="font-bold text-sm text-gray-800">Análisis Textual I</h4>
+                            </div>
+                            <span class="text-xs text-gray-400 font-medium">Hace 1 sem</span>
+                        </div>
+                        <div
+                            class="flex justify-between items-center mt-2 pt-2 border-t border-gray-50 text-xs text-gray-500 font-medium">
+                            <span class="flex items-center gap-1"><i data-lucide="users" class="w-3.5 h-3.5"></i> 20/20
+                                entregas</span>
+                            <button class="text-mentora-blue-light hover:underline">Ver detalles</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="tab-content-estudiantes" class="block space-y-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Buscar aprendiz..."
+                            class="w-full bg-white border border-gray-200 pl-10 pr-4 py-3 rounded-xl outline-none focus:border-mentora-blue-light transition-all text-sm">
+                        <i data-lucide="search" class="w-5 h-5 text-gray-400 absolute left-3 top-3"></i>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div
+                            class="bg-white border border-gray-100 p-4 rounded-xl flex items-center justify-between shadow-sm">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 bg-mentora-green text-mentora-blue-dark rounded-full flex items-center justify-center font-bold">
+                                    A1</div>
+                                <div>
+                                    <p class="font-bold text-gray-800 text-sm">Aprendiz Example 1</p>
+                                    <p class="text-xs text-gray-500">ADSO - Ficha 2724491</p>
+                                </div>
+                            </div>
+                            <button
+                                class="text-mentora-blue-light p-2 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                                <i data-lucide="eye" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div
+                            class="bg-white border border-gray-100 p-4 rounded-xl flex items-center justify-between shadow-sm">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 bg-mentora-green text-mentora-blue-dark rounded-full flex items-center justify-center font-bold">
+                                    A2</div>
+                                <div>
+                                    <p class="font-bold text-gray-800 text-sm">Aprendiz Example 2</p>
+                                    <p class="text-xs text-gray-500">ADSO - Ficha 2724491</p>
+                                </div>
+                            </div>
+                            <button
+                                class="text-mentora-blue-light p-2 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                                <i data-lucide="eye" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div
+                            class="bg-white border border-gray-100 p-4 rounded-xl flex items-center justify-between shadow-sm">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 bg-mentora-green text-mentora-blue-dark rounded-full flex items-center justify-center font-bold">
+                                    A3</div>
+                                <div>
+                                    <p class="font-bold text-gray-800 text-sm">Aprendiz Example 3</p>
+                                    <p class="text-xs text-gray-500">ADSO - Ficha 2724491</p>
+                                </div>
+                            </div>
+                            <button
+                                class="text-mentora-blue-light p-2 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                                <i data-lucide="eye" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-content-recompensas" class="hidden space-y-4">
+
+                    <a href="instructor_rewards.html"
+                        class="block bg-mentora-orange text-white p-5 rounded-2xl shadow-md hover:bg-orange-500 transition-colors active:scale-95">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 bg-white/20 rounded-xl">
+                                <i data-lucide="gift" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Asignar Recompensa</h3>
+                                <p class="text-sm opacity-90 leading-tight">Otorga puntos e insignias a tus estudiantes
+                                    destacados.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <h3 class="font-bold text-gray-800 mt-6 mb-2">Recompensas Globales Recientes</h3>
+
+                    <div class="space-y-3">
+                        <!-- Item 1 -->
+                        <div
+                            class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 bg-mentora-blue-light/10 text-mentora-blue-light rounded-full flex items-center justify-center font-bold">
+                                    F
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">Felipe Restrepo</h4>
+                                    <p class="text-xs text-gray-500 truncate max-w-[150px]">Ficha 3114544</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end">
+                                <div class="flex items-center gap-1 font-bold text-mentora-green">
+                                    <span>+150</span>
+                                    <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                </div>
+                                <span class="text-[10px] text-gray-400">Hoy</span>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div
+                            class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 bg-orange-100 text-mentora-orange rounded-full flex items-center justify-center font-bold">
+                                    A
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">Andrés Sánchez</h4>
+                                    <p class="text-xs text-gray-500 truncate max-w-[150px]">Ficha 4920192</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end">
+                                <div class="flex items-center gap-1 font-bold text-mentora-green">
+                                    <span>+50</span>
+                                    <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                </div>
+                                <span class="text-[10px] text-gray-400">Ayer</span>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div
+                            class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex items-center justify-between relative overflow-hidden">
+                            <div class="absolute right-0 top-0 bottom-0 w-1 bg-mentora-orange"></div>
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center font-bold">
+                                    M
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">María Camila</h4>
+                                    <p class="text-xs text-gray-500 truncate max-w-[150px]">Ficha 5928192</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end space-y-1">
+                                <div class="flex items-center gap-1 font-bold text-mentora-green">
+                                    <span>+300</span>
+                                    <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                </div>
+                                <div
+                                    class="bg-purple-100 text-purple-600 text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wide">
+                                    Insignia
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom HUD (Mobile) -->
+        <nav class="bg-white border-t border-gray-200 flex justify-around p-2 pb-safe absolute bottom-0 w-full z-10">
+            <a href="instructor_home.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1">
+                    <i data-lucide="home" class="w-6 h-6" stroke-width="2"></i>
+                </div>
+                <span class="text-[10px] font-medium">Home</span>
+            </a>
+            <a href="instructor_challenges.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1">
+                    <i data-lucide="book-open" class="w-6 h-6" stroke-width="2"></i>
+                </div>
+                <span class="text-[10px] font-medium">Fichas</span>
+            </a>
+            <a href="instructor_subjects.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-mentora-blue-light">
+                <div class="p-1 rounded-lg mb-1 bg-mentora-blue-light/10">
+                    <i data-lucide="users" class="w-6 h-6" stroke-width="2.5"></i>
+                </div>
+                <span class="text-[10px] font-medium">Estudiantes</span>
+            </a>
+            <a href="notifications.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1">
+                    <i data-lucide="bell" class="w-6 h-6" stroke-width="2"></i>
+                </div>
+                <span class="text-[10px] font-medium">Notifs</span>
+            </a>
+        </nav>
+
+        <!-- Hamburger Menu Overlay -->
+        <div id="menu-overlay" class="hidden absolute inset-0 z-50">
+            <div id="menu-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+            <div
+                class="w-4/5 max-w-[300px] bg-white h-full shadow-2xl relative flex flex-col animate-in slide-in-from-left">
+                <div class="p-6 bg-mentora-blue-dark text-white relative">
+                    <button id="close-menu-btn" class="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-full">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                    <div
+                        class="w-16 h-16 rounded-full bg-mentora-orange flex items-center justify-center text-white font-bold text-2xl mb-4 shadow-lg border-2 border-white/20 uppercase">
+                        I
+                    </div>
+                    <h2 class="font-heading font-bold text-xl">Carlos Mendoza</h2>
+                    <p class="text-mentora-beige text-sm opacity-90">Instructor de Comunicación</p>
+                </div>
+
+                <div class="flex-1 overflow-y-auto py-4">
+                    <div class="px-4 space-y-1">
+                        <a href="instructor_home.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="home" class="w-5 h-5"></i>
+                            <span>Inicio</span>
+                        </a>
+                        <a href="instructor_profile.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="user" class="w-5 h-5"></i>
+                            <span>Perfil</span>
+                        </a>
+                        <a href="instructor_subjects.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors bg-mentora-blue-light/10 text-mentora-blue-light font-semibold">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                            <span>Mis Estudiantes</span>
+                        </a>
+                        <a href="instructor_challenges.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="book-open" class="w-5 h-5"></i>
+                            <span>Mis Fichas</span>
+                        </a>
+                    </div>
+
+                    <div class="h-px bg-gray-200 my-4 mx-4"></div>
+
+                    <div class="px-4 space-y-1">
+                        <a href="instructor_accessibility.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
+                            <i data-lucide="accessibility" class="w-5 h-5"></i>
+                            <span>Accesibilidad</span>
+                        </a>
+                        <a href="instructor_help.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
+                            <i data-lucide="help-circle" class="w-5 h-5"></i>
+                            <span>Ayuda</span>
+                        </a>
+                        <button id="logout-btn"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 transition-colors mt-2 text-left">
+                            <i data-lucide="log-out" class="w-5 h-5"></i>
+                            <span class="font-medium">Cerrar sesión</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="p-6 bg-gray-50 border-t border-gray-200 flex flex-col items-center">
+                    <div
+                        class="w-12 h-12 bg-mentora-orange rounded-full flex items-center justify-center text-white mb-2 shadow-md">
+                        <span class="font-heading font-bold">M</span>
+                    </div>
+                    <p class="text-xs text-gray-400 font-medium">Mentora alpha 1.0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>

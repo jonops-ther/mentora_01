@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentora - Crear Post</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mentora: {
+                            blue: { dark: '#143771', light: '#1F6DA9' },
+                            green: '#AADD37',
+                            orange: '#F9B032',
+                            beige: '#ffffab'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/globals.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-gray-50 h-[100dvh] overflow-hidden font-sans antialiased text-gray-900 flex justify-center">
+    <!-- APP CONTAINER (Mobile Frame) -->
+    <div class="w-full max-w-md bg-white h-[100dvh] shadow-2xl relative overflow-hidden flex flex-col">
+
+        <!-- Header -->
+        <header class="bg-mentora-blue-dark text-white p-4 flex items-center gap-4 z-10 sticky top-0">
+            <button onclick="history.back()" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h1 class="font-heading font-bold text-xl tracking-wide flex-1">Crear Publicación</h1>
+            <button id="btn-publish"
+                class="text-mentora-beige font-bold text-sm bg-white/10 hover:bg-white/20 px-4 py-2 rounded-xl transition-colors">
+                Publicar
+            </button>
+        </header>
+
+        <!-- Main Content Area -->
+        <main id="app-content" class="flex-1 overflow-y-auto relative bg-white">
+
+            <div class="p-4 border-b border-gray-100 flex items-center gap-3 bg-gray-50/50">
+                <div
+                    class="w-10 h-10 rounded-full bg-mentora-orange flex items-center justify-center text-white font-bold shadow-sm">
+                    C</div>
+                <div>
+                    <h3 class="font-bold text-sm text-gray-900">Carlos Mendoza</h3>
+                    <select
+                        class="text-xs bg-transparent text-mentora-blue-light font-bold outline-none cursor-pointer">
+                        <option value="3114544">Comunicación - Ficha 3114544</option>
+                        <option value="4920192">Comunicación - Ficha 4920192</option>
+                        <option value="5928192">Comunicación - Ficha 5928192</option>
+                        <option value="all">Todas mis Fichas</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="p-4 space-y-4">
+
+                <textarea
+                    class="w-full text-gray-800 text-lg placeholder:text-gray-400 outline-none resize-none min-h-[150px]"
+                    placeholder="¿Qué quieres compartir con tus aprendices? Links, anuncios, material de apoyo..."></textarea>
+
+                <!-- Media Preview Area -->
+                <div id="media-preview-container" class="hidden space-y-3">
+                    <!-- Dynamic renders go here (Video iframe or Image Carousel) -->
+                </div>
+
+            </div>
+
+        </main>
+
+        <!-- Bottom Tools Toolbar -->
+        <nav class="bg-white border-t border-gray-200 p-3 pb-safe z-10">
+            <div class="flex gap-2">
+                <button onclick="toggleSection('photo')"
+                    class="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-gray-50 hover:bg-mentora-blue-light hover:text-white text-gray-600 transition-colors font-bold text-sm group border border-gray-100">
+                    <i data-lucide="image" class="w-5 h-5 group-hover:scale-110 transition-transform"></i> Foto(s)
+                </button>
+                <button onclick="toggleSection('video')"
+                    class="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-gray-50 hover:bg-mentora-orange hover:text-white text-gray-600 transition-colors font-bold text-sm group border border-gray-100">
+                    <i data-lucide="youtube" class="w-5 h-5 group-hover:scale-110 transition-transform"></i> Link Video
+                </button>
+            </div>
+
+            <!-- Expanding Tools -->
+            <div id="tool-photo"
+                class="hidden mt-4 pt-4 border-t border-gray-100 animate-in slide-in-from-bottom border-dashed">
+                <p class="text-xs font-bold text-gray-500 mb-2">Sube imágenes para crear un carrusel</p>
+                <input type="file" multiple accept="image/*"
+                    class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-blue-50 file:text-mentora-blue-light hover:file:bg-blue-100 cursor-pointer">
+            </div>
+
+            <div id="tool-video"
+                class="hidden mt-4 pt-4 border-t border-gray-100 animate-in slide-in-from-bottom border-dashed relative">
+                <p class="text-xs font-bold text-gray-500 mb-2">Pega un enlace de YouTube o Vimeo</p>
+                <input type="url" placeholder="https://youtube.com/watch?v=..."
+                    class="w-full bg-gray-50 border border-gray-200 px-4 py-3 pr-12 rounded-xl outline-none focus:border-mentora-orange transition-all text-sm">
+                <button
+                    class="absolute right-2 bottom-2 bg-mentora-orange text-white p-1.5 rounded-lg hover:bg-orange-500 transition-colors"><i
+                        data-lucide="check" class="w-4 h-4"></i></button>
+            </div>
+
+        </nav>
+
+        <!-- Success Toast Modal Overlay -->
+        <div id="success-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-4">
+            <div class="absolute inset-0 bg-black/50 backdrop-blur-sm z-0"></div>
+            <div
+                class="bg-white rounded-3xl p-6 shadow-2xl z-10 w-full max-w-sm flex flex-col items-center text-center animate-in zoom-in-95 duration-300">
+                <div
+                    class="w-20 h-20 bg-green-100 text-mentora-green rounded-full flex items-center justify-center mb-4">
+                    <i data-lucide="check-circle" class="w-10 h-10"></i>
+                </div>
+                <h2 class="text-2xl font-bold font-heading text-mentora-blue-dark mb-2">Post Publicado</h2>
+                <p class="text-gray-500 mb-6 text-sm">El contenido ya está disponible en el feed de las fichas
+                    seleccionadas.</p>
+                <button onclick="history.back()"
+                    class="w-full bg-mentora-blue-light text-white font-bold py-3 rounded-xl hover:bg-blue-600 transition-colors">
+                    Continuar
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) window.lucide.createIcons();
+
+            // Set default select option based on URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const fichaId = urlParams.get('ficha');
+            if (fichaId) {
+                const select = document.querySelector('select');
+                if (select.querySelector(`option[value="${fichaId}"]`)) {
+                    select.value = fichaId;
+                }
+            }
+
+            // Publish logic
+            document.getElementById('btn-publish').addEventListener('click', () => {
+                document.getElementById('success-modal').classList.remove('hidden');
+            });
+        });
+
+        // Toggle Tools
+        function toggleSection(tool) {
+            const photoEl = document.getElementById('tool-photo');
+            const videoEl = document.getElementById('tool-video');
+
+            if (tool === 'photo') {
+                photoEl.classList.toggle('hidden');
+                videoEl.classList.add('hidden');
+            } else {
+                videoEl.classList.toggle('hidden');
+                photoEl.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+
+</html>

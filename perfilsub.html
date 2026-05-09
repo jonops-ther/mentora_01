@@ -1,0 +1,1053 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentora - Mis Trabajos</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mentora: {
+                            blue: { dark: '#143771', light: '#1F6DA9' },
+                            green: '#AADD37',
+                            orange: '#F9B032',
+                            beige: '#ffffab'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/globals.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* ── Overlay ── */
+        #job-overlay {
+            transition: opacity 0.35s ease;
+        }
+
+        #job-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #overlay-panel {
+            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+            transform: translateY(100%);
+        }
+
+        #job-overlay:not(.hidden) #overlay-panel {
+            transform: translateY(0);
+        }
+
+        /* ── Gallery ── */
+        .img-gallery {
+            scrollbar-width: none;
+        }
+
+        .img-gallery::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* ── Pill indicator ── */
+        .img-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, .4);
+            transition: background 0.2s, width 0.2s;
+        }
+
+        .img-dot.active {
+            background: #fff;
+            width: 20px;
+        }
+
+        /* ── Editable field ── */
+        .editable-field {
+            outline: none;
+            transition: background 0.2s, border-color 0.2s;
+            border-radius: 6px;
+        }
+
+        .editable-field[contenteditable="true"] {
+            background: #edf4ff;
+            border: 1.5px dashed #1F6DA9;
+            padding: 4px 8px;
+            cursor: text;
+        }
+
+        /* ── Edit banner ── */
+        #edit-banner {
+            display: none;
+        }
+
+        #edit-banner.active {
+            display: flex;
+        }
+
+        /* ── Video placeholder ── */
+        .video-placeholder {
+            background: linear-gradient(135deg, #143771 0%, #1F6DA9 100%);
+        }
+
+        /* ── Section labels ── */
+        .section-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        /* ── Inline edit button ── */
+        .field-wrap {
+            position: relative;
+        }
+
+        .field-edit-btn {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #e8f0fe;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+            color: #1F6DA9;
+        }
+
+        .field-wrap:hover .field-edit-btn {
+            opacity: 1;
+        }
+
+        .field-edit-btn.active {
+            opacity: 1;
+            background: #1F6DA9;
+            color: #fff;
+        }
+
+        /* ── Card hover ── */
+        .job-card {
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        .job-card:hover {
+            box-shadow: 0 8px 24px rgba(20, 55, 113, .12);
+            transform: translateY(-2px);
+        }
+
+        /* ── Scrollbar hide ── */
+        .hide-scrollbar {
+            scrollbar-width: none;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* ── Tab bar ── */
+        .tab-btn {
+            flex: 1;
+            padding: 8px 4px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 10px;
+            transition: background 0.2s, color 0.2s;
+            color: #64748b;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .tab-btn.active {
+            background: #143771;
+            color: #fff;
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 h-[100dvh] overflow-hidden font-sans antialiased text-gray-900 flex justify-center">
+    <!-- APP CONTAINER (Mobile Frame) -->
+    <div class="w-full max-w-md bg-white h-[100dvh] shadow-2xl relative overflow-hidden flex flex-col">
+
+        <!-- Header -->
+        <header class="bg-mentora-blue-dark text-white p-4 flex justify-between items-center z-10 sticky top-0">
+            <button id="menu-btn" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+            <h1 class="font-heading font-bold text-xl tracking-wide">Mentora</h1>
+            <a href="student_profile.html"
+                class="w-10 h-10 rounded-full bg-mentora-green flex items-center justify-center text-mentora-blue-dark font-bold shadow-inner uppercase hover:scale-105 transition-transform">
+                A
+            </a>
+        </header>
+
+        <!-- Main Content Area -->
+        <main id="app-content" class="flex-1 overflow-y-auto pb-20">
+            <div class="p-6 space-y-6 animate-in fade-in duration-500">
+
+                <!-- Page Header -->
+                <div>
+                    <h2 class="text-2xl font-heading font-bold text-mentora-blue-dark">Mis Trabajos</h2>
+                    <p class="text-gray-500 text-sm mt-1">Portafolio de proyectos y entregas</p>
+                </div>
+
+                <!-- Stats Bar -->
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="bg-mentora-blue-dark text-white p-3 rounded-2xl flex flex-col items-center gap-1">
+                        <span class="font-bold text-xl">6</span>
+                        <span class="text-[10px] text-white/70 font-medium text-center">Proyectos</span>
+                    </div>
+                    <div
+                        class="bg-mentora-green/20 text-mentora-blue-dark p-3 rounded-2xl flex flex-col items-center gap-1">
+                        <span class="font-bold text-xl">4</span>
+                        <span class="text-[10px] text-mentora-blue-dark/70 font-medium text-center">Aprobados</span>
+                    </div>
+                    <div
+                        class="bg-mentora-orange/20 text-mentora-blue-dark p-3 rounded-2xl flex flex-col items-center gap-1">
+                        <span class="font-bold text-xl">2</span>
+                        <span class="text-[10px] text-mentora-blue-dark/70 font-medium text-center">En revisión</span>
+                    </div>
+                </div>
+
+                <!-- Job Cards List -->
+                <div class="space-y-4">
+
+                    <!-- Card 1 -->
+                    <button onclick="openOverlay(0)"
+                        class="job-card w-full text-left bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden flex">
+                        <div
+                            class="w-24 h-24 shrink-0 bg-gradient-to-br from-mentora-blue-light to-mentora-blue-dark flex items-center justify-center">
+                            <i data-lucide="code-2" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="p-4 flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <div class="min-w-0">
+                                    <span
+                                        class="text-[10px] uppercase font-bold text-mentora-blue-light tracking-wider">Desarrollo
+                                        Web</span>
+                                    <h3 class="font-bold text-gray-800 mt-0.5 truncate">Sitio Web E-commerce</h3>
+                                    <p class="text-xs text-gray-400 mt-1">HTML, CSS, JavaScript</p>
+                                </div>
+                                <span
+                                    class="shrink-0 px-2 py-0.5 text-[10px] font-bold rounded-full bg-mentora-green/20 text-green-700">✓
+                                    Aprobado</span>
+                            </div>
+                            <div class="flex items-center gap-3 mt-3 text-xs text-gray-400">
+                                <span class="flex items-center gap-1"><i data-lucide="image" class="w-3 h-3"></i> 4
+                                    fotos</span>
+                                <span class="flex items-center gap-1"><i data-lucide="video" class="w-3 h-3"></i> 1
+                                    video</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <!-- Card 2 -->
+                    <button onclick="openOverlay(1)"
+                        class="job-card w-full text-left bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden flex">
+                        <div
+                            class="w-24 h-24 shrink-0 bg-gradient-to-br from-mentora-orange to-yellow-400 flex items-center justify-center">
+                            <i data-lucide="smartphone" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="p-4 flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <div class="min-w-0">
+                                    <span class="text-[10px] uppercase font-bold text-mentora-orange tracking-wider">App
+                                        Móvil</span>
+                                    <h3 class="font-bold text-gray-800 mt-0.5 truncate">App de gestión de tareas</h3>
+                                    <p class="text-xs text-gray-400 mt-1">Flutter · Firebase</p>
+                                </div>
+                                <span
+                                    class="shrink-0 px-2 py-0.5 text-[10px] font-bold rounded-full bg-yellow-100 text-yellow-700">⏳
+                                    Revisión</span>
+                            </div>
+                            <div class="flex items-center gap-3 mt-3 text-xs text-gray-400">
+                                <span class="flex items-center gap-1"><i data-lucide="image" class="w-3 h-3"></i> 6
+                                    fotos</span>
+                                <span class="flex items-center gap-1"><i data-lucide="video" class="w-3 h-3"></i> 2
+                                    videos</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <!-- Card 3 -->
+                    <button onclick="openOverlay(2)"
+                        class="job-card w-full text-left bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden flex">
+                        <div
+                            class="w-24 h-24 shrink-0 bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                            <i data-lucide="database" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="p-4 flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <div class="min-w-0">
+                                    <span class="text-[10px] uppercase font-bold text-purple-500 tracking-wider">Base de
+                                        Datos</span>
+                                    <h3 class="font-bold text-gray-800 mt-0.5 truncate">Sistema de inventario</h3>
+                                    <p class="text-xs text-gray-400 mt-1">MySQL · PHP</p>
+                                </div>
+                                <span
+                                    class="shrink-0 px-2 py-0.5 text-[10px] font-bold rounded-full bg-mentora-green/20 text-green-700">✓
+                                    Aprobado</span>
+                            </div>
+                            <div class="flex items-center gap-3 mt-3 text-xs text-gray-400">
+                                <span class="flex items-center gap-1"><i data-lucide="image" class="w-3 h-3"></i> 3
+                                    fotos</span>
+                                <span class="flex items-center gap-1"><i data-lucide="video" class="w-3 h-3"></i> 1
+                                    video</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <!-- Card 4 -->
+                    <button onclick="openOverlay(3)"
+                        class="job-card w-full text-left bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden flex">
+                        <div
+                            class="w-24 h-24 shrink-0 bg-gradient-to-br from-teal-400 to-cyan-600 flex items-center justify-center">
+                            <i data-lucide="bar-chart-2" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="p-4 flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <div class="min-w-0">
+                                    <span class="text-[10px] uppercase font-bold text-teal-500 tracking-wider">Análisis
+                                        de Datos</span>
+                                    <h3 class="font-bold text-gray-800 mt-0.5 truncate">Dashboard de ventas</h3>
+                                    <p class="text-xs text-gray-400 mt-1">Python · Pandas · Matplotlib</p>
+                                </div>
+                                <span
+                                    class="shrink-0 px-2 py-0.5 text-[10px] font-bold rounded-full bg-mentora-green/20 text-green-700">✓
+                                    Aprobado</span>
+                            </div>
+                            <div class="flex items-center gap-3 mt-3 text-xs text-gray-400">
+                                <span class="flex items-center gap-1"><i data-lucide="image" class="w-3 h-3"></i> 5
+                                    fotos</span>
+                                <span class="flex items-center gap-1"><i data-lucide="video" class="w-3 h-3"></i> 1
+                                    video</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <!-- Card 5 -->
+                    <button onclick="openOverlay(4)"
+                        class="job-card w-full text-left bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden flex">
+                        <div
+                            class="w-24 h-24 shrink-0 bg-gradient-to-br from-rose-400 to-red-600 flex items-center justify-center">
+                            <i data-lucide="cpu" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="p-4 flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <div class="min-w-0">
+                                    <span
+                                        class="text-[10px] uppercase font-bold text-rose-500 tracking-wider">IoT</span>
+                                    <h3 class="font-bold text-gray-800 mt-0.5 truncate">Sistema de sensores</h3>
+                                    <p class="text-xs text-gray-400 mt-1">Arduino · C++</p>
+                                </div>
+                                <span
+                                    class="shrink-0 px-2 py-0.5 text-[10px] font-bold rounded-full bg-mentora-green/20 text-green-700">✓
+                                    Aprobado</span>
+                            </div>
+                            <div class="flex items-center gap-3 mt-3 text-xs text-gray-400">
+                                <span class="flex items-center gap-1"><i data-lucide="image" class="w-3 h-3"></i> 4
+                                    fotos</span>
+                                <span class="flex items-center gap-1"><i data-lucide="video" class="w-3 h-3"></i> 2
+                                    videos</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <!-- Card 6 -->
+                    <button onclick="openOverlay(5)"
+                        class="job-card w-full text-left bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden flex">
+                        <div
+                            class="w-24 h-24 shrink-0 bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
+                            <i data-lucide="globe" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <div class="p-4 flex-1 min-w-0">
+                            <div class="flex items-start justify-between gap-2">
+                                <div class="min-w-0">
+                                    <span class="text-[10px] uppercase font-bold text-amber-500 tracking-wider">API
+                                        REST</span>
+                                    <h3 class="font-bold text-gray-800 mt-0.5 truncate">Backend de red social</h3>
+                                    <p class="text-xs text-gray-400 mt-1">Node.js · Express · MongoDB</p>
+                                </div>
+                                <span
+                                    class="shrink-0 px-2 py-0.5 text-[10px] font-bold rounded-full bg-yellow-100 text-yellow-700">⏳
+                                    Revisión</span>
+                            </div>
+                            <div class="flex items-center gap-3 mt-3 text-xs text-gray-400">
+                                <span class="flex items-center gap-1"><i data-lucide="image" class="w-3 h-3"></i> 3
+                                    fotos</span>
+                                <span class="flex items-center gap-1"><i data-lucide="video" class="w-3 h-3"></i> 1
+                                    video</span>
+                            </div>
+                        </div>
+                    </button>
+
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom HUD (Mobile) -->
+        <nav class="bg-white border-t border-gray-200 flex justify-around p-2 pb-safe absolute bottom-0 w-full z-10">
+            <a href="student_home.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1"><i data-lucide="home" class="w-6 h-6" stroke-width="2"></i></div>
+                <span class="text-[10px] font-medium">Home</span>
+            </a>
+            <a href="student_challenges.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1"><i data-lucide="target" class="w-6 h-6" stroke-width="2"></i></div>
+                <span class="text-[10px] font-medium">Desafíos</span>
+            </a>
+            <a href="student_subjects.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1"><i data-lucide="book-open" class="w-6 h-6" stroke-width="2"></i></div>
+                <span class="text-[10px] font-medium">Materias</span>
+            </a>
+            <a href="notifications.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1"><i data-lucide="bell" class="w-6 h-6" stroke-width="2"></i></div>
+                <span class="text-[10px] font-medium">Notifs</span>
+            </a>
+        </nav>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!--              JOB DETAIL OVERLAY             -->
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- ═══════════════════════════════════════════ -->
+        <!--              JOB DETAIL OVERLAY             -->
+        <!-- ═══════════════════════════════════════════ -->
+        <div id="job-overlay" class="hidden absolute inset-0 z-40 flex flex-col">
+            <!-- Backdrop -->
+            <div id="overlay-backdrop" onclick="closeOverlay()" class="absolute inset-0 bg-black/70 backdrop-blur-sm">
+            </div>
+
+            <!-- Panel: full-screen sheet -->
+            <div id="overlay-panel"
+                class="relative mt-auto bg-white rounded-t-3xl shadow-2xl flex flex-col overflow-hidden"
+                style="height: 95vh;">
+
+                <!-- ─── HERO HEADER (colored gradient) ─── -->
+                <div id="overlay-hero" class="shrink-0 relative flex flex-col justify-end px-5 pt-10 pb-5"
+                    style="min-height: 130px; background: linear-gradient(135deg,#143771 0%,#1F6DA9 100%);">
+
+                    <!-- Close button top-right -->
+                    <button onclick="closeOverlay()"
+                        class="absolute top-4 right-4 w-9 h-9 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+
+                    <!-- Category badge -->
+                    <span id="overlay-category"
+                        class="text-[10px] uppercase font-bold tracking-widest text-white/70 mb-1">Categoría</span>
+
+                    <!-- Title row with pencil -->
+                    <div class="field-wrap flex items-start gap-2">
+                        <h2 id="overlay-title"
+                            class="editable-field font-heading font-bold text-2xl text-white leading-tight flex-1">
+                            Título del Proyecto
+                        </h2>
+                        <button class="field-edit-btn mt-1" onclick="toggleFieldEdit('overlay-title', this)"
+                            title="Editar título">
+                            <i data-lucide="pencil" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+
+                    <!-- Tech row with pencil -->
+                    <div class="field-wrap flex items-center gap-2 mt-1">
+                        <p id="overlay-tech" class="editable-field text-sm text-white/70 flex-1">Tecnologías</p>
+                        <button class="field-edit-btn" onclick="toggleFieldEdit('overlay-tech', this)"
+                            title="Editar tecnologías">
+                            <i data-lucide="pencil" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+
+                    <!-- Status + date -->
+                    <div class="flex items-center gap-3 mt-3">
+                        <span id="overlay-status-badge"
+                            class="text-[10px] font-bold px-3 py-1 rounded-full bg-white/20 text-white">—</span>
+                        <span class="flex items-center gap-1 text-[11px] text-white/60">
+                            <i data-lucide="calendar" class="w-3 h-3"></i>
+                            <span id="overlay-date">—</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- ─── TAB BAR ─── -->
+                <div class="shrink-0 flex gap-1 px-4 py-3 bg-gray-50 border-b border-gray-200">
+                    <button class="tab-btn active" id="tab-images" onclick="switchTab('images')">
+                        <i data-lucide="images" class="w-3.5 h-3.5"></i> Imágenes
+                    </button>
+                    <button class="tab-btn" id="tab-videos" onclick="switchTab('videos')">
+                        <i data-lucide="video" class="w-3.5 h-3.5"></i> Videos
+                    </button>
+                    <button class="tab-btn" id="tab-info" onclick="switchTab('info')">
+                        <i data-lucide="align-left" class="w-3.5 h-3.5"></i> Descripción
+                    </button>
+                </div>
+
+                <!-- ─── SCROLLABLE BODY ─── -->
+                <div class="flex-1 overflow-y-auto">
+
+                    <!-- ══ TAB: IMAGES ══ -->
+                    <div id="pane-images" class="tab-pane active p-4">
+                        <!-- Main big image -->
+                        <div id="gallery-main"
+                            class="w-full rounded-2xl overflow-hidden relative flex items-center justify-center"
+                            style="height: 220px; background: linear-gradient(135deg,#1F6DA9,#143771);">
+                            <i data-lucide="image" class="w-16 h-16 text-white/30"></i>
+                            <!-- Nav arrows -->
+                            <button onclick="prevImage()"
+                                class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/30 text-white flex items-center justify-center hover:bg-black/50">
+                                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                            </button>
+                            <button onclick="nextImage()"
+                                class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/30 text-white flex items-center justify-center hover:bg-black/50">
+                                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                            </button>
+                            <!-- Label + counter -->
+                            <div class="absolute bottom-0 inset-x-0 px-3 pb-3 flex items-end justify-between"
+                                style="background: linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 100%);">
+                                <span id="gallery-label" class="text-white text-xs font-semibold"></span>
+                                <span id="gallery-counter"
+                                    class="text-white text-xs font-bold bg-black/40 px-2 py-0.5 rounded-full">1 /
+                                    1</span>
+                            </div>
+                            <!-- Dots over image -->
+                            <div class="absolute top-3 left-1/2 -translate-x-1/2 flex gap-1.5" id="dot-row"></div>
+                        </div>
+
+                        <!-- Thumbnail strip -->
+                        <div class="img-gallery hide-scrollbar flex gap-2 mt-3 overflow-x-auto pb-1" id="thumb-strip">
+                        </div>
+                    </div>
+
+                    <!-- ══ TAB: VIDEOS ══ -->
+                    <div id="pane-videos" class="tab-pane p-4">
+                        <p class="section-title">
+                            <i data-lucide="video" class="w-3.5 h-3.5 text-mentora-blue-light"></i>
+                            Videos del proyecto
+                        </p>
+                        <div id="videos-list" class="space-y-3"></div>
+                    </div>
+
+                    <!-- ══ TAB: INFO ══ -->
+                    <div id="pane-info" class="tab-pane p-4 pb-8 space-y-4">
+
+                        <!-- Description field -->
+                        <div class="bg-gray-50 rounded-2xl p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <p class="section-title mb-0">
+                                    <i data-lucide="align-left" class="w-3.5 h-3.5 text-mentora-blue-light"></i>
+                                    Descripción
+                                </p>
+                                <button onclick="toggleFieldEdit('overlay-desc', this)" title="Editar descripción"
+                                    id="edit-desc-btn"
+                                    class="flex items-center gap-1 text-[11px] font-semibold text-mentora-blue-light bg-mentora-blue-light/10 hover:bg-mentora-blue-light hover:text-white px-3 py-1 rounded-full transition-colors">
+                                    <i data-lucide="pencil" class="w-3 h-3"></i> Editar
+                                </button>
+                            </div>
+                            <p id="overlay-desc"
+                                class="editable-field text-sm text-gray-700 leading-relaxed w-full min-h-[60px]">
+                                —
+                            </p>
+                        </div>
+
+                        <!-- Notes field -->
+                        <div class="bg-mentora-beige/40 border border-amber-100 rounded-2xl p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <p class="section-title mb-0">
+                                    <i data-lucide="message-square" class="w-3.5 h-3.5 text-mentora-orange"></i>
+                                    Notas del instructor
+                                </p>
+                                <button onclick="toggleFieldEdit('overlay-notes', this)" title="Editar notas"
+                                    id="edit-notes-btn"
+                                    class="flex items-center gap-1 text-[11px] font-semibold text-mentora-orange bg-mentora-orange/10 hover:bg-mentora-orange hover:text-white px-3 py-1 rounded-full transition-colors">
+                                    <i data-lucide="pencil" class="w-3 h-3"></i> Editar
+                                </button>
+                            </div>
+                            <p id="overlay-notes"
+                                class="editable-field text-sm text-gray-700 leading-relaxed w-full min-h-[48px]">
+                                —
+                            </p>
+                        </div>
+
+                        <!-- Save button (shows when any field is in edit) -->
+                        <button id="save-all-btn" onclick="saveEdits()"
+                            class="hidden w-full py-3 rounded-2xl bg-mentora-blue-dark text-white font-bold text-sm hover:bg-mentora-blue-light transition-colors flex items-center justify-center gap-2">
+                            <i data-lucide="save" class="w-4 h-4"></i> Guardar cambios
+                        </button>
+
+                        <!-- Metadata -->
+                        <div class="flex items-center gap-4 text-xs text-gray-400 pt-1">
+                            <span class="flex items-center gap-1">
+                                <i data-lucide="calendar" class="w-3 h-3"></i>
+                                <span id="overlay-date2">—</span>
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <i data-lucide="tag" class="w-3 h-3"></i>
+                                <span id="overlay-status-label">—</span>
+                            </span>
+                        </div>
+                    </div>
+
+                </div><!-- end scrollable body -->
+            </div><!-- end panel -->
+        </div><!-- end overlay -->
+
+        <!-- Hamburger Menu Overlay -->
+        <div id="menu-overlay" class="hidden absolute inset-0 z-50">
+            <div id="menu-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+            <div
+                class="w-4/5 max-w-[300px] bg-white h-full shadow-2xl relative flex flex-col animate-in slide-in-from-left">
+                <div class="p-6 bg-mentora-blue-dark text-white relative">
+                    <button id="close-menu-btn" class="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-full">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                    <div
+                        class="w-16 h-16 rounded-full bg-mentora-green flex items-center justify-center text-mentora-blue-dark font-bold text-2xl mb-4 shadow-lg border-2 border-white/20 uppercase">
+                        A</div>
+                    <h2 class="font-heading font-bold text-xl">Estudiante</h2>
+                    <p class="text-mentora-beige text-sm opacity-90">Desarrollo de Software</p>
+                </div>
+                <div class="flex-1 overflow-y-auto py-4">
+                    <div class="px-4 space-y-1">
+                        <a href="student_home.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="home" class="w-5 h-5"></i><span>Inicio</span>
+                        </a>
+                        <a href="student_profile.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="user" class="w-5 h-5"></i><span>Perfil</span>
+                        </a>
+                        <a href="perfilsub.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors bg-mentora-blue-light/10 text-mentora-blue-light font-semibold">
+                            <i data-lucide="folder-open" class="w-5 h-5"></i><span>Mis Trabajos</span>
+                        </a>
+                        <a href="student_subjects.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="book-open" class="w-5 h-5"></i><span>Mis materias</span>
+                        </a>
+                        <a href="student_challenges.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="target" class="w-5 h-5"></i><span>Desafíos diarios</span>
+                        </a>
+                        <a href="settings.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="settings" class="w-5 h-5"></i><span>Ajustes</span>
+                        </a>
+                    </div>
+                    <div class="h-px bg-gray-200 my-4 mx-4"></div>
+                    <div class="px-4 space-y-1">
+                        <a href="accessibility.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
+                            <i data-lucide="accessibility" class="w-5 h-5"></i><span>Accesibilidad</span>
+                        </a>
+                        <a href="help.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
+                            <i data-lucide="help-circle" class="w-5 h-5"></i><span>Ayuda</span>
+                        </a>
+                        <button id="logout-btn"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 transition-colors mt-2 text-left">
+                            <i data-lucide="log-out" class="w-5 h-5"></i><span class="font-medium">Cerrar sesión</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6 bg-gray-50 border-t border-gray-200 flex flex-col items-center">
+                    <div
+                        class="w-12 h-12 bg-mentora-orange rounded-full flex items-center justify-center text-white mb-2 shadow-md">
+                        <span class="font-heading font-bold">M</span>
+                    </div>
+                    <p class="text-xs text-gray-400 font-medium">Mentora alpha 1.0</p>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- End App Container -->
+
+    <script src="assets/js/app.js"></script>
+    <script>
+        // ══════════════════════════════════════════════
+        //  Job data
+        // ══════════════════════════════════════════════
+        const jobs = [
+            {
+                category: 'Desarrollo Web',
+                title: 'Sitio Web E-commerce',
+                tech: 'HTML · CSS · JavaScript',
+                date: '15 Ene 2026',
+                status: '✓ Aprobado',
+                gradient: 'linear-gradient(135deg,#1F6DA9 0%,#143771 100%)',
+                desc: 'Desarrollo de una tienda en línea completa con carrito de compras, pasarela de pagos y panel administrativo. Se implementaron principios de diseño responsivo y accesibilidad web.',
+                notes: 'Excelente trabajo en la maquetación. Mejorar la optimización de imágenes para producción.',
+                images: [
+                    { label: 'Página principal', gradient: 'from-blue-400 to-blue-700', icon: 'layout-dashboard' },
+                    { label: 'Carrito', gradient: 'from-blue-600 to-indigo-700', icon: 'shopping-cart' },
+                    { label: 'Panel admin', gradient: 'from-indigo-400 to-purple-600', icon: 'settings-2' },
+                    { label: 'Checkout', gradient: 'from-sky-400 to-blue-600', icon: 'credit-card' },
+                ],
+                videos: [{ title: 'Demo general del sitio', duration: '3:24' }]
+            },
+            {
+                category: 'App Móvil',
+                title: 'App de gestión de tareas',
+                tech: 'Flutter · Firebase',
+                date: '20 Feb 2026',
+                status: '⏳ En revisión',
+                gradient: 'linear-gradient(135deg,#F9B032 0%,#e07c00 100%)',
+                desc: 'Aplicación móvil multiplataforma para gestionar tareas personales y de equipo con notificaciones en tiempo real, calendario integrado y sincronización en la nube.',
+                notes: 'El flujo de autenticación necesita ajustes. Revisar el manejo de errores en modo offline.',
+                images: [
+                    { label: 'Pantalla inicio', gradient: 'from-orange-300 to-orange-600', icon: 'home' },
+                    { label: 'Lista de tareas', gradient: 'from-amber-400 to-orange-500', icon: 'list-checks' },
+                    { label: 'Calendario', gradient: 'from-yellow-400 to-amber-500', icon: 'calendar' },
+                    { label: 'Perfil usuario', gradient: 'from-orange-500 to-red-500', icon: 'user-circle' },
+                    { label: 'Notificaciones', gradient: 'from-red-400 to-orange-500', icon: 'bell' },
+                    { label: 'Ajustes', gradient: 'from-orange-600 to-yellow-600', icon: 'settings' },
+                ],
+                videos: [
+                    { title: 'Demo flujo de usuario', duration: '2:10' },
+                    { title: 'Sincronización Firebase', duration: '1:45' }
+                ]
+            },
+            {
+                category: 'Base de Datos',
+                title: 'Sistema de inventario',
+                tech: 'MySQL · PHP',
+                date: '5 Dic 2025',
+                status: '✓ Aprobado',
+                gradient: 'linear-gradient(135deg,#7c3aed 0%,#a21caf 100%)',
+                desc: 'Sistema CRUD completo para gestión de inventario empresarial con reportes dinámicos, control de stock mínimo, historial de movimientos y exportación a PDF.',
+                notes: 'Muy buen manejo de las relaciones entre tablas. Considerar agregar índices para mejorar el rendimiento en consultas complejas.',
+                images: [
+                    { label: 'Dashboard', gradient: 'from-purple-400 to-purple-700', icon: 'layout-dashboard' },
+                    { label: 'Inventario', gradient: 'from-pink-400 to-purple-600', icon: 'package' },
+                    { label: 'Reportes', gradient: 'from-purple-600 to-pink-700', icon: 'bar-chart-2' },
+                ],
+                videos: [{ title: 'Flujo completo del sistema', duration: '4:15' }]
+            },
+            {
+                category: 'Análisis de Datos',
+                title: 'Dashboard de ventas',
+                tech: 'Python · Pandas · Matplotlib',
+                date: '10 Nov 2025',
+                status: '✓ Aprobado',
+                gradient: 'linear-gradient(135deg,#0d9488 0%,#0891b2 100%)',
+                desc: 'Dashboard interactivo para análisis de ventas mensuales con visualización de KPIs, tendencias históricas y predicción de demanda mediante regresión lineal.',
+                notes: 'Análisis sólido y bien documentado. Agregar más visualizaciones para el análisis geográfico.',
+                images: [
+                    { label: 'KPIs', gradient: 'from-teal-400 to-cyan-600', icon: 'trending-up' },
+                    { label: 'Gráficas', gradient: 'from-cyan-400 to-teal-600', icon: 'bar-chart-2' },
+                    { label: 'Tendencias', gradient: 'from-emerald-400 to-teal-600', icon: 'line-chart' },
+                    { label: 'Mapa calor', gradient: 'from-teal-600 to-green-700', icon: 'map' },
+                    { label: 'Predicción', gradient: 'from-cyan-600 to-blue-700', icon: 'zap' },
+                ],
+                videos: [{ title: 'Análisis interactivo', duration: '5:02' }]
+            },
+            {
+                category: 'IoT',
+                title: 'Sistema de sensores',
+                tech: 'Arduino · C++',
+                date: '8 Oct 2025',
+                status: '✓ Aprobado',
+                gradient: 'linear-gradient(135deg,#e11d48 0%,#9f1239 100%)',
+                desc: 'Sistema embebido de monitoreo ambiental con sensores de temperatura, humedad y calidad del aire. Transmisión de datos a una app móvil vía Bluetooth.',
+                notes: 'Proyecto muy completo a nivel de hardware. El código es limpio y bien comentado. Revisar el manejo de interrupciones.',
+                images: [
+                    { label: 'Circuito', gradient: 'from-rose-400 to-red-700', icon: 'cpu' },
+                    { label: 'Sensores', gradient: 'from-red-500 to-rose-700', icon: 'thermometer' },
+                    { label: 'App móvil', gradient: 'from-rose-600 to-red-800', icon: 'smartphone' },
+                    { label: 'Datos', gradient: 'from-red-400 to-rose-600', icon: 'activity' },
+                ],
+                videos: [
+                    { title: 'Demo del hardware', duration: '2:55' },
+                    { title: 'Integración Bluetooth', duration: '1:30' }
+                ]
+            },
+            {
+                category: 'API REST',
+                title: 'Backend de red social',
+                tech: 'Node.js · Express · MongoDB',
+                date: '1 Mar 2026',
+                status: '⏳ En revisión',
+                gradient: 'linear-gradient(135deg,#d97706 0%,#b45309 100%)',
+                desc: 'API REST completa para una red social con autenticación JWT, manejo de relaciones entre usuarios, posts con imágenes, sistema de comentarios y likes.',
+                notes: 'Pendiente de revisión. Verificar la seguridad de los endpoints y la validación de datos de entrada.',
+                images: [
+                    { label: 'Arquitectura', gradient: 'from-amber-400 to-orange-600', icon: 'git-branch' },
+                    { label: 'Endpoints', gradient: 'from-orange-400 to-amber-600', icon: 'code-2' },
+                    { label: 'DB Schema', gradient: 'from-yellow-400 to-orange-500', icon: 'database' },
+                ],
+                videos: [{ title: 'Pruebas con Postman', duration: '3:40' }]
+            }
+        ];
+
+        let currentJob = null;
+        let currentImg = 0;
+        let activeFields = new Set(); // IDs of fields currently in edit mode
+
+        // ── Tab switching ──
+        function switchTab(name) {
+            ['images', 'videos', 'info'].forEach(t => {
+                document.getElementById('tab-' + t).classList.toggle('active', t === name);
+                document.getElementById('pane-' + t).classList.toggle('active', t === name);
+            });
+        }
+
+        // ── Open / Close ──
+        function openOverlay(index) {
+            currentJob = jobs[index];
+            currentImg = 0;
+            activeFields.clear();
+
+            // Hero gradient from job color
+            document.getElementById('overlay-hero').style.background = currentJob.gradient;
+
+            // Populate fields
+            document.getElementById('overlay-category').textContent = currentJob.category;
+            document.getElementById('overlay-title').textContent = currentJob.title;
+            document.getElementById('overlay-tech').textContent = currentJob.tech;
+            document.getElementById('overlay-desc').textContent = currentJob.desc;
+            document.getElementById('overlay-notes').textContent = currentJob.notes;
+            document.getElementById('overlay-date').textContent = currentJob.date;
+            document.getElementById('overlay-date2').textContent = currentJob.date;
+            document.getElementById('overlay-status-label').textContent = currentJob.status;
+            document.getElementById('overlay-status-badge').textContent = currentJob.status;
+
+            // Reset editable fields
+            ['overlay-title', 'overlay-tech', 'overlay-desc', 'overlay-notes'].forEach(id => {
+                const el = document.getElementById(id);
+                el.contentEditable = 'false';
+            });
+
+            // Reset edit buttons
+            document.querySelectorAll('.field-edit-btn, #edit-desc-btn, #edit-notes-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.innerHTML = btn.innerHTML.replace(/Guardar/, 'Editar');
+            });
+
+            document.getElementById('save-all-btn').classList.add('hidden');
+
+            // Reset to images tab
+            switchTab('images');
+
+            // Render gallery & videos
+            renderGallery();
+            renderVideos();
+
+            // Show overlay
+            const overlay = document.getElementById('job-overlay');
+            overlay.classList.remove('hidden');
+            requestAnimationFrame(() => { overlay.style.opacity = '1'; });
+
+            lucide.createIcons();
+        }
+
+        function closeOverlay() {
+            const overlay = document.getElementById('job-overlay');
+            overlay.style.opacity = '0';
+            setTimeout(() => overlay.classList.add('hidden'), 350);
+        }
+
+        // ── Per-field edit toggle ──
+        function toggleFieldEdit(fieldId, btn) {
+            const el = document.getElementById(fieldId);
+            const isEditing = el.contentEditable === 'true';
+
+            if (isEditing) {
+                // Save this field
+                el.contentEditable = 'false';
+                btn.classList.remove('active');
+                // Update the label on the button
+                const pencilIcon = btn.querySelector('[data-lucide="pencil"]');
+                if (btn.id) btn.innerHTML = `<i data-lucide="pencil" class="w-3 h-3"></i> Editar`;
+                activeFields.delete(fieldId);
+                // Persist
+                if (fieldId === 'overlay-title') currentJob.title = el.textContent.trim();
+                if (fieldId === 'overlay-tech') currentJob.tech = el.textContent.trim();
+                if (fieldId === 'overlay-desc') currentJob.desc = el.textContent.trim();
+                if (fieldId === 'overlay-notes') currentJob.notes = el.textContent.trim();
+            } else {
+                el.contentEditable = 'true';
+                el.focus();
+                btn.classList.add('active');
+                if (btn.id) btn.innerHTML = `<i data-lucide="pencil" class="w-3 h-3"></i> Guardar`;
+                activeFields.add(fieldId);
+            }
+
+            // Show/hide global save button
+            document.getElementById('save-all-btn').classList.toggle('hidden', activeFields.size === 0);
+            lucide.createIcons();
+        }
+
+        function saveEdits() {
+            ['overlay-title', 'overlay-tech', 'overlay-desc', 'overlay-notes'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el.contentEditable === 'true') {
+                    el.contentEditable = 'false';
+                    if (id === 'overlay-title') currentJob.title = el.textContent.trim();
+                    if (id === 'overlay-tech') currentJob.tech = el.textContent.trim();
+                    if (id === 'overlay-desc') currentJob.desc = el.textContent.trim();
+                    if (id === 'overlay-notes') currentJob.notes = el.textContent.trim();
+                }
+            });
+            activeFields.clear();
+            document.getElementById('save-all-btn').classList.add('hidden');
+            // Reset edit button labels
+            const descBtn = document.getElementById('edit-desc-btn');
+            const notesBtn = document.getElementById('edit-notes-btn');
+            if (descBtn) descBtn.innerHTML = `<i data-lucide="pencil" class="w-3 h-3"></i> Editar`;
+            if (notesBtn) notesBtn.innerHTML = `<i data-lucide="pencil" class="w-3 h-3"></i> Editar`;
+            document.querySelectorAll('.field-edit-btn').forEach(b => b.classList.remove('active'));
+
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-24 left-1/2 -translate-x-1/2 bg-green-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg z-[999] flex items-center gap-2';
+            toast.innerHTML = '✓ Cambios guardados';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+            lucide.createIcons();
+        }
+
+        // ── Gallery ──
+        function renderGallery() {
+            const imgs = currentJob.images;
+            updateMainImage(0);
+
+            // Thumbnails
+            const strip = document.getElementById('thumb-strip');
+            strip.innerHTML = imgs.map((img, i) => `
+                <button onclick="selectImage(${i})"
+                    id="thumb-${i}"
+                    class="shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 transition-all flex items-center justify-center bg-gradient-to-br ${img.gradient} ${i === 0 ? 'border-white ring-2 ring-mentora-blue-light' : 'border-transparent opacity-50'}">
+                    <i data-lucide="${img.icon}" class="w-6 h-6 text-white"></i>
+                </button>`).join('');
+
+            // Dots
+            const dots = document.getElementById('dot-row');
+            dots.innerHTML = imgs.map((_, i) =>
+                `<div class="img-dot ${i === 0 ? 'active' : ''}" id="dot-${i}"></div>`).join('');
+
+            lucide.createIcons();
+        }
+
+        function updateMainImage(index) {
+            const img = currentJob.images[index];
+            const main = document.getElementById('gallery-main');
+
+            // Reconstruct inner (keep arrows + bottom bar + dots)
+            main.style.background = `var(--tw-gradient-stops)`;
+            main.className = `w-full rounded-2xl overflow-hidden relative flex items-center justify-center bg-gradient-to-br ${img.gradient}`;
+            main.style.height = '220px';
+            main.innerHTML = `
+                <i data-lucide="${img.icon}" class="w-20 h-20 text-white/30"></i>
+                <button onclick="prevImage()" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/30 text-white flex items-center justify-center hover:bg-black/50">
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                </button>
+                <button onclick="nextImage()" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/30 text-white flex items-center justify-center hover:bg-black/50">
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+                <div class="absolute bottom-0 inset-x-0 px-3 pb-3 flex items-end justify-between"
+                    style="background: linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 100%);">
+                    <span class="text-white text-xs font-semibold">${img.label}</span>
+                    <span class="text-white text-xs font-bold bg-black/40 px-2 py-0.5 rounded-full">${index + 1} / ${currentJob.images.length}</span>
+                </div>
+                <div class="absolute top-3 left-1/2 -translate-x-1/2 flex gap-1.5" id="dot-row"></div>`;
+
+            // Re-render dots inside
+            const dots = document.getElementById('dot-row');
+            if (dots) {
+                dots.innerHTML = currentJob.images.map((_, i) =>
+                    `<div class="img-dot ${i === index ? 'active' : ''}" id="dot-${i}"></div>`).join('');
+            }
+            lucide.createIcons();
+        }
+
+        function selectImage(index) {
+            const prev = currentImg;
+            currentImg = index;
+            updateMainImage(index);
+
+            // Update thumbnails
+            const prevThumb = document.getElementById(`thumb-${prev}`);
+            const currThumb = document.getElementById(`thumb-${index}`);
+            if (prevThumb) {
+                prevThumb.classList.remove('border-white', 'ring-2', 'ring-mentora-blue-light');
+                prevThumb.classList.add('border-transparent', 'opacity-50');
+            }
+            if (currThumb) {
+                currThumb.classList.remove('border-transparent', 'opacity-50');
+                currThumb.classList.add('border-white', 'ring-2', 'ring-mentora-blue-light');
+            }
+        }
+
+        function prevImage() {
+            const n = currentJob.images.length;
+            selectImage((currentImg - 1 + n) % n);
+        }
+
+        function nextImage() {
+            selectImage((currentImg + 1) % currentJob.images.length);
+        }
+
+        // ── Videos ──
+        function renderVideos() {
+            const list = document.getElementById('videos-list');
+            list.innerHTML = currentJob.videos.map((v, i) => `
+                <div class="video-placeholder rounded-2xl overflow-hidden relative group cursor-pointer"
+                    style="height: 110px;" onclick="playVideoDemo(${i})">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 p-4">
+                        <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/35 transition-colors">
+                            <i data-lucide="play" class="w-6 h-6 text-white ml-0.5"></i>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-white font-bold text-sm">${v.title}</p>
+                            <p class="text-white/60 text-xs mt-0.5">${v.duration}</p>
+                        </div>
+                    </div>
+                    <div class="absolute top-2 right-2 bg-black/50 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">VIDEO ${i + 1}</div>
+                </div>`).join('');
+            lucide.createIcons();
+        }
+
+        function playVideoDemo(i) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-24 left-1/2 -translate-x-1/2 bg-mentora-blue-dark text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg z-[999]';
+            toast.textContent = `▶ Reproduciendo: ${currentJob.videos[i].title}`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2200);
+        }
+    </script>
+</body>
+
+</html>

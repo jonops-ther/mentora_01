@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentora - Mi Ficha</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mentora: {
+                            blue: { dark: '#143771', light: '#1F6DA9' },
+                            green: '#AADD37',
+                            orange: '#F9B032',
+                            beige: '#ffffab'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/globals.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-gray-50 h-[100dvh] overflow-hidden font-sans antialiased text-gray-900 flex justify-center">
+    <!-- APP CONTAINER (Mobile Frame) -->
+    <div class="w-full max-w-md bg-white h-[100dvh] shadow-2xl relative overflow-hidden flex flex-col">
+
+        <!-- Header -->
+        <header class="bg-mentora-blue-dark text-white p-4 flex items-center gap-4 z-10 sticky top-0 relative">
+            <a href="student_subjects.html" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                <i data-lucide="arrow-left" class="w-6 h-6"></i>
+            </a>
+            <div class="flex-1">
+                <h1 class="font-heading font-bold text-lg tracking-wide leading-tight">Comunicación</h1>
+                <p id="ficha-subtitle" class="text-xs text-mentora-beige font-medium">Instructor: C. Mendoza</p>
+            </div>
+
+            <div
+                class="flex items-center gap-1 bg-white/10 px-2 py-1 rounded-full text-sm font-bold border border-white/20">
+                <i data-lucide="star" class="w-4 h-4 text-mentora-orange fill-current"></i>
+                <span>1250</span>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main id="app-content" class="flex-1 overflow-y-auto pb-6 relative bg-gray-100/50">
+
+            <!-- Sticky Sub-Nav Config to feel native -->
+            <div
+                class="sticky top-0 bg-white/80 backdrop-blur-md z-20 border-b border-gray-200 px-4 pt-3 pb-0 flex gap-4 overflow-x-auto hide-scrollbar">
+                <button onclick="switchTab('feed')" id="tab-feed"
+                    class="pb-3 border-b-2 border-mentora-blue-light font-bold text-mentora-blue-dark text-sm whitespace-nowrap px-1 transition-colors">
+                    Feed de Materia
+                </button>
+                <button onclick="switchTab('actividades')" id="tab-actividades"
+                    class="pb-3 border-b-2 border-transparent font-bold text-gray-400 hover:text-gray-600 text-sm whitespace-nowrap px-1 transition-colors">
+                    Actividades
+                </button>
+                <button onclick="switchTab('mercado')" id="tab-mercado"
+                    class="pb-3 border-b-2 border-transparent font-bold text-gray-400 hover:text-gray-600 text-sm whitespace-nowrap px-1 transition-colors">
+                    Intercambio Puntos
+                </button>
+            </div>
+
+            <div class="p-4 space-y-4">
+
+                <!-- TAB: FEED -->
+                <div id="content-feed" class="space-y-4 animate-in fade-in duration-300">
+
+                    <!-- Text & Video Post -->
+                    <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                        <div class="p-4 flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-mentora-orange flex items-center justify-center text-white font-bold shadow-sm">
+                                C</div>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900">Carlos Mendoza</h3>
+                                <p class="text-[11px] text-gray-500 font-medium">Instructor • Hace 2 horas</p>
+                            </div>
+                        </div>
+                        <div class="px-4 pb-3">
+                            <p class="text-sm text-gray-800 leading-relaxed">¡Hola a todos! Para la próxima clase vamos
+                                a debatir sobre los modelos de comunicación asertiva. Por favor revisen este corto
+                                documental que resalta los errores más comunes en entornos corporativos. 👇</p>
+                        </div>
+                        <!-- Video iframe -->
+                        <div class="w-full aspect-video bg-gray-900 relative">
+                            <!-- Dummy iframe, normally src would point to embed youtube -->
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i data-lucide="play-circle" class="w-12 h-12 text-white/50"></i>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=600"
+                                alt="Video wrapper" class="w-full h-full object-cover opacity-60">
+                        </div>
+                        <div class="p-3 border-t border-gray-50 flex gap-4 text-gray-500">
+                            <button class="flex items-center gap-1 hover:text-mentora-orange transition-colors"><i
+                                    data-lucide="heart" class="w-5 h-5"></i> <span
+                                    class="text-xs font-bold">12</span></button>
+                            <button class="flex items-center gap-1 hover:text-mentora-blue-light transition-colors"><i
+                                    data-lucide="message-circle" class="w-5 h-5"></i> <span
+                                    class="text-xs font-bold">4</span></button>
+                        </div>
+                    </article>
+
+                    <!-- Text & Image Carousel Post -->
+                    <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                        <div class="p-4 flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-mentora-orange flex items-center justify-center text-white font-bold shadow-sm">
+                                C</div>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900">Carlos Mendoza</h3>
+                                <p class="text-[11px] text-gray-500 font-medium">Instructor • Ayer</p>
+                            </div>
+                        </div>
+                        <div class="px-4 pb-3">
+                            <p class="text-sm text-gray-800 leading-relaxed">Resumen de la matriz de elementos clave
+                                para una presentación exitosa. Guarden estas imágenes para la actividad integradora. 📚✨
+                            </p>
+                        </div>
+                        <!-- Image Carousel Wrapper -->
+                        <div
+                            class="relative w-full aspect-square bg-gray-100 overflow-hidden flex snap-x snap-mandatory hide-scrollbar gap-1 px-1 pb-1">
+                            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=600"
+                                class="w-full h-full object-cover snap-center shrink-0 rounded-xl" alt="Slide 1">
+                            <!-- In a real scenario array mapping of images -->
+                        </div>
+                        <!-- Dots indicator -->
+                        <div class="flex justify-center gap-1 py-2">
+                            <div class="w-1.5 h-1.5 rounded-full bg-mentora-blue-light"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
+                        </div>
+                        <div class="p-3 border-t border-gray-50 flex gap-4 text-gray-500">
+                            <button class="flex items-center gap-1 text-mentora-orange transition-colors"><i
+                                    data-lucide="heart" class="w-5 h-5 fill-current"></i> <span
+                                    class="text-xs font-bold">25</span></button>
+                        </div>
+                    </article>
+
+                    <!-- Only Text Post -->
+                    <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                        <div class="p-4 flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-mentora-orange flex items-center justify-center text-white font-bold shadow-sm">
+                                C</div>
+                            <div>
+                                <h3 class="font-bold text-sm text-gray-900">Carlos Mendoza</h3>
+                                <p class="text-[11px] text-gray-500 font-medium">Instructor • Hace 3 días</p>
+                            </div>
+                        </div>
+                        <div class="px-4 pb-4">
+                            <p class="text-sm text-gray-800 leading-relaxed text-justify">Recuerden que la actividad de
+                                Evaluación Semántica se cierra este viernes a la medianoche. Revisen la rúbrica antes de
+                                enviar.</p>
+                        </div>
+                    </article>
+                </div>
+
+
+                <!-- TAB: ACTIVIDADES -->
+                <div id="content-actividades" class="hidden space-y-4 animate-in fade-in duration-300">
+                    <div
+                        class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col gap-3 relative overflow-hidden">
+                        <div class="absolute right-0 top-0 bottom-0 w-2 bg-mentora-orange"></div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-wider text-mentora-orange bg-orange-50 px-2 py-0.5 rounded-full mb-2 inline-block">Pendiente</span>
+                                <h3 class="font-bold text-gray-800">Evaluación de Oratoria</h3>
+                                <p class="text-xs text-gray-500 mt-1">Modalidad: Video • 5 preguntas</p>
+                            </div>
+                            <div
+                                class="flex items-center gap-1 bg-yellow-50 text-mentora-orange px-2 py-1 rounded text-xs font-bold">
+                                +150 <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full bg-mentora-blue-light text-white font-bold py-2 rounded-xl mt-2 hover:bg-blue-600 transition-colors">Comenzar</button>
+                    </div>
+
+                    <div
+                        class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col gap-3 relative overflow-hidden opacity-70">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2 py-0.5 rounded-full mb-2 inline-block">Completada</span>
+                                <h3 class="font-bold text-gray-800">Análisis Textual I</h3>
+                                <p class="text-xs text-gray-500 mt-1">Calificación final: 5.0</p>
+                            </div>
+                            <i data-lucide="check-circle" class="w-6 h-6 text-mentora-green"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: MERCADO DE PUNTOS -->
+                <div id="content-mercado" class="hidden space-y-4 animate-in fade-in duration-300">
+                    <div
+                        class="bg-gradient-to-br from-mentora-blue-dark to-slate-800 p-6 rounded-3xl text-white shadow-lg relative overflow-hidden">
+                        <i data-lucide="shopping-cart"
+                            class="absolute -right-4 -top-4 w-32 h-32 text-white/5 rotate-12"></i>
+                        <h2 class="font-heading font-bold text-xl mb-1 relative z-10">Intercambio de Puntos</h2>
+                        <p class="text-sm text-mentora-beige mb-4 relative z-10">Utiliza tus puntos de mentora para
+                            canjear décimas en tu nota final en esta materia.</p>
+
+                        <div class="bg-white/10 rounded-2xl p-4 backdrop-blur-sm border border-white/20 relative z-10">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium">Tus puntos actuales</span>
+                                <div class="flex items-center gap-1 font-bold text-mentora-orange">
+                                    <i data-lucide="star" class="w-4 h-4 fill-current"></i> 1250
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium">Nota actual simulada</span>
+                                <span class="font-bold text-lg text-mentora-green">3.8</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h3 class="font-bold text-gray-800">Ofertas del Instructor</h3>
+
+                        <!-- Product 1 -->
+                        <div
+                            class="bg-white border-2 border-orange-100 rounded-2xl p-4 flex items-center justify-between shadow-sm">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 bg-orange-50 text-mentora-orange rounded-xl flex items-center justify-center font-bold text-lg">
+                                    +0.1
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-800 text-sm leading-tight">Canjear 0.1 al promedio</p>
+                                    <p class="text-xs text-gray-500">Acumulable 2 veces (Quedan 2)</p>
+                                </div>
+                            </div>
+                            <button onclick="document.getElementById('buy-modal').classList.remove('hidden')"
+                                class="bg-mentora-orange text-white px-4 py-2 rounded-xl font-bold text-sm shadow flex flex-col items-center leading-none hover:bg-orange-500 transition-colors">
+                                <span>Canjear</span>
+                                <span class="text-[10px] opacity-90 flex items-center gap-1"><i data-lucide="star"
+                                        class="w-3 h-3 fill-current"></i> 1000</span>
+                            </button>
+                        </div>
+
+                        <!-- Product 2 -->
+                        <div
+                            class="bg-white border-2 border-gray-100 rounded-2xl p-4 flex items-center justify-between shadow-sm opacity-60">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 bg-gray-100 text-gray-500 rounded-xl flex items-center justify-center font-bold text-lg">
+                                    +0.2
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-800 text-sm leading-tight">Canjear 0.2 al promedio</p>
+                                    <p class="text-xs text-red-400 font-bold">Puntos insuficientes</p>
+                                </div>
+                            </div>
+                            <button disabled
+                                class="bg-gray-200 text-gray-400 px-4 py-2 rounded-xl font-bold text-sm flex flex-col items-center leading-none">
+                                <span>Bloqueado</span>
+                                <span class="text-[10px] opacity-90 flex items-center gap-1"><i data-lucide="star"
+                                        class="w-3 h-3 fill-current"></i> 2000</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+        <!-- Buy Confirm Modal -->
+        <div id="buy-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-4">
+            <div class="absolute inset-0 bg-black/50 backdrop-blur-sm z-0"></div>
+            <div
+                class="bg-white rounded-3xl p-6 shadow-2xl z-10 w-full max-w-sm flex flex-col animate-in zoom-in-95 duration-300">
+                <div class="flex justify-between items-start mb-4">
+                    <div
+                        class="w-12 h-12 bg-mentora-orange text-white rounded-full flex items-center justify-center shadow">
+                        <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                    </div>
+                    <button onclick="document.getElementById('buy-modal').classList.add('hidden')"
+                        class="text-gray-400 hover:bg-gray-100 p-2 rounded-full">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                <h2 class="text-xl font-bold font-heading text-gray-800 mb-1">Confirmar Canje</h2>
+                <p class="text-gray-500 text-sm mb-4">Estás a punto de intercambiar <span
+                        class="font-bold text-mentora-orange">1000 pts</span> por <span
+                        class="font-bold text-mentora-green">+0.1</span> en el promedio general de esta asignatura.</p>
+
+                <div
+                    class="bg-gray-50 border border-gray-100 rounded-xl p-3 mb-6 flex justify-between items-center text-sm font-bold">
+                    <span class="text-gray-600">Saldo Final:</span>
+                    <span class="text-mentora-blue-dark">250 <i data-lucide="star"
+                            class="w-3 h-3 inline fill-current text-mentora-orange"></i></span>
+                </div>
+                <button onclick="window.location.reload()"
+                    class="w-full py-3 bg-mentora-orange text-white rounded-xl font-bold hover:bg-orange-500 transition-colors text-center shadow-md">
+                    Confirmar Transacción
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) window.lucide.createIcons();
+
+            // Extract Ficha ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const fichaId = urlParams.get('id');
+            if (fichaId) {
+                document.title = `Mentora - Ficha ${fichaId}`;
+            }
+        });
+
+        // Simple Tab Logic
+        function switchTab(tabName) {
+            const tabs = ['feed', 'actividades', 'mercado'];
+
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                const content = document.getElementById(`content-${t}`);
+
+                if (t === tabName) {
+                    btn.classList.add('border-mentora-blue-light', 'text-mentora-blue-dark');
+                    btn.classList.remove('border-transparent', 'text-gray-400');
+                    content.classList.remove('hidden');
+                } else {
+                    btn.classList.remove('border-mentora-blue-light', 'text-mentora-blue-dark');
+                    btn.classList.add('border-transparent', 'text-gray-400');
+                    content.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentora - Generar Actividad</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mentora: {
+                            blue: { dark: '#143771', light: '#1F6DA9' },
+                            green: '#AADD37',
+                            orange: '#F9B032',
+                            beige: '#ffffab'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="assets/css/globals.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-gray-50 h-[100dvh] overflow-hidden font-sans antialiased text-gray-900 flex justify-center">
+    <!-- APP CONTAINER (Mobile Frame) -->
+    <div class="w-full max-w-md bg-white h-[100dvh] shadow-2xl relative overflow-hidden flex flex-col">
+
+        <!-- Header -->
+        <header class="bg-mentora-blue-dark text-white p-4 flex items-center gap-4 z-10 sticky top-0">
+            <a href="instructor_home.html" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                <i data-lucide="arrow-left" class="w-6 h-6"></i>
+            </a>
+            <h1 class="font-heading font-bold text-xl tracking-wide flex-1">Nueva Actividad</h1>
+        </header>
+
+        <!-- Main Content Area -->
+        <main id="app-content" class="flex-1 overflow-y-auto pb-6 relative">
+            <form id="activity-form" class="p-6 space-y-8 animate-in fade-in duration-500 min-h-full flex flex-col">
+
+                <!-- Basic Info -->
+                <div class="space-y-4">
+                    <div id="materia-destino-container">
+                        <label class="block text-sm font-bold text-mentora-blue-dark mb-1">Materia Destino *</label>
+                        <select id="act-materia" required
+                            class="w-full bg-white border-2 border-gray-100 rounded-xl px-4 py-3 outline-none focus:border-mentora-blue-light transition-all text-sm appearance-none cursor-pointer">
+                            <option value="">Selecciona Ficha/Grupo...</option>
+                            <option value="3114544">Comunicación - Ficha 3114544</option>
+                            <option value="4920192">Comunicación - Ficha 4920192</option>
+                            <option value="5928192">Comunicación - Ficha 5928192</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-mentora-blue-dark mb-1">Título de la misión *</label>
+                        <input type="text" id="act-title" required placeholder="Ej. Prueba de Comunicación Eficaz"
+                            class="w-full bg-white border-2 border-gray-100 rounded-xl px-4 py-3 outline-none focus:border-mentora-blue-light transition-all text-sm">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-mentora-blue-dark mb-1">Descripción *</label>
+                        <textarea id="act-desc" required rows="3" placeholder="Describe los objetivos de esta misión..."
+                            class="w-full bg-white border-2 border-gray-100 rounded-xl px-4 py-3 outline-none focus:border-mentora-blue-light transition-all text-sm resize-none"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-mentora-blue-dark mb-1">Tipo de recurso *</label>
+                        <select id="act-type" required
+                            class="w-full bg-white border-2 border-gray-100 rounded-xl px-4 py-3 outline-none focus:border-mentora-blue-light transition-all text-sm appearance-none cursor-pointer">
+                            <option value="">Selecciona una opción...</option>
+                            <option value="texto">Texto</option>
+                            <option value="imagen">Imagen</option>
+                            <option value="video">Video</option>
+                            <option value="mixto">Mixto</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="h-px bg-gray-200 w-full my-6"></div>
+
+                <!-- Criterios de Evaluación -->
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="font-heading font-bold text-lg text-mentora-blue-dark">Criterios de Evaluación</h3>
+                        <p class="text-xs text-gray-500 mb-4">Debes crear un mínimo de 5 preguntas con 4 opciones. Cada
+                            una debe tener mínimo 1 min de duración.</p>
+                    </div>
+
+                    <div id="questions-container" class="space-y-6">
+                        <!-- Dynamic questions will be injected here -->
+                    </div>
+
+                    <button type="button" id="add-question-btn"
+                        class="w-full border-2 border-dashed border-mentora-blue-light text-mentora-blue-light font-bold py-3 rounded-xl hover:bg-blue-50 transition-colors flex justify-center items-center gap-2">
+                        <i data-lucide="plus" class="w-4 h-4 text-mentora-blue-light"></i>
+                        Añadir Pregunta
+                    </button>
+                    <p id="question-error" class="text-xs text-red-500 font-bold hidden">Debes crear al menos 5
+                        preguntas completas.</p>
+                </div>
+
+                <div class="h-px bg-gray-200 w-full my-6"></div>
+
+                <!-- Recompensas e Insignias -->
+                <div class="space-y-4">
+                    <h3 class="font-heading font-bold text-lg text-mentora-blue-dark">Recompensas</h3>
+
+                    <div>
+                        <label class="block text-sm font-bold text-mentora-blue-dark mb-1">Puntos Globales de Recompensa
+                            *</label>
+                        <p class="text-xs text-gray-500 mb-2">Este total se dividirá equitativamente entre las preguntas
+                            creadas.</p>
+                        <input type="number" id="act-points" required min="10" placeholder="Ej. 500"
+                            class="w-full bg-white border-2 border-gray-100 rounded-xl px-4 py-3 outline-none focus:border-mentora-blue-light transition-all text-sm">
+                        <p id="points-per-q-info" class="text-xs text-mentora-orange font-bold mt-2 hidden">Cada
+                            pregunta valdrá: <span id="ppq-val">0</span> pts</p>
+                    </div>
+
+                    <div>
+                        <label
+                            class="block text-sm font-bold text-mentora-blue-dark mb-1 mt-4 border-t border-gray-100 pt-4">Insignia
+                            (Opcional)</label>
+                        <select id="act-badge-select"
+                            class="w-full bg-white border-2 border-gray-100 rounded-xl px-4 py-3 outline-none focus:border-mentora-blue-light transition-all text-sm appearance-none cursor-pointer mb-3">
+                            <option value="none">Sin insignia</option>
+                            <option value="existing_1">Lector Rápido (Existente)</option>
+                            <option value="existing_2">Racha Imparable (Existente)</option>
+                            <option value="new">Crear Nueva Recompensa...</option>
+                        </select>
+
+                        <!-- Menu for new badge -->
+                        <div id="new-badge-form"
+                            class="hidden bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-3">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Nombre de la Insignia</label>
+                                <input type="text" id="new-badge-name" placeholder="Ej. Maestro del Código"
+                                    class="w-full bg-white border border-gray-200 rounded-lg px-3 py-2 outline-none focus:border-mentora-orange transition-all text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 mb-1">Diseño de la Insignia</label>
+                                <select id="badge-type-select"
+                                    class="w-full bg-white border border-gray-200 rounded-lg px-3 py-2 outline-none focus:border-mentora-orange transition-all text-sm mb-2 cursor-pointer">
+                                    <option value="icon">Ícono de la aplicación</option>
+                                    <option value="upload">Subir imagen personalizada</option>
+                                </select>
+
+                                <div id="badge-icon-select-container"
+                                    class="grid grid-cols-4 gap-2 mb-2 p-2 bg-white rounded-lg border border-gray-200">
+                                    <button type="button"
+                                        class="p-2 border border-gray-100 rounded-lg hover:bg-orange-50 hover:border-mentora-orange transition-colors flex justify-center active-icon-btn"><i
+                                            data-lucide="award" class="w-5 h-5 text-mentora-orange"></i></button>
+                                    <button type="button"
+                                        class="p-2 border border-gray-100 rounded-lg hover:bg-orange-50 hover:border-mentora-orange transition-colors flex justify-center"><i
+                                            data-lucide="star" class="w-5 h-5 text-gray-600"></i></button>
+                                    <button type="button"
+                                        class="p-2 border border-gray-100 rounded-lg hover:bg-orange-50 hover:border-mentora-orange transition-colors flex justify-center"><i
+                                            data-lucide="shield" class="w-5 h-5 text-gray-600"></i></button>
+                                    <button type="button"
+                                        class="p-2 border border-gray-100 rounded-lg hover:bg-orange-50 hover:border-mentora-orange transition-colors flex justify-center"><i
+                                            data-lucide="zap" class="w-5 h-5 text-gray-600"></i></button>
+                                </div>
+
+                                <input type="file" id="new-badge-image" accept="image/*"
+                                    class="hidden w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-orange-50 file:text-mentora-orange hover:file:bg-orange-100 cursor-pointer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Action -->
+                <div class="pt-6 pb-10">
+                    <button type="submit" id="submit-activity-btn" disabled
+                        class="w-full py-4 bg-gray-300 text-gray-500 rounded-xl font-bold text-lg shadow-sm transition-all cursor-not-allowed">
+                        Crear Actividad
+                    </button>
+                    <p class="text-xs text-center text-gray-400 mt-3">Completa todos los campos obligatorios (*) y al
+                        menos 5 preguntas para crear la actividad.</p>
+                </div>
+            </form>
+        </main>
+
+        <!-- Confirmation Modal -->
+        <div id="success-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-4">
+            <div class="absolute inset-0 bg-black/50 backdrop-blur-sm z-0"></div>
+            <div
+                class="bg-white rounded-3xl p-6 shadow-2xl z-10 w-full max-w-sm flex flex-col items-center text-center animate-in zoom-in-95 duration-300">
+                <div
+                    class="w-20 h-20 bg-green-100 text-mentora-green rounded-full flex items-center justify-center mb-4">
+                    <i data-lucide="check-circle" class="w-10 h-10"></i>
+                </div>
+                <h2 class="text-2xl font-bold font-heading text-mentora-blue-dark mb-2">¡Actividad Publicada!</h2>
+                <p class="text-gray-500 mb-6 text-sm">La actividad se ha creado exitosamente y está disponible para tus
+                    aprendices en la materia correspondiente.</p>
+                <a href="instructor_home.html"
+                    class="w-full bg-mentora-blue-light text-white font-bold py-3 rounded-xl hover:bg-blue-600 transition-colors">
+                    Aceptar y Volver
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script that handles dynamic UI -->
+    <script src="assets/js/create_activity.js"></script>
+</body>
+
+</html>
