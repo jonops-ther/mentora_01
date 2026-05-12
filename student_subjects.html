@@ -57,7 +57,7 @@
 
                 <div class="grid grid-cols-2 gap-4">
                     <!-- Subject 1 -->
-                    <a href="student_ficha.html?id=3114544"
+                    <a href="student_ficha.html?id=3114544&subject=comunicacion"
                         class="subject-card group bg-white p-5 rounded-3xl shadow-sm border border-gray-100 flex flex-col items-center text-center gap-3 hover:shadow-md hover:border-blue-200 transition-all active:scale-95 cursor-pointer">
                         <div
                             class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-mentora-blue-light group-hover:scale-110 transition-transform">
@@ -74,7 +74,7 @@
                     </a>
 
                     <!-- Subject 2 -->
-                    <a href="student_ficha.html?id=3114544"
+                    <a href="student_ficha.html?id=3114544&subject=sst"
                         class="subject-card group bg-white p-5 rounded-3xl shadow-sm border border-gray-100 flex flex-col items-center text-center gap-3 hover:shadow-md hover:border-orange-200 transition-all active:scale-95 cursor-pointer">
                         <div
                             class="w-14 h-14 bg-orange-50 rounded-2xl flex items-center justify-center text-mentora-orange group-hover:scale-110 transition-transform">
@@ -91,7 +91,7 @@
                     </a>
 
                     <!-- Subject 3 -->
-                    <a href="student_ficha.html?id=3114544"
+                    <a href="student_ficha.html?id=3114544&subject=etica"
                         class="subject-card group bg-white p-5 rounded-3xl shadow-sm border border-gray-100 flex flex-col items-center text-center gap-3 hover:shadow-md hover:border-green-300 transition-all active:scale-95 cursor-pointer">
                         <div
                             class="w-14 h-14 bg-green-50 rounded-2xl flex items-center justify-center text-mentora-green group-hover:scale-110 transition-transform">
@@ -106,6 +106,51 @@
                             <span class="text-[10px] font-bold text-gray-400">80% completado</span>
                         </div>
                     </a>
+
+                    <!-- Subject Locked 1 -->
+                    <div class="subject-card bg-gray-50 p-5 rounded-3xl shadow-sm border border-gray-200 flex flex-col items-center text-center gap-3 opacity-60 cursor-not-allowed">
+                        <div class="w-14 h-14 bg-gray-200 rounded-2xl flex items-center justify-center text-gray-400">
+                            <i data-lucide="lock" class="w-7 h-7"></i>
+                        </div>
+                        <div class="w-full">
+                            <h3 class="font-bold text-gray-600 text-sm mb-2">Inglés I</h3>
+                            <p class="text-xs text-gray-400 font-bold mb-2">Completado</p>
+                            <div class="w-full bg-gray-200 rounded-full h-1.5 mb-1 overflow-hidden">
+                                <div class="bg-gray-400 h-1.5 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <span class="text-[10px] font-bold text-gray-500">100% completado</span>
+                        </div>
+                    </div>
+
+                    <!-- Subject Locked 2 -->
+                    <div class="subject-card bg-gray-50 p-5 rounded-3xl shadow-sm border border-gray-200 flex flex-col items-center text-center gap-3 opacity-60 cursor-not-allowed">
+                        <div class="w-14 h-14 bg-gray-200 rounded-2xl flex items-center justify-center text-gray-400">
+                            <i data-lucide="lock" class="w-7 h-7"></i>
+                        </div>
+                        <div class="w-full">
+                            <h3 class="font-bold text-gray-600 text-sm mb-2">Inglés II</h3>
+                            <p class="text-xs text-gray-400 font-bold mb-2">Completado</p>
+                            <div class="w-full bg-gray-200 rounded-full h-1.5 mb-1 overflow-hidden">
+                                <div class="bg-gray-400 h-1.5 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <span class="text-[10px] font-bold text-gray-500">100% completado</span>
+                        </div>
+                    </div>
+
+                    <!-- Subject Locked 3 -->
+                    <div class="subject-card bg-gray-50 p-5 rounded-3xl shadow-sm border border-gray-200 flex flex-col items-center text-center gap-3 opacity-60 cursor-not-allowed">
+                        <div class="w-14 h-14 bg-gray-200 rounded-2xl flex items-center justify-center text-gray-400">
+                            <i data-lucide="lock" class="w-7 h-7"></i>
+                        </div>
+                        <div class="w-full">
+                            <h3 class="font-bold text-gray-600 text-sm mb-2">Matemática básica</h3>
+                            <p class="text-xs text-gray-400 font-bold mb-2">Completado</p>
+                            <div class="w-full bg-gray-200 rounded-full h-1.5 mb-1 overflow-hidden">
+                                <div class="bg-gray-400 h-1.5 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <span class="text-[10px] font-bold text-gray-500">100% completado</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -200,6 +245,11 @@
                             class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
                             <i data-lucide="help-circle" class="w-5 h-5"></i>
                             <span>Ayuda</span>
+                        </a>
+                        <a href="about.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
+                            <i data-lucide="info" class="w-5 h-5"></i>
+                            <span>Sobre nosotros</span>
                         </a>
                         <button id="logout-btn"
                             class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 transition-colors mt-2 text-left">

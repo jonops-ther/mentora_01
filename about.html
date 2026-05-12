@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mentora - Notificaciones</title>
+    <title>Mentora - Sobre nosotros</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -56,38 +56,23 @@
                         class="p-2 bg-gray-50 text-gray-600 rounded-xl hover:bg-gray-200 transition-colors">
                         <i data-lucide="arrow-left" class="w-5 h-5"></i>
                     </a>
-                    <h2 class="text-xl font-heading font-bold text-mentora-blue-dark">Notificaciones</h2>
-                    <button class="p-2 text-mentora-blue-light hover:bg-blue-50 rounded-xl transition-colors">
-                        <i data-lucide="check-check" class="w-5 h-5"></i>
-                    </button>
+                    <h2 class="text-xl font-heading font-bold text-mentora-blue-dark">Sobre nosotros</h2>
+                    <div class="w-9 h-9"></div>
                 </div>
 
-                <div class="space-y-3">
-                    <div class="bg-white p-4 rounded-2xl shadow-sm border-l-4 border-mentora-orange flex gap-4">
-                        <div
-                            class="w-10 h-10 bg-orange-50 text-mentora-orange rounded-full flex items-center justify-center shrink-0">
-                            <i data-lucide="award" class="w-5 h-5"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-sm text-gray-800 text-left">¡Nueva insignia desbloqueada!</h4>
-                            <p class="text-xs text-gray-500 mt-1 text-left">Has alcanzado una racha de 7 días. ¡Sigue
-                                así!</p>
-                            <span class="text-[10px] text-gray-400 mt-2 block text-left">Hace 2 horas</span>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-4 rounded-2xl shadow-sm border-l-4 border-mentora-blue-light flex gap-4">
-                        <div
-                            class="w-10 h-10 bg-blue-50 text-mentora-blue-light rounded-full flex items-center justify-center shrink-0">
-                            <i data-lucide="message-square" class="w-5 h-5"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-sm text-gray-800 text-left">Mensaje del Instructor</h4>
-                            <p class="text-xs text-gray-500 mt-1 text-left">Recuerden revisar el material de Ética para
-                                la próxima sesión.</p>
-                            <span class="text-[10px] text-gray-400 mt-2 block text-left">Ayer</span>
-                        </div>
-                    </div>
+                <div class="bg-gray-200 text-black p-6 rounded-3xl">
+                    <h3 class="font-bold text-lg mb-2">Quiénes somos</h3>
+                    <p class="text-sm font-medium opacity-90 leading-relaxed text-justify mb-4">Somos un equipo creativo
+                        que combina narrativa, gamificación y producción multimedia para transformar experiencias
+                        educativas y culturales en propuestas dinámicas y memorables. Creemos en el poder de las
+                        historias y los recorridos interactivos para motivar a las personas, generar comunidad y dar
+                        sentido a lo académico desde una perspectiva lúdica y participativa.</p>
+                    <p class="text-sm font-medium opacity-90 leading-relaxed text-justify">Nuestra misión principal es
+                        trabajar con las transversales del SENA, diseñando proyectos que integren tecnología,
+                        comunicación visual y dinámicas colectivas. Buscamos que cada iniciativa se viva como un reto y
+                        un juego, apostando por la innovación en UX, la creación de contenidos multimedia y la
+                        construcción de experiencias con impacto social, siempre con el objetivo de acercar el
+                        aprendizaje a la vida real de manera atractiva y significativa.</p>
                 </div>
             </div>
         </main>
@@ -95,9 +80,9 @@
         <!-- Bottom HUD (Mobile) -->
         <nav class="bg-white border-t border-gray-200 flex justify-around p-2 pb-safe absolute bottom-0 w-full z-10">
             <a href="student_home.html"
-                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
-                <div class="p-1 rounded-lg mb-1">
-                    <i data-lucide="home" class="w-6 h-6" stroke-width="2"></i>
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-mentora-blue-light">
+                <div class="p-1 rounded-lg mb-1 bg-mentora-blue-light/10">
+                    <i data-lucide="home" class="w-6 h-6" stroke-width="2.5"></i>
                 </div>
                 <span class="text-[10px] font-medium">Home</span>
             </a>
@@ -116,9 +101,9 @@
                 <span class="text-[10px] font-medium">Materias</span>
             </a>
             <a href="notifications.html"
-                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-mentora-blue-light">
-                <div class="p-1 rounded-lg mb-1 bg-mentora-blue-light/10">
-                    <i data-lucide="bell" class="w-6 h-6" stroke-width="2.5"></i>
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1">
+                    <i data-lucide="bell" class="w-6 h-6" stroke-width="2"></i>
                 </div>
                 <span class="text-[10px] font-medium">Notifs</span>
             </a>
@@ -182,11 +167,6 @@
                             class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
                             <i data-lucide="help-circle" class="w-5 h-5"></i>
                             <span>Ayuda</span>
-                        </a>
-                        <a href="about.html"
-                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
-                            <i data-lucide="info" class="w-5 h-5"></i>
-                            <span>Sobre nosotros</span>
                         </a>
                         <button id="logout-btn"
                             class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 transition-colors mt-2 text-left">

@@ -91,7 +91,7 @@
                         </div>
 
                         <div class="flex flex-col items-center gap-1">
-                            <div
+                            <div id="day-l4"
                                 class="w-8 h-8 rounded-full flex items-center justify-center bg-white/20 text-white/50 font-bold text-sm">
                                 4
                             </div>
@@ -122,9 +122,9 @@
                                 <h4 class="font-bold text-lg text-gray-800">Comprensión Lectora</h4>
                                 <p class="text-xs text-gray-500 mt-1">Reglas de acentuación</p>
                             </div>
-                            <div class="bg-blue-50 text-mentora-blue-light p-2 rounded-xl">
+                            <button onclick="startChallenge('comunicacion', this)" class="bg-blue-50 text-mentora-blue-light p-2 rounded-xl hover:bg-blue-100 transition-colors">
                                 <i data-lucide="play" class="w-5 h-5 ml-0.5"></i>
-                            </div>
+                            </button>
                         </div>
                         <div class="h-px bg-gray-100 my-1"></div>
                         <div class="flex items-center gap-4 text-xs font-bold text-gray-500">
@@ -140,18 +140,18 @@
                     </div>
 
                     <div
-                        class="bg-white border text-left border-gray-100 p-5 rounded-2xl shadow-sm hover:shadow-md transition-shadow flex flex-col gap-3 group relative overflow-hidden">
+                        class="bg-white border text-left border-gray-100 p-5 rounded-2xl shadow-sm hover:shadow-md transition-shadow flex flex-col gap-3 group relative overflow-hidden challenge-card">
                         <div class="absolute top-0 left-0 w-1 h-full bg-mentora-orange"></div>
                         <div class="flex justify-between items-start">
                             <div>
                                 <span
-                                    class="text-[10px] uppercase font-bold text-mentora-orange mb-1 block tracking-wider">Bilingüismo</span>
-                                <h4 class="font-bold text-lg text-gray-800">Vocabulario Técnico</h4>
-                                <p class="text-xs text-gray-500 mt-1">Términos de programación en inglés</p>
+                                    class="text-[10px] uppercase font-bold text-mentora-orange mb-1 block tracking-wider">SST</span>
+                                <h4 class="font-bold text-lg text-gray-800">Prevención de Riesgos</h4>
+                                <p class="text-xs text-gray-500 mt-1">Uso de EPP y normativa</p>
                             </div>
-                            <div class="bg-orange-50 text-mentora-orange p-2 rounded-xl">
+                            <button onclick="startChallenge('sst', this)" class="bg-orange-50 text-mentora-orange p-2 rounded-xl hover:bg-orange-100 transition-colors">
                                 <i data-lucide="play" class="w-5 h-5 ml-0.5"></i>
-                            </div>
+                            </button>
                         </div>
                         <div class="h-px bg-gray-100 my-1"></div>
                         <div class="flex items-center gap-4 text-xs font-bold text-gray-500">
@@ -176,9 +176,9 @@
                                 <h4 class="font-bold text-lg text-gray-800">Casos Reales</h4>
                                 <p class="text-xs text-gray-500 mt-1">Estudio de caso sobre dilema ético</p>
                             </div>
-                            <div class="bg-green-50 text-mentora-green p-2 rounded-xl">
+                            <button onclick="startChallenge('etica', this)" class="bg-green-50 text-mentora-green p-2 rounded-xl hover:bg-green-100 transition-colors">
                                 <i data-lucide="play" class="w-5 h-5 ml-0.5"></i>
-                            </div>
+                            </button>
                         </div>
                         <div class="h-px bg-gray-100 my-1"></div>
                         <div class="flex items-center gap-4 text-xs font-bold text-gray-500">
@@ -288,6 +288,11 @@
                             <i data-lucide="help-circle" class="w-5 h-5"></i>
                             <span>Ayuda</span>
                         </a>
+                        <a href="about.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
+                            <i data-lucide="info" class="w-5 h-5"></i>
+                            <span>Sobre nosotros</span>
+                        </a>
                         <button id="logout-btn"
                             class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 transition-colors mt-2 text-left">
                             <i data-lucide="log-out" class="w-5 h-5"></i>
@@ -305,9 +310,279 @@
                 </div>
             </div>
         </div>
+
+        <!-- Challenge Quiz Modal -->
+        <div id="challenge-modal" class="hidden absolute inset-0 z-50 flex flex-col bg-gray-50 h-[100dvh]">
+            <header class="bg-mentora-blue-dark text-white p-4 flex items-center justify-between shadow-md shrink-0">
+                <div class="flex items-center gap-3">
+                    <button onclick="closeChallenge()" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                    <h2 id="challenge-header-title" class="font-heading font-bold text-lg">Desafío</h2>
+                </div>
+                <div class="flex items-center gap-2 bg-red-500/20 px-3 py-1 rounded-full text-red-100 font-bold">
+                    <i data-lucide="timer" class="w-4 h-4"></i>
+                    <span id="challenge-timer">00:00</span>
+                </div>
+            </header>
+            
+            <div class="flex-1 overflow-y-auto p-4 flex flex-col">
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex-1 flex flex-col">
+                    <div class="flex justify-between text-xs text-gray-400 font-bold mb-4">
+                        <span id="challenge-progress">Pregunta 1 de 3</span>
+                        <span class="text-mentora-orange" id="challenge-points-display">+120 pts</span>
+                    </div>
+                    <h3 id="ch-question-text" class="text-lg font-bold text-gray-800 mb-6 leading-relaxed"></h3>
+                    <div id="ch-options-container" class="space-y-3 flex-1">
+                        <!-- Options injected via JS -->
+                    </div>
+                    <button id="ch-next-btn" onclick="nextChallengeQuestion()" class="w-full mt-6 py-3 bg-mentora-blue-light text-white rounded-xl font-bold hover:bg-blue-600 transition-colors opacity-50 cursor-not-allowed" disabled>
+                        Siguiente
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Failure Modal -->
+        <div id="failure-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-4">
+            <div class="absolute inset-0 bg-black/50 backdrop-blur-sm z-0"></div>
+            <div class="bg-white rounded-3xl p-6 shadow-2xl z-10 w-full max-w-sm flex flex-col items-center animate-in zoom-in-95 duration-300 text-center">
+                <div class="w-16 h-16 bg-red-100 text-red-500 rounded-full flex items-center justify-center shadow-sm mb-4">
+                    <i data-lucide="x-circle" class="w-8 h-8"></i>
+                </div>
+                <h2 class="text-xl font-bold font-heading text-gray-800 mb-2">¡Vaya! Parece que te quedaste sin tiempo o fallaste.</h2>
+                <p class="text-gray-600 text-sm mb-6">Lamentablemente no lograste completar el desafío correctamente a tiempo. ¡Mucha suerte a la próxima!</p>
+                <button onclick="closeResultModal('failure')" class="w-full py-3 bg-gray-200 text-gray-700 rounded-xl font-bold hover:bg-gray-300 transition-colors shadow-md">
+                    Ok
+                </button>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div id="success-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center p-4">
+            <div class="absolute inset-0 bg-black/50 backdrop-blur-sm z-0"></div>
+            <div class="bg-white rounded-3xl p-6 shadow-2xl z-10 w-full max-w-sm flex flex-col items-center animate-in zoom-in-95 duration-300 text-center">
+                <div class="w-16 h-16 bg-mentora-green text-white rounded-full flex items-center justify-center shadow-lg mb-4">
+                    <i data-lucide="award" class="w-8 h-8"></i>
+                </div>
+                <h2 class="text-xl font-bold font-heading text-mentora-blue-dark mb-2">¡Wow! Terminaste el desafío perfectamente.</h2>
+                <p class="text-gray-600 text-sm mb-6">Lograste acertar todas las respuestas correctas a tiempo.<br><br>
+                   <span class="font-bold text-gray-800">Ganaste <span id="success-points-text" class="text-mentora-orange"></span></span>
+                </p>
+                <button onclick="closeResultModal('success')" class="w-full py-3 bg-mentora-orange text-white rounded-xl font-bold hover:bg-orange-500 transition-colors shadow-md">
+                    Genial
+                </button>
+            </div>
+        </div>
+
     </div>
 
-    <script src="assets/js/app.js"></script>
+    <script>
+        const challengesData = {
+            comunicacion: {
+                title: "Comprensión Lectora",
+                time: 60, // 60 seconds
+                points: 120,
+                questions: [
+                    {
+                        q: "Lee el siguiente párrafo: 'La casa era antigua, con ventanas grandes y un jardín frondoso'. ¿Cuál es el adjetivo que describe al jardín?",
+                        options: ["Antigua", "Grandes", "Casa", "Frondoso"],
+                        answer: 3
+                    },
+                    {
+                        q: "¿Qué palabra es esdrújula?",
+                        options: ["Árbol", "Canción", "Pájaro", "Correr"],
+                        answer: 2
+                    },
+                    {
+                        q: "El sinónimo más adecuado para 'Rápido' es:",
+                        options: ["Lento", "Veloz", "Pausado", "Cansado"],
+                        answer: 1
+                    }
+                ]
+            },
+            sst: {
+                title: "Prevención de Riesgos",
+                time: 60,
+                points: 80,
+                questions: [
+                    {
+                        q: "¿Qué debes hacer antes de usar una herramienta eléctrica nueva en el trabajo?",
+                        options: ["Conectarla y probarla de inmediato.", "Leer el manual de instrucciones y revisar si el cable está en buen estado.", "Pedirle a un compañero que la pruebe por ti.", "Guardarla en la caja de herramientas."],
+                        answer: 1
+                    },
+                    {
+                        q: "Si derramas un líquido resbaladizo en el pasillo, lo primero que debes hacer es:",
+                        options: ["Ignorarlo, el personal de limpieza lo verá.", "Señalizar el área inmediatamente y limpiarlo o pedir que se limpie.", "Avisar a todos gritando.", "Esperar a que se seque solo."],
+                        answer: 1
+                    },
+                    {
+                        q: "El uso del casco en una obra de construcción sirve principalmente para:",
+                        options: ["Proteger la cabeza de la caída de objetos.", "Evitar quemaduras por el sol.", "Ser identificado por el color del casco.", "Sostener linternas o accesorios."],
+                        answer: 0
+                    }
+                ]
+            },
+            etica: {
+                title: "Casos Reales",
+                time: 90,
+                points: 150,
+                questions: [
+                    {
+                        q: "Descubres que un compañero de trabajo roba material de oficina con frecuencia. ¿Cuál es la acción ética correcta?",
+                        options: ["Robar tú también para ser equitativo.", "Ignorarlo para no causar problemas.", "Reportar la situación al supervisor correspondiente.", "Enfrentarlo e insultarlo."],
+                        answer: 2
+                    },
+                    {
+                        q: "Un cliente te ofrece un regalo costoso a cambio de que le des un descuento especial no autorizado. Esto se considera:",
+                        options: ["Una propina justa.", "Un soborno / conflicto de interés.", "Una muestra de amabilidad comercial.", "Una oportunidad de negocio."],
+                        answer: 1
+                    },
+                    {
+                        q: "Si cometes un error grave que afectará el proyecto, pero nadie te ha visto hacerlo, lo más ético es:",
+                        options: ["Culpar al sistema informático.", "Intentar arreglarlo a escondidas sin decir nada.", "Asumir la responsabilidad e informar inmediatamente para buscar soluciones.", "Renunciar a la empresa al día siguiente."],
+                        answer: 2
+                    }
+                ]
+            }
+        };
+
+        let currentCh = null;
+        let chIndex = 0;
+        let chScore = 0;
+        let chTimer = null;
+        let chTimeLeft = 0;
+        let chMultiplier = 1.5; // Multiplier example
+        let currentCardButton = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) window.lucide.createIcons();
+        });
+
+        function startChallenge(type, btnElement) {
+            currentCh = challengesData[type];
+            currentCardButton = btnElement;
+            chIndex = 0;
+            chScore = 0;
+            chTimeLeft = currentCh.time;
+            
+            document.getElementById('challenge-header-title').textContent = currentCh.title;
+            document.getElementById('challenge-points-display').textContent = `+${currentCh.points} pts`;
+            document.getElementById('challenge-modal').classList.remove('hidden');
+            
+            renderChQuestion();
+            startTimer();
+        }
+
+        function renderChQuestion() {
+            const q = currentCh.questions[chIndex];
+            document.getElementById('challenge-progress').textContent = `Pregunta ${chIndex + 1} de ${currentCh.questions.length}`;
+            document.getElementById('ch-question-text').textContent = q.q;
+            
+            const optionsContainer = document.getElementById('ch-options-container');
+            optionsContainer.innerHTML = '';
+            
+            document.getElementById('ch-next-btn').disabled = true;
+            document.getElementById('ch-next-btn').classList.add('opacity-50', 'cursor-not-allowed');
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full text-left p-4 rounded-xl border-2 border-gray-100 bg-white hover:border-mentora-blue-light transition-all font-medium text-gray-700 ch-option-btn';
+                btn.textContent = opt;
+                btn.onclick = () => selectChOption(idx, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        let selectedChOptionIndex = null;
+        function selectChOption(idx, btnElement) {
+            selectedChOptionIndex = idx;
+            const buttons = document.querySelectorAll('.ch-option-btn');
+            buttons.forEach(b => {
+                b.classList.remove('border-mentora-blue-light', 'bg-blue-50');
+                b.classList.add('border-gray-100', 'bg-white');
+            });
+            btnElement.classList.remove('border-gray-100', 'bg-white');
+            btnElement.classList.add('border-mentora-blue-light', 'bg-blue-50');
+            
+            const nextBtn = document.getElementById('ch-next-btn');
+            nextBtn.disabled = false;
+            nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        function nextChallengeQuestion() {
+            if (selectedChOptionIndex === currentCh.questions[chIndex].answer) {
+                chScore++;
+            }
+            chIndex++;
+            if (chIndex < currentCh.questions.length) {
+                renderChQuestion();
+            } else {
+                finishChallenge();
+            }
+        }
+
+        function startTimer() {
+            updateTimerDisplay();
+            chTimer = setInterval(() => {
+                chTimeLeft--;
+                updateTimerDisplay();
+                if (chTimeLeft <= 0) {
+                    clearInterval(chTimer);
+                    triggerFailure();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const m = Math.floor(chTimeLeft / 60).toString().padStart(2, '0');
+            const s = (chTimeLeft % 60).toString().padStart(2, '0');
+            document.getElementById('challenge-timer').textContent = `${m}:${s}`;
+        }
+
+        function finishChallenge() {
+            clearInterval(chTimer);
+            if (chScore === currentCh.questions.length) {
+                // Success
+                document.getElementById('challenge-modal').classList.add('hidden');
+                document.getElementById('success-modal').classList.remove('hidden');
+                const totalPts = Math.floor(currentCh.points * chMultiplier);
+                document.getElementById('success-points-text').textContent = `${totalPts} pts (x${chMultiplier})`;
+            } else {
+                // Failed due to mistakes
+                triggerFailure();
+            }
+        }
+
+        function triggerFailure() {
+            document.getElementById('challenge-modal').classList.add('hidden');
+            document.getElementById('failure-modal').classList.remove('hidden');
+            // Mark L4 as failed
+            const l4 = document.getElementById('day-l4');
+            l4.className = 'w-8 h-8 rounded-full flex items-center justify-center bg-red-100 text-red-500 font-bold text-sm';
+            l4.innerHTML = '<i data-lucide="x" class="w-4 h-4"></i>';
+            if (window.lucide) window.lucide.createIcons();
+        }
+
+        function closeChallenge() {
+            clearInterval(chTimer);
+            document.getElementById('challenge-modal').classList.add('hidden');
+        }
+
+        function closeResultModal(type) {
+            document.getElementById(`${type}-modal`).classList.add('hidden');
+            
+            // Block the card
+            if (currentCardButton) {
+                const card = currentCardButton.closest('div.bg-white.border');
+                card.classList.add('opacity-50');
+                currentCardButton.disabled = true;
+                currentCardButton.classList.remove('hover:bg-blue-100', 'hover:bg-green-100', 'hover:bg-orange-100');
+                currentCardButton.innerHTML = '<i data-lucide="lock" class="w-5 h-5 ml-0.5"></i>';
+                if (window.lucide) window.lucide.createIcons();
+            }
+        }
+    </script>
 </body>
 
 </html>
