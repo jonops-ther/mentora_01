@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mentora - Notificaciones</title>
+    <title>Mentora - Notificaciones (Instructor)</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -41,9 +41,8 @@
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
             <h1 class="font-heading font-bold text-xl tracking-wide">Mentora</h1>
-            <a href="student_profile.html"
-                class="w-10 h-10 rounded-full bg-mentora-green flex items-center justify-center text-mentora-blue-dark font-bold shadow-inner uppercase hover:scale-105 transition-transform">
-                A
+            <a href="instructor_profile.html" class="w-10 h-10 rounded-full overflow-hidden border-2 border-white/30 shadow-inner hover:scale-105 transition-transform shrink-0">
+                <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?w=80&h=80&fit=crop" onerror="this.onerror=null;this.src='assets/images/img_perfil.svg';" alt="Foto" class="w-full h-full object-cover">
             </a>
         </header>
 
@@ -52,7 +51,7 @@
             <div class="p-6 space-y-6 animate-in fade-in duration-500 bg-gray-50 min-h-full">
                 <div
                     class="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
-                    <a href="student_home.html" id="btn-back"
+                    <a href="instructor_home.html" id="btn-back"
                         class="p-2 bg-gray-50 text-gray-600 rounded-xl hover:bg-gray-200 transition-colors">
                         <i data-lucide="arrow-left" class="w-5 h-5"></i>
                     </a>
@@ -64,42 +63,24 @@
 
                 <div class="space-y-3" id="notifications-list">
                     <!-- Notification 1 -->
-                    <div class="notification-item relative overflow-hidden bg-white rounded-2xl shadow-sm border-l-4 border-mentora-orange group" style="touch-action: pan-y;">
-                        <div class="absolute inset-y-0 right-0 w-20 bg-red-500 flex items-center justify-center text-white opacity-0 transition-opacity delete-btn-bg z-0">
-                            <i data-lucide="trash-2" class="w-5 h-5"></i>
-                        </div>
-                        <div class="notification-content relative bg-white p-4 flex gap-4 z-10 transition-transform cursor-pointer">
-                            <div class="w-10 h-10 bg-orange-50 text-mentora-orange rounded-full flex items-center justify-center shrink-0">
-                                <i data-lucide="award" class="w-5 h-5"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h4 class="font-bold text-sm text-gray-800 text-left">¡Nueva insignia desbloqueada!</h4>
-                                <p class="text-xs text-gray-500 mt-1 text-left">Has alcanzado una racha de 7 días. ¡Sigue así!</p>
-                                <span class="text-[10px] text-gray-400 mt-2 block text-left">Hace 2 horas</span>
-                            </div>
-                            <div class="w-2 h-2 rounded-full bg-mentora-blue-light self-center unread-dot"></div>
-                        </div>
-                    </div>
-
-                    <!-- Notification 2 -->
                     <div class="notification-item relative overflow-hidden bg-white rounded-2xl shadow-sm border-l-4 border-mentora-blue-light group" style="touch-action: pan-y;">
                         <div class="absolute inset-y-0 right-0 w-20 bg-red-500 flex items-center justify-center text-white opacity-0 transition-opacity delete-btn-bg z-0">
                             <i data-lucide="trash-2" class="w-5 h-5"></i>
                         </div>
                         <div class="notification-content relative bg-white p-4 flex gap-4 z-10 transition-transform cursor-pointer">
                             <div class="w-10 h-10 bg-blue-50 text-mentora-blue-light rounded-full flex items-center justify-center shrink-0">
-                                <i data-lucide="message-square" class="w-5 h-5"></i>
+                                <i data-lucide="file-check" class="w-5 h-5"></i>
                             </div>
                             <div class="flex-1">
-                                <h4 class="font-bold text-sm text-gray-800 text-left">Mensaje del Instructor</h4>
-                                <p class="text-xs text-gray-500 mt-1 text-left">Recuerden revisar el material de Ética para la próxima sesión.</p>
-                                <span class="text-[10px] text-gray-400 mt-2 block text-left">Ayer</span>
+                                <h4 class="font-bold text-sm text-gray-800 text-left">Actividad Entregada</h4>
+                                <p class="text-xs text-gray-500 mt-1 text-left">Felipe Restrepo ha entregado "Evaluación de Oratoria".</p>
+                                <span class="text-[10px] text-gray-400 mt-2 block text-left">Hace 1 hora</span>
                             </div>
                             <div class="w-2 h-2 rounded-full bg-mentora-blue-light self-center unread-dot"></div>
                         </div>
                     </div>
 
-                    <!-- Notification 3 (Exchange) -->
+                    <!-- Notification 2 -->
                     <div class="notification-item relative overflow-hidden bg-white rounded-2xl shadow-sm border-l-4 border-mentora-green group" style="touch-action: pan-y;">
                         <div class="absolute inset-y-0 right-0 w-20 bg-red-500 flex items-center justify-center text-white opacity-0 transition-opacity delete-btn-bg z-0">
                             <i data-lucide="trash-2" class="w-5 h-5"></i>
@@ -109,40 +90,111 @@
                                 <i data-lucide="refresh-cw" class="w-5 h-5"></i>
                             </div>
                             <div class="flex-1">
-                                <h4 class="font-bold text-sm text-gray-800 text-left">Intercambio Exitoso</h4>
-                                <p class="text-xs text-gray-500 mt-1 text-left">Canjeaste 1000 pts por "Bonificación Promedio". El instructor lo verá en su sección de Canjeos.</p>
+                                <h4 class="font-bold text-sm text-gray-800 text-left">Intercambio de puntos</h4>
+                                <p class="text-xs text-gray-500 mt-1 text-left">Andrés Sánchez ha canjeado 500 puntos por "Tiempo Extra".</p>
+                                <span class="text-[10px] text-gray-400 mt-2 block text-left">Hace 2 horas</span>
+                            </div>
+                            <div class="w-2 h-2 rounded-full bg-mentora-blue-light self-center unread-dot"></div>
+                        </div>
+                    </div>
+
+                    <!-- Notification 3 -->
+                    <div class="notification-item relative overflow-hidden bg-white rounded-2xl shadow-sm border-l-4 border-mentora-orange group" style="touch-action: pan-y;">
+                        <div class="absolute inset-y-0 right-0 w-20 bg-red-500 flex items-center justify-center text-white opacity-0 transition-opacity delete-btn-bg z-0">
+                            <i data-lucide="trash-2" class="w-5 h-5"></i>
+                        </div>
+                        <div class="notification-content relative bg-white p-4 flex gap-4 z-10 transition-transform cursor-pointer">
+                            <div class="w-10 h-10 bg-orange-50 text-mentora-orange rounded-full flex items-center justify-center shrink-0">
+                                <i data-lucide="users" class="w-5 h-5"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-sm text-gray-800 text-left">Nueva Ficha Asignada</h4>
+                                <p class="text-xs text-gray-500 mt-1 text-left">Se te ha asignado la ficha 5928192 (Comunicación).</p>
+                                <span class="text-[10px] text-gray-400 mt-2 block text-left">Ayer</span>
+                            </div>
+                            <div class="w-2 h-2 rounded-full bg-mentora-blue-light self-center unread-dot"></div>
+                        </div>
+                    </div>
+
+                    <!-- Notification 4 -->
+                    <div class="notification-item relative overflow-hidden bg-white rounded-2xl shadow-sm border-l-4 border-gray-400 group" style="touch-action: pan-y;">
+                        <div class="absolute inset-y-0 right-0 w-20 bg-red-500 flex items-center justify-center text-white opacity-0 transition-opacity delete-btn-bg z-0">
+                            <i data-lucide="trash-2" class="w-5 h-5"></i>
+                        </div>
+                        <div class="notification-content relative bg-white p-4 flex gap-4 z-10 transition-transform cursor-pointer">
+                            <div class="w-10 h-10 bg-gray-100 text-gray-500 rounded-full flex items-center justify-center shrink-0">
+                                <i data-lucide="wrench" class="w-5 h-5"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-sm text-gray-800 text-left">Mantenimiento</h4>
+                                <p class="text-xs text-gray-500 mt-1 text-left">La plataforma entrará en mantenimiento el viernes a las 10:00 PM.</p>
+                                <span class="text-[10px] text-gray-400 mt-2 block text-left">Hace 2 días</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification 5 -->
+                    <div class="notification-item relative overflow-hidden bg-white rounded-2xl shadow-sm border-l-4 border-mentora-blue-dark group" style="touch-action: pan-y;">
+                        <div class="absolute inset-y-0 right-0 w-20 bg-red-500 flex items-center justify-center text-white opacity-0 transition-opacity delete-btn-bg z-0">
+                            <i data-lucide="trash-2" class="w-5 h-5"></i>
+                        </div>
+                        <div class="notification-content relative bg-white p-4 flex gap-4 z-10 transition-transform cursor-pointer">
+                            <div class="w-10 h-10 bg-indigo-50 text-mentora-blue-dark rounded-full flex items-center justify-center shrink-0">
+                                <i data-lucide="bell" class="w-5 h-5"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-sm text-gray-800 text-left">Coordinación</h4>
+                                <p class="text-xs text-gray-500 mt-1 text-left">Recuerde subir las notas del primer trimestre antes del viernes.</p>
                                 <span class="text-[10px] text-gray-400 mt-2 block text-left">Hace 3 días</span>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Notification 6 -->
+                    <div class="notification-item relative overflow-hidden bg-white rounded-2xl shadow-sm border-l-4 border-mentora-orange group" style="touch-action: pan-y;">
+                        <div class="absolute inset-y-0 right-0 w-20 bg-red-500 flex items-center justify-center text-white opacity-0 transition-opacity delete-btn-bg z-0">
+                            <i data-lucide="trash-2" class="w-5 h-5"></i>
+                        </div>
+                        <div class="notification-content relative bg-white p-4 flex gap-4 z-10 transition-transform cursor-pointer">
+                            <div class="w-10 h-10 bg-orange-50 text-mentora-orange rounded-full flex items-center justify-center shrink-0">
+                                <i data-lucide="trending-up" class="w-5 h-5"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold text-sm text-gray-800 text-left">Subida de nivel</h4>
+                                <p class="text-xs text-gray-500 mt-1 text-left">María Camila ha alcanzado el Nivel 5 de "Comunicador Experto".</p>
+                                <span class="text-[10px] text-gray-400 mt-2 block text-left">Hace 1 semana</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </main>
 
         <!-- Bottom HUD (Mobile) -->
-        <nav class="bg-white border-t border-gray-200 flex justify-around p-2 pb-safe absolute bottom-0 w-full z-10">
-            <a href="student_home.html"
+        <nav class="bg-white border-t border-gray-200 flex justify-around p-2 pb-safe absolute bottom-0 w-full z-50">
+            <a href="instructor_home.html"
                 class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
                 <div class="p-1 rounded-lg mb-1">
                     <i data-lucide="home" class="w-6 h-6" stroke-width="2"></i>
                 </div>
                 <span class="text-[10px] font-medium">Home</span>
             </a>
-            <a href="student_challenges.html"
-                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
-                <div class="p-1 rounded-lg mb-1">
-                    <i data-lucide="target" class="w-6 h-6" stroke-width="2"></i>
-                </div>
-                <span class="text-[10px] font-medium">Desafíos</span>
-            </a>
-            <a href="student_subjects.html"
+            <a href="instructor_challenges.html"
                 class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
                 <div class="p-1 rounded-lg mb-1">
                     <i data-lucide="book-open" class="w-6 h-6" stroke-width="2"></i>
                 </div>
-                <span class="text-[10px] font-medium">Materias</span>
+                <span class="text-[10px] font-medium">Fichas</span>
             </a>
-            <a href="notifications.html"
+            <a href="instructor_subjects.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1">
+                    <i data-lucide="users" class="w-6 h-6" stroke-width="2"></i>
+                </div>
+                <span class="text-[10px] font-medium">Aprendices</span>
+            </a>
+            <a href="instructor_notifications.html"
                 class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-mentora-blue-light">
                 <div class="p-1 rounded-lg mb-1 bg-mentora-blue-light/10">
                     <i data-lucide="bell" class="w-6 h-6" stroke-width="2.5"></i>
@@ -160,57 +212,51 @@
                     <button id="close-menu-btn" class="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-full">
                         <i data-lucide="x" class="w-5 h-5"></i>
                     </button>
-                    <div
-                        class="w-16 h-16 rounded-full bg-mentora-green flex items-center justify-center text-mentora-blue-dark font-bold text-2xl mb-4 shadow-lg border-2 border-white/20 uppercase">
-                        A
+                    <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-100 mb-4 shadow-lg border-2 border-white/20">
+                        <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?w=80&h=80&fit=crop" onerror="this.onerror=null;this.src='assets/images/img_perfil.svg';" alt="Foto" class="w-full h-full object-cover">
                     </div>
-                    <h2 class="font-heading font-bold text-xl">Aprendiz</h2>
-                    <p class="text-mentora-beige text-sm opacity-90">Desarrollo de Software</p>
+                    <h2 class="font-heading font-bold text-xl">Carlos Mendoza</h2>
+                    <p class="text-mentora-beige text-sm opacity-90">Instructor de Comunicación</p>
                 </div>
 
                 <div class="flex-1 overflow-y-auto py-4">
                     <div class="px-4 space-y-1">
-                        <a href="student_home.html"
-                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors bg-mentora-blue-light/10 text-mentora-blue-light font-semibold">
+                        <a href="instructor_home.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
                             <i data-lucide="home" class="w-5 h-5"></i>
                             <span>Inicio</span>
                         </a>
-                        <a href="student_profile.html"
+                        <a href="instructor_profile.html"
                             class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
                             <i data-lucide="user" class="w-5 h-5"></i>
                             <span>Perfil</span>
                         </a>
-                        <a href="student_subjects.html"
+                        <a href="instructor_subjects.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                            <span>Mis Aprendices</span>
+                        </a>
+                        <a href="instructor_challenges.html"
                             class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
                             <i data-lucide="book-open" class="w-5 h-5"></i>
-                            <span>Mis materias</span>
-                        </a>
-                        <a href="student_challenges.html"
-                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
-                            <i data-lucide="target" class="w-5 h-5"></i>
-                            <span>Desafíos diarios</span>
-                        </a>
-                        <a href="settings.html"
-                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
-                            <i data-lucide="settings" class="w-5 h-5"></i>
-                            <span>Ajustes</span>
+                            <span>Mis Fichas</span>
                         </a>
                     </div>
 
                     <div class="h-px bg-gray-200 my-4 mx-4"></div>
 
                     <div class="px-4 space-y-1">
-                        <a href="accessibility.html"
+                        <a href="instructor_accessibility.html"
                             class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
                             <i data-lucide="accessibility" class="w-5 h-5"></i>
                             <span>Accesibilidad</span>
                         </a>
-                        <a href="help.html"
+                        <a href="instructor_help.html"
                             class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
                             <i data-lucide="help-circle" class="w-5 h-5"></i>
                             <span>Ayuda</span>
                         </a>
-                        <a href="about.html"
+                        <a href="instructor_about.html"
                             class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
                             <i data-lucide="info" class="w-5 h-5"></i>
                             <span>Sobre nosotros</span>

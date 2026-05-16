@@ -44,9 +44,8 @@
                 <h1 class="font-heading font-bold text-lg tracking-wide leading-tight">Comunicación</h1>
                 <p id="ficha-subtitle" class="text-xs text-mentora-beige font-medium">Ficha 3114544</p>
             </div>
-            <a href="instructor_profile.html"
-                class="w-8 h-8 rounded-full bg-mentora-orange flex items-center justify-center text-white font-bold shadow-inner uppercase hover:scale-105 transition-transform text-xs">
-                C
+            <a href="instructor_profile.html" class="w-8 h-8 rounded-full overflow-hidden border-2 border-white/30 shadow-inner hover:scale-105 transition-transform shrink-0">
+                <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?w=80&h=80&fit=crop" onerror="this.onerror=null;this.src='assets/images/img_perfil.svg';" alt="Foto" class="w-full h-full object-cover">
             </a>
         </header>
 
@@ -91,10 +90,10 @@
                 </div>
             </div>
 
-            <!-- Estudiantes List -->
+            <!-- Aprendices List -->
             <div class="p-6">
                 <div class="flex justify-between items-end mb-4">
-                    <h3 class="font-heading font-bold text-lg text-mentora-blue-dark">Estudiantes Matriculados</h3>
+                    <h3 class="font-heading font-bold text-lg text-mentora-blue-dark">Aprendices Matriculados</h3>
                     <span
                         class="bg-mentora-blue-light/10 text-mentora-blue-light px-2 py-0.5 rounded text-xs font-bold">20
                         Activos</span>
@@ -113,6 +112,38 @@
             </div>
 
         </main>
+
+        <!-- Bottom HUD (Mobile) -->
+        <nav class="bg-white border-t border-gray-200 flex justify-around p-2 pb-safe absolute bottom-0 w-full z-50">
+            <a href="instructor_home.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1">
+                    <i data-lucide="home" class="w-6 h-6" stroke-width="2"></i>
+                </div>
+                <span class="text-[10px] font-medium">Home</span>
+            </a>
+            <a href="instructor_challenges.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-mentora-blue-light">
+                <div class="p-1 rounded-lg mb-1 bg-mentora-blue-light/10">
+                    <i data-lucide="book-open" class="w-6 h-6" stroke-width="2.5"></i>
+                </div>
+                <span class="text-[10px] font-medium">Fichas</span>
+            </a>
+            <a href="instructor_subjects.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1">
+                    <i data-lucide="users" class="w-6 h-6" stroke-width="2"></i>
+                </div>
+                <span class="text-[10px] font-medium">Aprendices</span>
+            </a>
+            <a href="instructor_notifications.html"
+                class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
+                <div class="p-1 rounded-lg mb-1">
+                    <i data-lucide="bell" class="w-6 h-6" stroke-width="2"></i>
+                </div>
+                <span class="text-[10px] font-medium">Notifs</span>
+            </a>
+        </nav>
     </div>
 
     <script>
@@ -135,47 +166,163 @@
             const lastNames = ['Gómez', 'Restrepo', 'Pérez', 'Rodríguez', 'Sánchez', 'Martínez', 'López', 'González', 'Ramírez', 'Hernández', 'Díaz', 'Morales', 'Suárez', 'Castro', 'Ortiz', 'Gutiérrez', 'Rojas', 'Molina', 'Ríos', 'Rendón'];
             const container = document.getElementById('students-list');
 
+            // Pool of avatar photos: default + people + pets + landscapes
+            const avatarPool = [
+                { src: 'assets/images/img_perfil.svg',       fallback: null },
+                { src: 'assets/images/img_perfil.svg',       fallback: null }, // weight x2
+                { src: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=80&h=80&fit=crop&crop=face', fallback: 'assets/images/img_perfil.svg' },
+                { src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face', fallback: 'assets/images/img_perfil.svg' },
+                { src: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face', fallback: 'assets/images/img_perfil.svg' },
+                { src: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face', fallback: 'assets/images/img_perfil.svg' },
+                { src: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&h=80&fit=crop&crop=face', fallback: 'assets/images/img_perfil.svg' },
+                { src: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&h=80&fit=crop&crop=face', fallback: 'assets/images/img_perfil.svg' },
+                { src: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=80&h=80&fit=crop',             fallback: 'assets/images/img_perfil.svg' }, // perro
+                { src: 'https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?w=80&h=80&fit=crop',             fallback: 'assets/images/img_perfil.svg' }, // gato
+                { src: 'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=80&h=80&fit=crop',             fallback: 'assets/images/img_perfil.svg' }, // perro tierno
+                { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=80&h=80&fit=crop',             fallback: 'assets/images/img_perfil.svg' }, // montaña
+                { src: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=80&h=80&fit=crop',             fallback: 'assets/images/img_perfil.svg' }, // lago
+                { src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=80&h=80&fit=crop',             fallback: 'assets/images/img_perfil.svg' }, // paisaje
+            ];
+
+            // Set container to handle the absolute positioning
+            container.classList.add('pb-32');
+
             for (let i = 0; i < 20; i++) {
                 // Randomly select names
                 const name = firstNames[Math.floor(Math.random() * firstNames.length)];
                 const last = lastNames[Math.floor(Math.random() * lastNames.length)];
-                const progress = Math.floor(Math.random() * (100 - 15 + 1)) + 15; // random 15-100%
-                const avatarCode = name.charAt(0) + last.charAt(0);
+                const totalActivities = 5;
+                const completedActivities = Math.floor(Math.random() * totalActivities) + 1; // 1 to 5
+                const pendingActivities = totalActivities - completedActivities;
+                const progress = (completedActivities / totalActivities) * 100;
+                const points = Math.floor(Math.random() * 5000) + 100;
+                const gradeNum = (Math.random() * 4 + 1);
+                const grade = gradeNum.toFixed(1);
+
+                // Pick random avatar from pool
+                const avatarData = avatarPool[Math.floor(Math.random() * avatarPool.length)];
+                const avatarSrc = avatarData.src;
+                const avatarFallback = avatarData.fallback ? `this.onerror=null;this.src='${avatarData.fallback}';` : 'this.onerror=null;';
 
                 // Color formatting based on progress
                 let pColor = 'bg-mentora-blue-light';
                 if (progress >= 80) pColor = 'bg-mentora-green';
                 if (progress <= 30) pColor = 'bg-red-400';
 
+                // Color formatting for grade
+                let gradeColor = 'text-mentora-green';
+                if (gradeNum < 3.0) {
+                    gradeColor = 'text-red-500';
+                } else if (gradeNum < 3.5) {
+                    gradeColor = 'text-mentora-orange';
+                }
+
                 const html = `
-                <div class="bg-white border border-gray-100 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-center justify-between mb-3">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-gray-100 text-gray-700 rounded-full flex items-center justify-center font-bold text-sm tracking-wider">
-                                ${avatarCode}
+                <div class="relative w-full mb-3 student-wrapper" style="min-height: 104px;">
+                    <!-- Main Card -->
+                    <div class="bg-white border border-gray-100 p-4 rounded-xl shadow-sm transition-all absolute top-0 left-0 w-full z-20 student-card" style="cursor: pointer;">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-gray-100 bg-gray-100 shrink-0">
+                                    <img src="${avatarSrc}" onerror="${avatarFallback}" alt="Foto de ${name}" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-800 text-sm leading-tight">${name} ${last}</p>
+                                    <p class="text-[11px] text-gray-500 font-medium">${points} pts globales</p>
+                                </div>
                             </div>
-                            <div>
-                                <p class="font-bold text-gray-800 text-sm leading-tight">${name} ${last}</p>
-                                <p class="text-[11px] text-gray-500 font-medium">${Math.floor(Math.random() * 5000) + 100} pts globales</p>
+                            <button id="mas_informacion_${i}" class="toggle-btn text-mentora-blue-light p-2 bg-blue-50 rounded-lg transition-colors">
+                                <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300 transform"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="flex items-center justify-between text-xs font-bold text-gray-500 mb-1">
+                            <span>Progreso de Materia</span>
+                            <span class="${pColor.replace('bg-', 'text-')}">${progress}%</span>
+                        </div>
+                        <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                            <div class="${pColor} h-1.5 rounded-full" style="width: ${progress}%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Dropdown Details (Hidden by default, slides down) -->
+                    <div class="student-details absolute top-0 left-0 w-full pt-[94px] -z-10 transition-all duration-300 ease-in-out opacity-0 translate-y-[-20px] pointer-events-none">
+                        <!-- Info Card -->
+                        <div class="bg-gray-50 border border-gray-100 p-4 pb-4 rounded-b-xl shadow-md">
+                            <div class="grid grid-cols-2 gap-3 mb-3 mt-2">
+                                <div class="bg-white p-2 rounded-lg border border-gray-100 flex flex-col">
+                                    <span class="text-[10px] text-gray-400 font-bold uppercase">Puntos Totales</span>
+                                    <span class="font-bold text-mentora-blue-dark">${points}</span>
+                                </div>
+                                <div class="bg-white p-2 rounded-lg border border-gray-100 flex flex-col">
+                                    <span class="text-[10px] text-gray-400 font-bold uppercase">Nota Materia</span>
+                                    <span class="font-bold ${gradeColor}">${grade}/5.0</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white p-3 rounded-lg border border-gray-100 text-sm">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-gray-500 font-medium text-xs">Actividades Completadas</span>
+                                    <span class="font-bold text-mentora-green">${completedActivities}</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-500 font-medium text-xs">Actividades Faltantes</span>
+                                    <span class="font-bold text-red-400">${pendingActivities}</span>
+                                </div>
                             </div>
                         </div>
-                        <button class="text-mentora-blue-light p-2 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
-                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="flex items-center justify-between text-xs font-bold text-gray-500 mb-1">
-                        <span>Progreso de Materia</span>
-                        <span class="${pColor.replace('bg-', 'text-')}">${progress}%</span>
-                    </div>
-                    <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
-                        <div class="${pColor} h-1.5 rounded-full" style="width: ${progress}%"></div>
+                        
+                        <!-- Profile Link Card -->
+                        <a href="student_profile.html" class="mt-2 bg-white border border-gray-200 p-3 rounded-xl shadow-sm flex items-center justify-between hover:border-mentora-blue-light transition-colors group/link relative z-30">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full overflow-hidden border border-gray-100 bg-gray-100">
+                                    <img src="${avatarSrc}" onerror="${avatarFallback}" alt="Foto de ${name}" class="w-full h-full object-cover">
+                                </div>
+                                <span class="font-bold text-sm text-gray-700 group-hover/link:text-mentora-blue-light transition-colors">Ir a perfil completo</span>
+                            </div>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-gray-400 group-hover/link:text-mentora-blue-light"></i>
+                        </a>
                     </div>
                 </div>
                 `;
                 container.insertAdjacentHTML('beforeend', html);
             }
             if (window.lucide) window.lucide.createIcons();
+
+            // Handle toggle animation
+            document.querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const wrapper = btn.closest('.student-wrapper');
+                    const details = wrapper.querySelector('.student-details');
+                    const icon = btn.querySelector('svg');
+                    
+                    // Close others
+                    document.querySelectorAll('.student-details.active').forEach(otherDetails => {
+                        if(otherDetails !== details) {
+                            otherDetails.classList.remove('active', 'opacity-100', 'translate-y-0', 'pointer-events-auto');
+                            otherDetails.classList.add('opacity-0', 'translate-y-[-20px]', 'pointer-events-none');
+                            otherDetails.closest('.student-wrapper').style.marginBottom = '12px';
+                            const otherIcon = otherDetails.closest('.student-wrapper').querySelector('.toggle-btn svg');
+                            if(otherIcon) otherIcon.classList.remove('rotate-180');
+                        }
+                    });
+
+                    // Toggle current
+                    if (details.classList.contains('active')) {
+                        details.classList.remove('active', 'opacity-100', 'translate-y-0', 'pointer-events-auto');
+                        details.classList.add('opacity-0', 'translate-y-[-20px]', 'pointer-events-none');
+                        icon.classList.remove('rotate-180');
+                        wrapper.style.marginBottom = '12px';
+                    } else {
+                        details.classList.add('active', 'opacity-100', 'translate-y-0', 'pointer-events-auto');
+                        details.classList.remove('opacity-0', 'translate-y-[-20px]', 'pointer-events-none');
+                        icon.classList.add('rotate-180');
+                        // Increase wrapper margin bottom to accommodate the expanded details
+                        wrapper.style.marginBottom = '250px';
+                    }
+                });
+            });
         });
     </script>
 </body>

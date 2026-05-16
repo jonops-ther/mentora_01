@@ -41,9 +41,8 @@
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
             <h1 class="font-heading font-bold text-xl tracking-wide">Mentora</h1>
-            <a href="instructor_profile.html"
-                class="w-10 h-10 rounded-full bg-mentora-orange flex items-center justify-center text-white font-bold shadow-inner uppercase hover:scale-105 transition-transform">
-                C
+            <a href="instructor_profile.html" class="w-10 h-10 rounded-full overflow-hidden border-2 border-white/30 shadow-inner hover:scale-105 transition-transform shrink-0">
+                <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?w=80&h=80&fit=crop" onerror="this.onerror=null;this.src='assets/images/img_perfil.svg';" alt="Foto" class="w-full h-full object-cover">
             </a>
         </header>
 
@@ -52,27 +51,38 @@
             <div class="p-6 space-y-8 animate-in fade-in duration-500">
 
                 <!-- Profile Header -->
-                <div
-                    class="flex flex-col items-center justify-center p-6 bg-white rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden">
-                    <div class="absolute top-0 w-full h-24 bg-gradient-to-r from-mentora-orange to-orange-400"></div>
-                    <div
-                        class="relative w-28 h-28 bg-white p-1 rounded-full shadow-lg mt-8 mb-4 group cursor-pointer hover:scale-105 transition-transform">
-                        <div
-                            class="w-full h-full bg-mentora-blue-dark rounded-full flex items-center justify-center text-mentora-orange font-extrabold text-4xl uppercase">
-                            I
-                        </div>
-                        <button
-                            class="absolute bottom-0 right-0 bg-white p-1.5 rounded-full shadow-md text-mentora-blue-dark hover:text-mentora-blue-light border border-gray-100 transition-colors">
+                <!-- Profile Header -->
+                <div id="profile-card" class="flex flex-col items-center justify-center p-6 bg-white rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden">
+                    <!-- Banner -->
+                    <div id="profile-banner" class="absolute top-0 w-full h-24 bg-gradient-to-r from-mentora-orange to-orange-400"></div>
+                    <!-- Avatar -->
+                    <div class="relative w-28 h-28 bg-white p-1 rounded-full shadow-lg mt-8 mb-4 group cursor-pointer">
+                        <img id="profile-avatar" src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?w=200&h=200&fit=crop" onerror="this.onerror=null;this.src='assets/images/img_perfil.svg';" alt="Foto de perfil" class="w-full h-full rounded-full object-cover">
+                        <button onclick="document.getElementById('edit-profile-modal').classList.remove('hidden')" class="absolute bottom-0 right-0 bg-mentora-orange p-2 rounded-full shadow-md text-white border-2 border-white hover:bg-orange-500 transition-colors z-10">
                             <i data-lucide="pencil" class="w-4 h-4"></i>
                         </button>
                     </div>
                     <h2 class="text-2xl font-bold font-heading text-mentora-blue-dark">Carlos Mendoza</h2>
                     <p class="text-gray-500 font-medium">Instructor de Comunicación</p>
-                    <span
-                        class="mt-2 px-3 py-1 bg-mentora-blue-light/10 text-mentora-blue-light font-bold text-xs rounded-full uppercase tracking-wider">
-                        Instructor Senior
-                    </span>
+                    <span class="mt-2 px-3 py-1 bg-mentora-blue-light/10 text-mentora-blue-light font-bold text-xs rounded-full uppercase tracking-wider">Instructor Senior</span>
                 </div>
+
+                <!-- Biography -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-heading font-bold text-base text-mentora-blue-dark">Biografía</h3>
+                    </div>
+                    <p id="profile-bio" class="text-sm text-gray-600 leading-relaxed">Instructor certificado con más de 8 años de experiencia en comunicación corporativa y oratoria. Apasionado por el aprendizaje activo y el desarrollo de habilidades blandas en entornos tecnológicos.</p>
+                </div>
+
+                <!-- Edit Profile Button (below bio) -->
+                <button onclick="document.getElementById('edit-profile-modal').classList.remove('hidden')" class="w-full bg-white text-gray-700 border border-gray-200 p-4 rounded-2xl shadow-sm flex items-center justify-between hover:bg-gray-50 transition-colors text-left">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="user-cog" class="w-5 h-5 text-gray-400"></i>
+                        <span class="font-bold">Editar Perfil</span>
+                    </div>
+                    <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+                </button>
 
                 <!-- Stats Summary -->
                 <div class="grid grid-cols-2 gap-4">
@@ -96,7 +106,7 @@
 
                 <!-- Monitorizar Fichas (Search & List) -->
                 <div>
-                    <h3 class="font-heading font-bold text-lg text-mentora-blue-dark mb-4">Monitorizar Estudiantes</h3>
+                    <h3 class="font-heading font-bold text-lg text-mentora-blue-dark mb-4">Monitorizar Aprendices</h3>
 
                     <div class="relative mb-4">
                         <input type="text" placeholder="Buscar aprendiz por nombre..."
@@ -109,9 +119,8 @@
                         <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col gap-3">
                             <div class="flex justify-between items-start mb-2">
                                 <div class="flex items-center gap-3">
-                                    <div
-                                        class="w-10 h-10 bg-mentora-green rounded-full flex items-center justify-center text-mentora-blue-dark font-bold">
-                                        F
+                                    <div class="w-10 h-10 rounded-full overflow-hidden border border-gray-100 bg-gray-100 shrink-0">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" onerror="this.onerror=null;this.src='assets/images/img_perfil.svg';" alt="Felipe" class="w-full h-full object-cover">
                                     </div>
                                     <div>
                                         <h4 class="font-bold text-gray-800">Felipe Restrepo</h4>
@@ -140,9 +149,8 @@
                         <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col gap-3">
                             <div class="flex justify-between items-start mb-2">
                                 <div class="flex items-center gap-3">
-                                    <div
-                                        class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-mentora-blue-light font-bold">
-                                        M
+                                    <div class="w-10 h-10 rounded-full overflow-hidden border border-gray-100 bg-gray-100 shrink-0">
+                                        <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?w=80&h=80&fit=crop" onerror="this.onerror=null;this.src='assets/images/img_perfil.svg';" alt="María" class="w-full h-full object-cover">
                                     </div>
                                     <div>
                                         <h4 class="font-bold text-gray-800">María Camila</h4>
@@ -171,9 +179,8 @@
                         <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col gap-3">
                             <div class="flex justify-between items-start mb-2">
                                 <div class="flex items-center gap-3">
-                                    <div
-                                        class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-mentora-orange font-bold">
-                                        A
+                                    <div class="w-10 h-10 rounded-full overflow-hidden border border-gray-100 bg-gray-100 shrink-0">
+                                        <img src="assets/images/img_perfil.svg" onerror="this.onerror=null;" alt="Andrés" class="w-full h-full object-cover">
                                     </div>
                                     <div>
                                         <h4 class="font-bold text-gray-800">Andrés Sánchez</h4>
@@ -201,15 +208,7 @@
                     </div>
                 </div>
 
-                <!-- User Settings Link -->
-                <a href="settings.html"
-                    class="w-full bg-white text-gray-700 border border-gray-200 p-4 rounded-2xl shadow-sm flex items-center justify-between hover:bg-gray-50 transition-colors">
-                    <div class="flex items-center gap-3">
-                        <i data-lucide="settings" class="w-5 h-5 text-gray-400"></i>
-                        <span class="font-bold">Ajustes</span>
-                    </div>
-                    <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
-                </a>
+
 
             </div>
         </main>
@@ -235,9 +234,9 @@
                 <div class="p-1 rounded-lg mb-1">
                     <i data-lucide="users" class="w-6 h-6" stroke-width="2"></i>
                 </div>
-                <span class="text-[10px] font-medium">Estudiantes</span>
+                <span class="text-[10px] font-medium">Aprendices</span>
             </a>
-            <a href="notifications.html"
+            <a href="instructor_notifications.html"
                 class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
                 <div class="p-1 rounded-lg mb-1">
                     <i data-lucide="bell" class="w-6 h-6" stroke-width="2"></i>
@@ -246,69 +245,157 @@
             </a>
         </nav>
 
+        <!-- Edit Profile Bottom-Sheet -->
+        <div id="edit-profile-modal" class="hidden absolute inset-0 z-50 flex items-end">
+            <div id="edit-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+            <div class="relative w-full bg-white rounded-t-3xl shadow-2xl z-10 animate-in slide-in-from-bottom">
+
+                <!-- Handle bar -->
+                <div class="flex justify-center pt-3 pb-1">
+                    <div class="w-10 h-1 bg-gray-300 rounded-full"></div>
+                </div>
+
+                <div class="p-6 space-y-5 pb-10">
+                    <!-- Header -->
+                    <div class="flex items-center justify-between">
+                        <h2 class="font-heading font-bold text-xl text-mentora-blue-dark">Editar Perfil</h2>
+                        <button onclick="document.getElementById('edit-profile-modal').classList.add('hidden')" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                            <i data-lucide="x" class="w-5 h-5 text-gray-500"></i>
+                        </button>
+                    </div>
+
+                    <!-- Avatar preview + change button -->
+                    <div class="flex items-center gap-4">
+                        <div class="relative w-20 h-20 shrink-0">
+                            <img id="edit-avatar-preview" src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?w=200&h=200&fit=crop" onerror="this.onerror=null;this.src='assets/images/img_perfil.svg';" alt="Vista previa" class="w-full h-full rounded-full object-cover border-2 border-gray-100 shadow">
+                            <button id="btn-change-photo" class="absolute bottom-0 right-0 bg-mentora-orange p-1.5 rounded-full shadow-md text-white border-2 border-white hover:bg-orange-500 transition-colors">
+                                <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-800">Foto de perfil</p>
+                            <p class="text-xs text-gray-500 mt-0.5">Toca el lápiz para cambiarla</p>
+                        </div>
+                    </div>
+
+                    <!-- Banner Color -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Color del Banner</label>
+                        <div class="flex gap-3 flex-wrap">
+                            <button data-gradient="from-mentora-orange to-orange-400" class="banner-color-btn w-10 h-10 rounded-xl bg-gradient-to-r from-orange-400 to-orange-300 border-2 border-transparent hover:scale-110 transition-transform"></button>
+                            <button data-gradient="from-blue-900 to-blue-500" class="banner-color-btn w-10 h-10 rounded-xl bg-gradient-to-r from-blue-900 to-blue-500 border-2 border-transparent hover:scale-110 transition-transform"></button>
+                            <button data-gradient="from-purple-600 to-pink-500" class="banner-color-btn w-10 h-10 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 border-2 border-transparent hover:scale-110 transition-transform"></button>
+                            <button data-gradient="from-teal-500 to-cyan-400" class="banner-color-btn w-10 h-10 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-400 border-2 border-transparent hover:scale-110 transition-transform"></button>
+                            <button data-gradient="from-gray-700 to-gray-500" class="banner-color-btn w-10 h-10 rounded-xl bg-gradient-to-r from-gray-700 to-gray-500 border-2 border-transparent hover:scale-110 transition-transform"></button>
+                            <button data-gradient="from-green-500 to-lime-400" class="banner-color-btn w-10 h-10 rounded-xl bg-gradient-to-r from-green-500 to-lime-400 border-2 border-transparent hover:scale-110 transition-transform"></button>
+                        </div>
+                    </div>
+
+                    <!-- Biography -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Biografía</label>
+                        <textarea id="input-bio" class="w-full bg-gray-50 border border-gray-200 rounded-2xl p-4 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-mentora-blue-light transition-all resize-none" rows="3" placeholder="Escribe algo sobre ti..."></textarea>
+                    </div>
+
+                    <!-- Save -->
+                    <button id="btn-save-settings" class="w-full py-4 bg-mentora-blue-dark text-white rounded-2xl font-bold text-base hover:bg-mentora-blue-light transition-colors shadow-md flex items-center justify-center gap-2">
+                        <i data-lucide="save" class="w-4 h-4"></i> Guardar Cambios
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Photo Options Sub-Sheet -->
+        <div id="photo-options-sheet" class="hidden absolute inset-0 z-[60] flex items-end">
+            <div id="photo-options-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+            <div class="relative w-full bg-white rounded-t-3xl shadow-2xl z-10 p-6 pb-10 animate-in slide-in-from-bottom space-y-3">
+                <div class="flex justify-center mb-2">
+                    <div class="w-10 h-1 bg-gray-300 rounded-full"></div>
+                </div>
+                <h3 class="font-heading font-bold text-lg text-mentora-blue-dark text-center mb-4">Cambiar foto de perfil</h3>
+
+                <!-- Option 1: Upload from device -->
+                <label class="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl cursor-pointer hover:bg-blue-50 transition-colors border border-gray-100">
+                    <div class="w-10 h-10 rounded-xl bg-mentora-blue-dark flex items-center justify-center shrink-0">
+                        <i data-lucide="upload" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800">Subir foto</p>
+                        <p class="text-xs text-gray-500">Selecciona una imagen desde tu dispositivo</p>
+                    </div>
+                    <input id="file-input" type="file" accept="image/*" class="hidden">
+                </label>
+
+                <!-- Option 2: Take photo -->
+                <label class="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl cursor-pointer hover:bg-orange-50 transition-colors border border-gray-100">
+                    <div class="w-10 h-10 rounded-xl bg-mentora-orange flex items-center justify-center shrink-0">
+                        <i data-lucide="camera" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800">Tomar foto</p>
+                        <p class="text-xs text-gray-500">Usa la cámara de tu dispositivo</p>
+                    </div>
+                    <input id="camera-input" type="file" accept="image/*" capture="user" class="hidden">
+                </label>
+
+                <!-- Option 3: Delete photo -->
+                <button id="btn-delete-photo" class="w-full flex items-center gap-4 p-4 bg-gray-50 rounded-2xl hover:bg-red-50 transition-colors border border-gray-100">
+                    <div class="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center shrink-0">
+                        <i data-lucide="trash-2" class="w-5 h-5 text-red-500"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="font-bold text-red-500">Eliminar foto</p>
+                        <p class="text-xs text-gray-500">Se usará la imagen por defecto</p>
+                    </div>
+                </button>
+
+                <!-- Cancel -->
+                <button id="btn-cancel-photo" class="w-full py-3 text-gray-500 font-bold rounded-2xl hover:bg-gray-100 transition-colors">Cancelar</button>
+            </div>
+        </div>
+
         <!-- Hamburger Menu Overlay -->
         <div id="menu-overlay" class="hidden absolute inset-0 z-50">
             <div id="menu-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
-            <div
-                class="w-4/5 max-w-[300px] bg-white h-full shadow-2xl relative flex flex-col animate-in slide-in-from-left">
+            <div class="w-4/5 max-w-[300px] bg-white h-full shadow-2xl relative flex flex-col animate-in slide-in-from-left">
                 <div class="p-6 bg-mentora-blue-dark text-white relative">
                     <button id="close-menu-btn" class="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-full">
                         <i data-lucide="x" class="w-5 h-5"></i>
                     </button>
-                    <div
-                        class="w-16 h-16 rounded-full bg-mentora-orange flex items-center justify-center text-white font-bold text-2xl mb-4 shadow-lg border-2 border-white/20 uppercase">
-                        I
+                    <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-100 mb-4 shadow-lg border-2 border-white/20">
+                        <img src="assets/images/img_perfil.svg" onerror="this.onerror=null;" alt="Foto" class="w-full h-full object-cover">
                     </div>
                     <h2 class="font-heading font-bold text-xl">Carlos Mendoza</h2>
                     <p class="text-mentora-beige text-sm opacity-90">Instructor de Comunicación</p>
                 </div>
-
                 <div class="flex-1 overflow-y-auto py-4">
                     <div class="px-4 space-y-1">
-                        <a href="instructor_home.html"
-                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
-                            <i data-lucide="home" class="w-5 h-5"></i>
-                            <span>Inicio</span>
+                        <a href="instructor_home.html" class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="home" class="w-5 h-5"></i><span>Inicio</span>
                         </a>
-                        <a href="instructor_profile.html"
-                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors bg-mentora-blue-light/10 text-mentora-blue-light font-semibold">
-                            <i data-lucide="user" class="w-5 h-5"></i>
-                            <span>Perfil</span>
+                        <a href="instructor_profile.html" class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors bg-mentora-blue-light/10 text-mentora-blue-light font-semibold">
+                            <i data-lucide="user" class="w-5 h-5"></i><span>Perfil</span>
                         </a>
-                        <a href="instructor_subjects.html"
-                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
-                            <i data-lucide="users" class="w-5 h-5"></i>
-                            <span>Mis Estudiantes</span>
+                        <a href="instructor_subjects.html" class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="users" class="w-5 h-5"></i><span>Mis Aprendices</span>
                         </a>
-                        <a href="instructor_challenges.html"
-                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
-                            <i data-lucide="book-open" class="w-5 h-5"></i>
-                            <span>Mis Fichas</span>
+                        <a href="instructor_challenges.html" class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
+                            <i data-lucide="book-open" class="w-5 h-5"></i><span>Mis Fichas</span>
                         </a>
                     </div>
-
                     <div class="h-px bg-gray-200 my-4 mx-4"></div>
-
                     <div class="px-4 space-y-1">
-                        <a href="instructor_accessibility.html"
-                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
-                            <i data-lucide="accessibility" class="w-5 h-5"></i>
-                            <span>Accesibilidad</span>
+                        <a href="instructor_accessibility.html" class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
+                            <i data-lucide="accessibility" class="w-5 h-5"></i><span>Accesibilidad</span>
                         </a>
-                        <a href="instructor_help.html"
-                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
-                            <i data-lucide="help-circle" class="w-5 h-5"></i>
-                            <span>Ayuda</span>
+                        <a href="instructor_help.html" class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
+                            <i data-lucide="help-circle" class="w-5 h-5"></i><span>Ayuda</span>
                         </a>
-                        <a href="instructor_about.html"
-                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
-                            <i data-lucide="info" class="w-5 h-5"></i>
-                            <span>Sobre nosotros</span>
+                        <a href="instructor_about.html" class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100 transition-colors">
+                            <i data-lucide="info" class="w-5 h-5"></i><span>Sobre nosotros</span>
                         </a>
-                        <button id="logout-btn"
-                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 transition-colors mt-2 text-left">
-                            <i data-lucide="log-out" class="w-5 h-5"></i>
-                            <span class="font-medium">Cerrar sesión</span>
+                        <button id="logout-btn" class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 transition-colors mt-2 text-left">
+                            <i data-lucide="log-out" class="w-5 h-5"></i><span class="font-medium">Cerrar sesión</span>
                         </button>
                     </div>
                 </div>
@@ -317,6 +404,75 @@
     </div>
 
     <script src="assets/js/app.js"></script>
+    <script>
+        const profileAvatar = document.getElementById('profile-avatar');
+        const profileBio = document.getElementById('profile-bio');
+        const profileBanner = document.getElementById('profile-banner');
+        const editPreview = document.getElementById('edit-avatar-preview');
+        const inputBio = document.getElementById('input-bio');
+        const fileInput = document.getElementById('file-input');
+        const cameraInput = document.getElementById('camera-input');
+        const saveBtn = document.getElementById('btn-save-settings');
+        const editModal = document.getElementById('edit-profile-modal');
+        const photoSheet = document.getElementById('photo-options-sheet');
+        const photoBackdrop = document.getElementById('photo-options-backdrop');
+
+        // Pre-fill bio textarea
+        if (inputBio && profileBio) inputBio.value = profileBio.textContent.trim();
+
+        // Open/close edit modal
+        const closeEditModal = () => editModal.classList.add('hidden');
+        document.getElementById('edit-backdrop').addEventListener('click', closeEditModal);
+
+        // Open photo options sheet
+        document.getElementById('btn-change-photo').addEventListener('click', (e) => {
+            e.stopPropagation();
+            photoSheet.classList.remove('hidden');
+            if (window.lucide) window.lucide.createIcons();
+        });
+
+        const closePhotoSheet = () => photoSheet.classList.add('hidden');
+        photoBackdrop.addEventListener('click', closePhotoSheet);
+        document.getElementById('btn-cancel-photo').addEventListener('click', closePhotoSheet);
+
+        // Helper: apply file to preview
+        const applyFile = (file) => {
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (ev) => { if (editPreview) editPreview.src = ev.target.result; };
+            reader.readAsDataURL(file);
+            closePhotoSheet();
+        };
+
+        // Upload from device
+        fileInput && fileInput.addEventListener('change', (e) => applyFile(e.target.files[0]));
+
+        // Take photo
+        cameraInput && cameraInput.addEventListener('change', (e) => applyFile(e.target.files[0]));
+
+        // Delete photo → reset to default
+        document.getElementById('btn-delete-photo').addEventListener('click', () => {
+            if (editPreview) editPreview.src = 'assets/images/img_perfil.svg';
+            closePhotoSheet();
+        });
+
+        // Banner color buttons — update profile in real time
+        document.querySelectorAll('.banner-color-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const g = btn.dataset.gradient;
+                if (profileBanner) profileBanner.className = `absolute top-0 w-full h-24 bg-gradient-to-r ${g}`;
+                document.querySelectorAll('.banner-color-btn').forEach(b => b.classList.remove('ring-2','ring-offset-2','ring-mentora-blue-dark'));
+                btn.classList.add('ring-2','ring-offset-2','ring-mentora-blue-dark');
+            });
+        });
+
+        // Save: apply photo + bio, then close
+        saveBtn && saveBtn.addEventListener('click', () => {
+            if (profileAvatar && editPreview) profileAvatar.src = editPreview.src;
+            if (profileBio && inputBio && inputBio.value.trim()) profileBio.textContent = inputBio.value.trim();
+            closeEditModal();
+        });
+    </script>
 </body>
 
 </html>

@@ -41,9 +41,8 @@
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
             <h1 class="font-heading font-bold text-xl tracking-wide">Mentora</h1>
-            <a href="instructor_profile.html"
-                class="w-10 h-10 rounded-full bg-mentora-orange flex items-center justify-center text-white font-bold shadow-inner uppercase hover:scale-105 transition-transform">
-                I
+            <a href="instructor_profile.html" class="w-10 h-10 rounded-full overflow-hidden border-2 border-white/30 shadow-inner hover:scale-105 transition-transform shrink-0">
+                <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?w=80&h=80&fit=crop" onerror="this.onerror=null;this.src='assets/images/img_perfil.svg';" alt="Foto" class="w-full h-full object-cover">
             </a>
         </header>
 
@@ -60,7 +59,7 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col">
                         <div class="flex justify-between items-start mb-4">
-                            <span class="font-bold text-gray-500 text-sm uppercase tracking-wide">Estudiantes</span>
+                            <span class="font-bold text-gray-500 text-sm uppercase tracking-wide">Aprendices</span>
                             <div class="p-2 bg-blue-50 rounded-lg text-mentora-blue-light">
                                 <i data-lucide="users" class="w-5 h-5"></i>
                             </div>
@@ -101,6 +100,14 @@
 
                 <!-- Quick Actions -->
                 <div class="space-y-3">
+                    <a href="instructor_rewards.html" id="btn-recompensa"
+                        class="w-full bg-mentora-orange text-white p-5 rounded-2xl shadow-md flex items-center gap-4 hover:bg-orange-500 transition-colors active:scale-95">
+                        <div class="bg-white/20 p-3 rounded-xl">
+                            <i data-lucide="gift" class="w-6 h-6"></i>
+                        </div>
+                        <span class="font-bold text-lg">Asignar recompensa</span>
+                    </a>
+                    
                     <a href="instructor_activity_create.html" id="btn-generar"
                         class="w-full bg-mentora-blue-dark text-white p-5 rounded-2xl shadow-md flex items-center gap-4 hover:bg-blue-900 transition-colors active:scale-95">
                         <div class="bg-white/20 p-3 rounded-xl">
@@ -109,20 +116,28 @@
                         <span class="font-bold text-lg">Generar actividad</span>
                     </a>
 
-                    <button id="btn-estudiantes"
+                    <a href="instructor_subjects.html" id="btn-aprendices"
                         class="w-full bg-white border-2 border-mentora-blue-light text-mentora-blue-dark p-5 rounded-2xl shadow-sm flex items-center gap-4 hover:bg-blue-50 transition-colors active:scale-95">
                         <div class="bg-blue-50 p-3 rounded-xl text-mentora-blue-light">
-                            <i data-lucide="book-open" class="w-6 h-6"></i>
+                            <i data-lucide="users" class="w-6 h-6"></i>
                         </div>
-                        <span class="font-bold text-lg">Estudiantes matriculados</span>
-                    </button>
+                        <span class="font-bold text-lg">Aprendices matriculados</span>
+                    </a>
 
-                    <a href="instructor_rewards.html" id="btn-recompensa"
-                        class="w-full bg-mentora-orange text-white p-5 rounded-2xl shadow-md flex items-center gap-4 hover:bg-orange-500 transition-colors active:scale-95">
-                        <div class="bg-white/20 p-3 rounded-xl">
-                            <i data-lucide="gift" class="w-6 h-6"></i>
+                    <a href="#" id="btn-matricular-aprendiz"
+                        class="w-full bg-green-50 border-2 border-mentora-green text-mentora-blue-dark p-5 rounded-2xl shadow-sm flex items-center gap-4 hover:bg-green-100 transition-colors active:scale-95">
+                        <div class="bg-white p-3 rounded-xl text-mentora-green shadow-sm">
+                            <i data-lucide="user-plus" class="w-6 h-6"></i>
                         </div>
-                        <span class="font-bold text-lg">Asignar recompensa</span>
+                        <span class="font-bold text-lg">Matricular aprendiz</span>
+                    </a>
+                    
+                    <a href="#" id="btn-crear-ficha"
+                        class="w-full bg-indigo-50 border-2 border-indigo-200 text-indigo-700 p-5 rounded-2xl shadow-sm flex items-center gap-4 hover:bg-indigo-100 transition-colors active:scale-95">
+                        <div class="bg-white p-3 rounded-xl text-indigo-500 shadow-sm">
+                            <i data-lucide="folder-plus" class="w-6 h-6"></i>
+                        </div>
+                        <span class="font-bold text-lg">Crear ficha</span>
                     </a>
                 </div>
             </div>
@@ -149,9 +164,9 @@
                 <div class="p-1 rounded-lg mb-1">
                     <i data-lucide="users" class="w-6 h-6" stroke-width="2"></i>
                 </div>
-                <span class="text-[10px] font-medium">Estudiantes</span>
+                <span class="text-[10px] font-medium">Aprendices</span>
             </a>
-            <a href="notifications.html"
+            <a href="instructor_notifications.html"
                 class="flex flex-col items-center p-2 min-w-[64px] rounded-xl transition-all text-gray-400 hover:text-gray-600">
                 <div class="p-1 rounded-lg mb-1">
                     <i data-lucide="bell" class="w-6 h-6" stroke-width="2"></i>
@@ -169,9 +184,8 @@
                     <button id="close-menu-btn" class="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-full">
                         <i data-lucide="x" class="w-5 h-5"></i>
                     </button>
-                    <div
-                        class="w-16 h-16 rounded-full bg-mentora-orange flex items-center justify-center text-white font-bold text-2xl mb-4 shadow-lg border-2 border-white/20 uppercase">
-                        I
+                    <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-100 mb-4 shadow-lg border-2 border-white/20">
+                        <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?w=80&h=80&fit=crop" onerror="this.onerror=null;this.src='assets/images/img_perfil.svg';" alt="Foto" class="w-full h-full object-cover">
                     </div>
                     <h2 class="font-heading font-bold text-xl">Instructor</h2>
                     <p class="text-mentora-beige text-sm opacity-90">Coordinación Académica</p>
@@ -192,7 +206,7 @@
                         <a href="instructor_subjects.html"
                             class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
                             <i data-lucide="users" class="w-5 h-5"></i>
-                            <span>Mis Estudiantes</span>
+                            <span>Mis Aprendices</span>
                         </a>
                         <a href="instructor_challenges.html"
                             class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
