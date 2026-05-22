@@ -218,9 +218,9 @@
                 }
 
                 const html = `
-                <div class="relative w-full mb-3 student-wrapper" style="min-height: 104px;">
+                <div class="w-full mb-3 student-wrapper">
                     <!-- Main Card -->
-                    <div class="bg-white border border-gray-100 p-4 rounded-xl shadow-sm transition-all absolute top-0 left-0 w-full z-20 student-card" style="cursor: pointer;">
+                    <div class="bg-white border border-gray-100 p-4 rounded-xl shadow-sm">
                         <div class="flex items-center justify-between mb-3">
                             <div class="flex items-center gap-3">
                                 <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-gray-100 bg-gray-100 shrink-0">
@@ -231,8 +231,8 @@
                                     <p class="text-[11px] text-gray-500 font-medium">${points} pts globales</p>
                                 </div>
                             </div>
-                            <button id="mas_informacion_${i}" class="toggle-btn text-mentora-blue-light p-2 bg-blue-50 rounded-lg transition-colors">
-                                <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300 transform"></i>
+                            <button class="toggle-btn text-mentora-blue-light p-2 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                                <i data-lucide="chevron-down" class="w-4 h-4"></i>
                             </button>
                         </div>
                         
@@ -245,11 +245,10 @@
                         </div>
                     </div>
 
-                    <!-- Dropdown Details (Hidden by default, slides down) -->
-                    <div class="student-details absolute top-0 left-0 w-full pt-[94px] -z-10 transition-all duration-300 ease-in-out opacity-0 translate-y-[-20px] pointer-events-none">
-                        <!-- Info Card -->
-                        <div class="bg-gray-50 border border-gray-100 p-4 pb-4 rounded-b-xl shadow-md">
-                            <div class="grid grid-cols-2 gap-3 mb-3 mt-2">
+                    <!-- Dropdown Details -->
+                    <div class="student-details hidden mt-1">
+                        <div class="bg-gray-50 border border-gray-100 p-4 rounded-xl shadow-sm">
+                            <div class="grid grid-cols-2 gap-3 mb-3">
                                 <div class="bg-white p-2 rounded-lg border border-gray-100 flex flex-col">
                                     <span class="text-[10px] text-gray-400 font-bold uppercase">Puntos Totales</span>
                                     <span class="font-bold text-mentora-blue-dark">${points}</span>
@@ -272,15 +271,14 @@
                             </div>
                         </div>
                         
-                        <!-- Profile Link Card -->
-                        <a href="student_profile.html" class="mt-2 bg-white border border-gray-200 p-3 rounded-xl shadow-sm flex items-center justify-between hover:border-mentora-blue-light transition-colors group/link relative z-30">
+                        <a href="student_profile.html" class="mt-2 block bg-white border border-gray-200 p-3 rounded-xl shadow-sm flex items-center justify-between hover:border-mentora-blue-light transition-colors">
                             <div class="flex items-center gap-3">
                                 <div class="w-8 h-8 rounded-full overflow-hidden border border-gray-100 bg-gray-100">
                                     <img src="${avatarSrc}" onerror="${avatarFallback}" alt="Foto de ${name}" class="w-full h-full object-cover">
                                 </div>
-                                <span class="font-bold text-sm text-gray-700 group-hover/link:text-mentora-blue-light transition-colors">Ir a perfil completo</span>
+                                <span class="font-bold text-sm text-gray-700">Ir a perfil completo</span>
                             </div>
-                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-gray-400 group-hover/link:text-mentora-blue-light"></i>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-gray-400"></i>
                         </a>
                     </div>
                 </div>
@@ -289,38 +287,20 @@
             }
             if (window.lucide) window.lucide.createIcons();
 
-            // Handle toggle animation
+            // Handle toggle
             document.querySelectorAll('.toggle-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const wrapper = btn.closest('.student-wrapper');
                     const details = wrapper.querySelector('.student-details');
-                    const icon = btn.querySelector('svg');
-                    
-                    // Close others
-                    document.querySelectorAll('.student-details.active').forEach(otherDetails => {
-                        if(otherDetails !== details) {
-                            otherDetails.classList.remove('active', 'opacity-100', 'translate-y-0', 'pointer-events-auto');
-                            otherDetails.classList.add('opacity-0', 'translate-y-[-20px]', 'pointer-events-none');
-                            otherDetails.closest('.student-wrapper').style.marginBottom = '12px';
-                            const otherIcon = otherDetails.closest('.student-wrapper').querySelector('.toggle-btn svg');
-                            if(otherIcon) otherIcon.classList.remove('rotate-180');
-                        }
+
+                    // Close all others first
+                    document.querySelectorAll('.student-details').forEach(other => {
+                        if (other !== details) other.classList.add('hidden');
                     });
 
-                    // Toggle current
-                    if (details.classList.contains('active')) {
-                        details.classList.remove('active', 'opacity-100', 'translate-y-0', 'pointer-events-auto');
-                        details.classList.add('opacity-0', 'translate-y-[-20px]', 'pointer-events-none');
-                        icon.classList.remove('rotate-180');
-                        wrapper.style.marginBottom = '12px';
-                    } else {
-                        details.classList.add('active', 'opacity-100', 'translate-y-0', 'pointer-events-auto');
-                        details.classList.remove('opacity-0', 'translate-y-[-20px]', 'pointer-events-none');
-                        icon.classList.add('rotate-180');
-                        // Increase wrapper margin bottom to accommodate the expanded details
-                        wrapper.style.marginBottom = '250px';
-                    }
+                    // Toggle this one
+                    details.classList.toggle('hidden');
                 });
             });
         });

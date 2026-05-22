@@ -59,14 +59,14 @@
                     <div class="w-9 h-9"></div>
                 </div>
 
-                <div class="bg-gray-200 text-black p-6 rounded-3xl">
+                <div class="bg-gray-200 text-gray-900 p-6 rounded-3xl">
                     <h3 class="font-bold text-lg mb-2">Quiénes somos</h3>
-                    <p class="text-sm font-medium opacity-90 leading-relaxed text-justify mb-4">Somos un equipo creativo
+                    <p class="text-sm font-normal leading-relaxed text-justify mb-4">Somos un equipo creativo
                         que combina narrativa, gamificación y producción multimedia para transformar experiencias
                         educativas y culturales en propuestas dinámicas y memorables. Creemos en el poder de las
                         historias y los recorridos interactivos para motivar a las personas, generar comunidad y dar
                         sentido a lo académico desde una perspectiva lúdica y participativa.</p>
-                    <p class="text-sm font-medium opacity-90 leading-relaxed text-justify">Nuestra misión principal es
+                    <p class="text-sm font-normal leading-relaxed text-justify">Nuestra misión principal es
                         trabajar con las transversales del SENA, diseñando proyectos que integren tecnología,
                         comunicación visual y dinámicas colectivas. Buscamos que cada iniciativa se viva como un reto y
                         un juego, apostando por la innovación en UX, la creación de contenidos multimedia y la
@@ -117,9 +117,8 @@
                     <button id="close-menu-btn" class="absolute top-4 right-4 p-2 hover:bg-white/10 rounded-full">
                         <i data-lucide="x" class="w-5 h-5"></i>
                     </button>
-                    <div
-                        class="w-16 h-16 rounded-full bg-mentora-green flex items-center justify-center text-mentora-blue-dark font-bold text-2xl mb-4 shadow-lg border-2 border-white/20 uppercase">
-                        A
+                    <div class="w-16 h-16 rounded-full overflow-hidden bg-gray-100 mb-4 shadow-lg border-2 border-white/20">
+                        <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?w=80&h=80&fit=crop" onerror="this.onerror=null;this.src='assets/images/img_perfil.svg';" alt="Foto" class="w-full h-full object-cover">
                     </div>
                     <h2 class="font-heading font-bold text-xl">Carlos Mendoza</h2>
                     <p class="text-mentora-beige text-sm opacity-90">Instructor de Comunicación</p>
@@ -128,7 +127,7 @@
                 <div class="flex-1 overflow-y-auto py-4">
                     <div class="px-4 space-y-1">
                         <a href="instructor_home.html"
-                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors bg-mentora-blue-light/10 text-mentora-blue-light font-semibold">
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors text-gray-600 hover:bg-gray-100">
                             <i data-lucide="home" class="w-5 h-5"></i>
                             <span>Inicio</span>
                         </a>
@@ -167,6 +166,11 @@
                             <i data-lucide="help-circle" class="w-5 h-5"></i>
                             <span>Ayuda</span>
                         </a>
+                        <a href="instructor_about.html"
+                            class="w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-colors bg-mentora-blue-light/10 text-mentora-blue-light font-semibold">
+                            <i data-lucide="info" class="w-5 h-5"></i>
+                            <span>Sobre nosotros</span>
+                        </a>
                         <button id="logout-btn"
                             class="w-full flex items-center gap-4 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 transition-colors mt-2 text-left">
                             <i data-lucide="log-out" class="w-5 h-5"></i>
@@ -176,9 +180,8 @@
                 </div>
 
                 <div class="p-6 bg-gray-50 border-t border-gray-200 flex flex-col items-center">
-                    <div
-                        class="w-12 h-12 bg-mentora-orange rounded-full flex items-center justify-center text-white mb-2 shadow-md">
-                        <span class="font-heading font-bold">M</span>
+                    <div class="mb-2">
+                        <img src="assets/images/logo_azul.svg" alt="Mentora Logo" class="w-12 h-12 object-contain drop-shadow-sm">
                     </div>
                     <p class="text-xs text-gray-400 font-medium">Mentora alpha 1.0</p>
                 </div>
