@@ -1,20 +1,2 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
-
-# Run and deploy your AI Studio app
-
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/dfc5c01e-cf03-4f71-b939-2ef1ad1a0150
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+# Mentora Transversal
+Esta es la pagina de mentora, una webapp que estamos desarrollando. Está enfocada a ayudar a que las materias transversales del SENA sean más disfrutables y ayude a la motivación tanto de instructores como de estudiantes.
