@@ -81,14 +81,14 @@
                 <div id="tab-content-generar" class="hidden space-y-4">
 
                     <a href="instructor_activity_create.html"
-                        class="block bg-mentora-blue-dark text-white p-5 rounded-2xl shadow-md hover:bg-mentora-blue-light transition-colors active:scale-95">
-                        <div class="flex items-center gap-3">
-                            <div class="p-3 bg-white/10 rounded-xl">
+                        class="block bg-indigo-50 border-2 border-indigo-300 text-mentora-blue-dark p-5 rounded-2xl shadow-sm hover:bg-indigo-100 transition-colors active:scale-95">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-white p-3 rounded-xl text-indigo-500 shadow-sm">
                                 <i data-lucide="check-square" class="w-6 h-6"></i>
                             </div>
                             <div>
                                 <h3 class="font-bold text-lg">Generar Actividad</h3>
-                                <p class="text-sm opacity-90 leading-tight">Crea una nueva misión para evaluar a tus
+                                <p class="text-sm text-gray-500 leading-tight">Crea una nueva misión para evaluar a tus
                                     aprendices.</p>
                             </div>
                         </div>
@@ -170,14 +170,14 @@
                 <div id="tab-content-recompensas" class="hidden space-y-4">
 
                     <a href="instructor_rewards.html"
-                        class="block bg-mentora-orange text-white p-5 rounded-2xl shadow-md hover:bg-orange-500 transition-colors active:scale-95">
-                        <div class="flex items-center gap-3">
-                            <div class="p-3 bg-white/20 rounded-xl">
+                        class="block bg-orange-50 border-2 border-mentora-orange text-mentora-blue-dark p-5 rounded-2xl shadow-sm hover:bg-orange-100 transition-colors active:scale-95">
+                        <div class="flex items-center gap-4">
+                            <div class="bg-white p-3 rounded-xl text-mentora-orange shadow-sm">
                                 <i data-lucide="gift" class="w-6 h-6"></i>
                             </div>
                             <div>
                                 <h3 class="font-bold text-lg">Asignar Recompensa</h3>
-                                <p class="text-sm opacity-90 leading-tight">Otorga puntos e insignias a tus aprendices
+                                <p class="text-sm text-gray-500 leading-tight">Otorga puntos e insignias a tus aprendices
                                     destacados.</p>
                             </div>
                         </div>
@@ -522,7 +522,7 @@
                 else if (gradeNum < 3.5) gradeColor = 'text-mentora-orange';
 
                 return `
-                <div class="relative w-full mb-3 student-wrapper" style="min-height: 104px;">
+                <div class="relative isolate w-full mb-3 student-wrapper" style="min-height: 104px;">
                     <div class="bg-white border border-gray-100 p-4 rounded-xl shadow-sm transition-all absolute top-0 left-0 w-full z-20 student-card" style="cursor: pointer;">
                         <div class="flex items-center justify-between mb-3">
                             <div class="flex items-center gap-3">
@@ -546,7 +546,7 @@
                             <div class="${pColor} h-1.5 rounded-full" style="width: ${progress}%"></div>
                         </div>
                     </div>
-                    <div class="student-details absolute top-0 left-0 w-full pt-[94px] -z-10 transition-all duration-300 ease-in-out opacity-0 translate-y-[-20px] pointer-events-none">
+                    <div class="student-details absolute top-0 left-0 w-full pt-[94px] z-10 transition-all duration-300 ease-in-out opacity-0 translate-y-[-20px] pointer-events-none">
                         <div class="bg-gray-50 border border-gray-100 p-4 pb-4 rounded-b-xl shadow-md">
                             <div class="grid grid-cols-2 gap-3 mb-3 mt-2">
                                 <div class="bg-white p-2 rounded-lg border border-gray-100 flex flex-col">
@@ -618,6 +618,7 @@
                                 od.classList.remove('active', 'opacity-100', 'translate-y-0', 'pointer-events-auto');
                                 od.classList.add('opacity-0', 'translate-y-[-20px]', 'pointer-events-none');
                                 od.closest('.student-wrapper').style.marginBottom = '12px';
+                                od.closest('.student-wrapper').style.zIndex = '';
                                 const oi = od.closest('.student-wrapper').querySelector('.toggle-btn svg');
                                 if (oi) oi.classList.remove('rotate-180');
                             }
@@ -627,11 +628,13 @@
                             details.classList.add('opacity-0', 'translate-y-[-20px]', 'pointer-events-none');
                             icon.classList.remove('rotate-180');
                             wrapper.style.marginBottom = '12px';
+                            wrapper.style.zIndex = '';
                         } else {
                             details.classList.add('active', 'opacity-100', 'translate-y-0', 'pointer-events-auto');
                             details.classList.remove('opacity-0', 'translate-y-[-20px]', 'pointer-events-none');
                             icon.classList.add('rotate-180');
                             wrapper.style.marginBottom = '250px';
+                            wrapper.style.zIndex = '30';
                         }
                     });
                 });

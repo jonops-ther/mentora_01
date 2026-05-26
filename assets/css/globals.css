@@ -25,6 +25,350 @@ body {
     /* Firefox */
 }
 
+/* ============================== */
+/* ===== RESPONSIVE LAYOUT ====== */
+/* ============================== */
+
+/* --- Tablet (640–1023px): just widen the mobile frame --- */
+@media (min-width: 640px) and (max-width: 1023px) {
+    .max-w-md {
+        max-width: 640px !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .max-w-md {
+        max-width: 768px !important;
+    }
+}
+
+/* ============================================ */
+/* ===== DESKTOP: Duolingo-style layout ======= */
+/* ============================================ */
+
+@media (min-width: 1024px) {
+
+    /* --- Body: full screen, no centering --- */
+    body {
+        justify-content: flex-start !important;
+        overflow: visible !important;
+        height: auto !important;
+        min-height: 100dvh;
+    }
+
+    /* ====== LEFT SIDEBAR (from #menu-overlay) ====== */
+    #menu-overlay {
+        display: block !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: auto !important;
+        bottom: 0 !important;
+        width: 272px !important;
+        height: 100dvh !important;
+        z-index: 40 !important;
+    }
+
+    #menu-backdrop {
+        display: none !important;
+    }
+
+    /* The menu panel itself */
+    #menu-overlay > div:not(#menu-backdrop) {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100% !important;
+        animation: none !important;
+        box-shadow: none !important;
+        border-right: 1px solid #e5e7eb;
+        border-radius: 0 !important;
+    }
+
+    /* Hide close & hamburger buttons */
+    #close-menu-btn {
+        display: none !important;
+    }
+
+    #menu-btn {
+        display: none !important;
+    }
+
+    /* Sidebar nav links: bigger spacing for desktop */
+    #menu-overlay .space-y-1 a,
+    #menu-overlay .space-y-1 button {
+        padding-top: 0.875rem;
+        padding-bottom: 0.875rem;
+        font-size: 0.95rem;
+    }
+
+    /* ====== MAIN CONTAINER ====== */
+    .max-w-md,
+    div.max-w-md {
+        margin-left: 272px !important;
+        max-width: calc(100vw - 272px) !important;
+        width: calc(100vw - 272px) !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        height: 100dvh;
+    }
+
+    /* ====== HIDE BOTTOM NAV ====== */
+    body nav[class*="bottom-0"],
+    nav.absolute.bottom-0 {
+        display: none !important;
+    }
+
+    /* Remove bottom padding that was for the nav */
+    main {
+        padding-bottom: 1.5rem !important;
+    }
+
+    main.pb-20 {
+        padding-bottom: 1.5rem !important;
+    }
+
+    /* ====== HEADER adjustments ====== */
+    header {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+    }
+
+    /* ====== CONTENT AREA ====== */
+    main > div > .p-6,
+    main > .p-6 {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+    }
+
+    main > div > .p-4,
+    main > .p-4 {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    /* ====== GRIDS: 3 columns ====== */
+    main .grid.grid-cols-2 {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 1.25rem;
+    }
+
+    /* ====== STUDENT CARDS: 2 columns ====== */
+    #students-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    #students-list > .student-wrapper {
+        margin-bottom: 0 !important;
+    }
+
+    /* ====== MODALS: wider ====== */
+    .max-w-sm {
+        max-width: 480px !important;
+    }
+
+    /* ====== TABS: no horizontal scroll ====== */
+    .overflow-x-auto {
+        overflow-x: visible;
+    }
+
+    /* Tab bar wider spacing */
+    .sticky.top-0[class*="backdrop-blur"],
+    div[class*="backdrop-blur"][class*="sticky"] {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+    }
+
+    /* ====== RIGHT SIDEBAR (created via JS) ====== */
+    #desktop-sidebar-right {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 320px;
+        height: 100dvh;
+        overflow-y: auto;
+        background: #f9fafb;
+        border-left: 1px solid #e5e7eb;
+        z-index: 35;
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* ====== 3-COLUMN LAYOUT (≥1280px): show right sidebar ====== */
+@media (min-width: 1280px) {
+    #menu-overlay {
+        width: 288px !important;
+    }
+
+    .max-w-md,
+    div.max-w-md {
+        margin-left: 288px !important;
+        margin-right: 320px !important;
+        max-width: calc(100vw - 288px - 320px) !important;
+        width: calc(100vw - 288px - 320px) !important;
+    }
+
+    #desktop-sidebar-right {
+        display: block !important;
+    }
+
+    /* Content wider */
+    main > div > .p-6,
+    main > .p-6 {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
+    /* Grids: 3 cols stays good at this width */
+    main .grid.grid-cols-2 {
+        gap: 1.5rem;
+    }
+
+    /* Students: 2 columns with wider gap */
+    #students-list {
+        gap: 1.25rem;
+    }
+}
+
+/* ====== XL DESKTOP (≥1536px) ====== */
+@media (min-width: 1536px) {
+    #menu-overlay {
+        width: 300px !important;
+    }
+
+    .max-w-md,
+    div.max-w-md {
+        margin-left: 300px !important;
+        margin-right: 340px !important;
+        max-width: calc(100vw - 300px - 340px) !important;
+        width: calc(100vw - 300px - 340px) !important;
+    }
+
+    #desktop-sidebar-right {
+        width: 340px;
+    }
+
+    /* Grids: 4 columns */
+    main .grid.grid-cols-2 {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    }
+
+    /* Students: 3 columns */
+    #students-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ====== DARK MODE for desktop sidebars ====== */
+.dark-mode #desktop-sidebar-right {
+    background: #181818 !important;
+    border-left-color: #333 !important;
+}
+
+.dark-mode #menu-overlay > div:not(#menu-backdrop) {
+    border-right-color: #333 !important;
+}
+
+/* ====== Posts feed readability on wide screens ====== */
+@media (min-width: 1024px) {
+    .bg-gray-50.pb-4 > .bg-white.mx-3 {
+        max-width: 680px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* ====== Right sidebar card styling ====== */
+#desktop-sidebar-right .sidebar-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.25rem;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+#desktop-sidebar-right .sidebar-card h4 {
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: #143771;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+#desktop-sidebar-right .sidebar-stat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.625rem 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+#desktop-sidebar-right .sidebar-stat:last-child {
+    border-bottom: none;
+}
+
+#desktop-sidebar-right .sidebar-stat-label {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+#desktop-sidebar-right .sidebar-stat-value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+#desktop-sidebar-right .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    transition: background 0.15s;
+    cursor: pointer;
+}
+
+#desktop-sidebar-right .sidebar-link:hover {
+    background: #eff6ff;
+    color: #1F6DA9;
+}
+
+#desktop-sidebar-right .sidebar-link-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.625rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.dark-mode #desktop-sidebar-right .sidebar-card {
+    background: #1e1e1e !important;
+    border-color: #333 !important;
+}
+
+.dark-mode #desktop-sidebar-right .sidebar-stat {
+    border-bottom-color: #2a2a2a !important;
+}
+
+.dark-mode #desktop-sidebar-right .sidebar-stat-value {
+    color: #f3f4f6 !important;
+}
+
+.dark-mode #desktop-sidebar-right .sidebar-link:hover {
+    background: rgba(31, 109, 169, 0.15) !important;
+}
+
 /* Accessibility Themes */
 
 /* High Contrast Settings */
@@ -46,6 +390,7 @@ body {
     background-color: #121212 !important;
 }
 
+/* Backgrounds */
 .dark-mode .bg-white {
     background-color: #1e1e1e !important;
 }
@@ -55,8 +400,10 @@ body {
     background-color: #181818 !important;
 }
 
+/* Text */
 .dark-mode .text-gray-900,
-.dark-mode .text-gray-800 {
+.dark-mode .text-gray-800,
+.dark-mode .text-gray-700 {
     color: #f3f4f6 !important;
 }
 
@@ -65,49 +412,241 @@ body {
     color: #9ca3af !important;
 }
 
+.dark-mode .text-gray-400 {
+    color: #6b7280 !important;
+}
+
+/* Borders */
 .dark-mode .border-gray-100,
 .dark-mode .border-gray-200 {
     border-color: #333333 !important;
 }
 
-/* Tone down the primary colors slightly for dark mode comfort */
+.dark-mode .border-t-4.border-gray-100 {
+    border-color: #2a2a2a !important;
+}
+
+/* Primary brand colors on dark */
 .dark-mode .bg-mentora-blue-dark {
     background-color: #0f2956 !important;
-    /* Slightly darker */
 }
 
 .dark-mode .text-mentora-blue-dark {
     color: #60a5fa !important;
-    /* Lighter blue for dark bg */
 }
 
-.dark-mode .bg-mentora-orange {
-    background-color: #d9931c !important;
-    /* Dimmed orange */
-}
-
-.dark-mode .text-mentora-orange {
-    color: #fca5a5 !important;
-}
-
-.dark-mode .bg-orange-50 {
-    background-color: rgba(249, 176, 50, 0.15) !important;
-}
-
-.dark-mode .bg-blue-50 {
-    background-color: rgba(31, 109, 169, 0.15) !important;
+.dark-mode .text-mentora-blue-light {
+    color: #5dade2 !important;
 }
 
 .dark-mode .bg-mentora-blue-light {
     background-color: #185a8c !important;
-    /* Dimmed light blue */
 }
 
+.dark-mode .bg-mentora-orange {
+    background-color: #d9931c !important;
+}
+
+.dark-mode .text-mentora-orange {
+    color: #fbbf24 !important;
+}
+
+.dark-mode .text-mentora-green {
+    color: #a3e635 !important;
+}
+
+/* Tinted backgrounds for buttons and cards */
+.dark-mode .bg-blue-50 {
+    background-color: rgba(31, 109, 169, 0.15) !important;
+}
+
+.dark-mode .bg-orange-50 {
+    background-color: rgba(249, 176, 50, 0.12) !important;
+}
+
+.dark-mode .bg-green-50 {
+    background-color: rgba(170, 221, 55, 0.12) !important;
+}
+
+.dark-mode .bg-indigo-50 {
+    background-color: rgba(99, 102, 241, 0.12) !important;
+}
+
+.dark-mode .bg-purple-50 {
+    background-color: rgba(139, 92, 246, 0.12) !important;
+}
+
+.dark-mode .bg-red-50 {
+    background-color: rgba(239, 68, 68, 0.12) !important;
+}
+
+.dark-mode .bg-green-100 {
+    background-color: rgba(170, 221, 55, 0.18) !important;
+}
+
+/* Outline button borders on dark */
+.dark-mode .border-mentora-orange {
+    border-color: rgba(249, 176, 50, 0.5) !important;
+}
+
+.dark-mode .border-mentora-blue-light {
+    border-color: rgba(31, 109, 169, 0.5) !important;
+}
+
+.dark-mode .border-mentora-green {
+    border-color: rgba(170, 221, 55, 0.5) !important;
+}
+
+.dark-mode .border-indigo-200,
+.dark-mode .border-indigo-300 {
+    border-color: rgba(99, 102, 241, 0.4) !important;
+}
+
+.dark-mode .border-blue-100\/50,
+.dark-mode .border-blue-200 {
+    border-color: rgba(31, 109, 169, 0.3) !important;
+}
+
+.dark-mode .border-indigo-100\/50 {
+    border-color: rgba(99, 102, 241, 0.25) !important;
+}
+
+.dark-mode .border-orange-100\/50 {
+    border-color: rgba(249, 176, 50, 0.25) !important;
+}
+
+.dark-mode .border-green-100\/50 {
+    border-color: rgba(170, 221, 55, 0.25) !important;
+}
+
+.dark-mode .border-purple-200 {
+    border-color: rgba(139, 92, 246, 0.35) !important;
+}
+
+/* Indigo text */
+.dark-mode .text-indigo-500 {
+    color: #818cf8 !important;
+}
+
+.dark-mode .text-indigo-700 {
+    color: #a5b4fc !important;
+}
+
+/* Hover states on dark */
+.dark-mode .hover\:bg-orange-100:hover {
+    background-color: rgba(249, 176, 50, 0.2) !important;
+}
+
+.dark-mode .hover\:bg-indigo-100:hover {
+    background-color: rgba(99, 102, 241, 0.2) !important;
+}
+
+.dark-mode .hover\:bg-blue-100:hover {
+    background-color: rgba(31, 109, 169, 0.2) !important;
+}
+
+.dark-mode .hover\:bg-green-100:hover {
+    background-color: rgba(170, 221, 55, 0.2) !important;
+}
+
+.dark-mode .hover\:bg-gray-100:hover {
+    background-color: #252525 !important;
+}
+
+.dark-mode .hover\:bg-gray-200:hover {
+    background-color: #2a2a2a !important;
+}
+
+/* Locked/finalized fichas */
+.dark-mode .bg-gray-200 {
+    background-color: #2a2a2a !important;
+}
+
+.dark-mode .text-gray-600 {
+    color: #9ca3af !important;
+}
+
+/* Shadows on dark */
 .dark-mode .shadow-sm,
 .dark-mode .shadow-md,
 .dark-mode .shadow-lg,
 .dark-mode .shadow-2xl {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Form elements */
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+    background-color: #252525 !important;
+    color: #e5e5e5 !important;
+    border-color: #404040 !important;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+    color: #6b7280 !important;
+}
+
+/* Tab pills */
+.dark-mode .bg-gray-100 .bg-white {
+    background-color: #2a2a2a !important;
+}
+
+/* Nav bar */
+.dark-mode .border-t.border-gray-200 {
+    border-color: #333333 !important;
+}
+
+/* Menu overlay */
+.dark-mode .bg-black\/50 {
+    background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Posts feed */
+.dark-mode .bg-gray-50.pb-4 {
+    background-color: #151515 !important;
+}
+
+.dark-mode .bg-gray-900 {
+    background-color: #0a0a0a !important;
+}
+
+/* Mentora beige text */
+.dark-mode .text-mentora-beige {
+    color: #fde68a !important;
+}
+
+/* Red states */
+.dark-mode .text-red-500 {
+    color: #f87171 !important;
+}
+
+.dark-mode .text-red-400 {
+    color: #f87171 !important;
+}
+
+.dark-mode .hover\:bg-red-50:hover {
+    background-color: rgba(239, 68, 68, 0.15) !important;
+}
+
+/* Blue active states */
+.dark-mode .bg-mentora-blue-light\/10 {
+    background-color: rgba(31, 109, 169, 0.15) !important;
+}
+
+/* Scrollbar for dark mode */
+.dark-mode ::-webkit-scrollbar {
+    width: 4px;
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+    background: #404040;
+    border-radius: 4px;
 }
 
 /* Color Blind Mode */
