@@ -134,9 +134,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Desktop Right Sidebar ---
     const DESKTOP_BP = 1024;
     const isLoginPage = !!document.getElementById('login-form');
+    const hasSidebar = !!document.getElementById('menu-overlay');
+
+    if (hasSidebar) {
+        document.body.classList.add('has-sidebar');
+    }
 
     function createDesktopSidebar() {
-        if (isLoginPage) return;
+        if (isLoginPage || !hasSidebar) return;
         if (document.getElementById('desktop-sidebar-right')) return;
 
         const role = localStorage.getItem('mentora_role') || 'aprendiz';

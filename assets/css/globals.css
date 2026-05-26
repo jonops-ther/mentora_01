@@ -102,8 +102,8 @@ body {
     }
 
     /* ====== MAIN CONTAINER ====== */
-    .max-w-md,
-    div.max-w-md {
+    .has-sidebar .max-w-md,
+    .has-sidebar div.max-w-md {
         margin-left: 272px !important;
         max-width: calc(100vw - 272px) !important;
         width: calc(100vw - 272px) !important;
@@ -203,8 +203,8 @@ body {
         width: 288px !important;
     }
 
-    .max-w-md,
-    div.max-w-md {
+    .has-sidebar .max-w-md,
+    .has-sidebar div.max-w-md {
         margin-left: 288px !important;
         margin-right: 320px !important;
         max-width: calc(100vw - 288px - 320px) !important;
@@ -239,8 +239,8 @@ body {
         width: 300px !important;
     }
 
-    .max-w-md,
-    div.max-w-md {
+    .has-sidebar .max-w-md,
+    .has-sidebar div.max-w-md {
         margin-left: 300px !important;
         margin-right: 340px !important;
         max-width: calc(100vw - 300px - 340px) !important;
